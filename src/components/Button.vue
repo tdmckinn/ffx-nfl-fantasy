@@ -1,0 +1,14 @@
+<template>
+  <button class="button" @click="click">{{text}}</button>
+</template>
+
+<script>
+export default {
+  name: 'ffx-button',
+  props: {
+    className: String,
+    text: String,
+    click: Function
+  }
+}
+</script>
