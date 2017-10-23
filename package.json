@@ -83,6 +83,7 @@
     "shelljs": "^0.7.8",
     "sinon": "^4.0.0",
     "sinon-chai": "^2.8.0",
+    "sass-loader": "^6.0.6",    
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
@@ -101,5 +102,10 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "now": {
+    "engines": {
+      "node": "6.11.4"
+    }
+  }
 }
