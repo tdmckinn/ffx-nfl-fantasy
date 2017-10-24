@@ -5,11 +5,12 @@
         <p class="modal-card-title">Player Details</p>
         <button class="delete" @click="close"></button>
       </header>
-      <section class="modal-card-body">
+      <section v-if="player" class="modal-card-body">
         <player :player="player"></player>
       </section>
       <footer class="modal-card-foot">
-        <a class="button is-success" :class="{ 'is-loading': isLoading }" @click="addPlayer">Add Player</a>
+        <a v-if="!isPlayerOnMyTeam" class="button is-success" :class="{ 'is-loading': isLoading }" @click="addPlayer">Add Player</a>
+        <a v-else class="button is-danger" :class="{ 'is-loading': isLoading }" @click="removePlayer">Remove Player</a>
         <a class="button" @click="close">Cancel</a>
       </footer>
     </div>
@@ -33,18 +34,30 @@ export default {
       isLoading: false
     }
   },
+  computed: {
+    isPlayerOnMyTeam() {
+      if (this.$store.state.myTeam.length !== 0) {
+        return typeof this.$store.state.myTeam.find(item => item.playerId === this.player.playerId) !== 'undefined'
+      }
+      return false
+    }
+  },
   methods: {
     close() {
-      this.$emit('closing')
+      setTimeout(() => {
+        this.isLoading = false
+        this.$emit('closing')
+      }, 500)
+    },
+    removePlayer() {
+      this.isLoading = true
+      this.$store.dispatch('REMOVE_PLAYER', this.player)
+      this.close()
     },
     addPlayer() {
       this.isLoading = true
       this.$store.dispatch('ADD_PLAYER', this.player)
-
-      setTimeout(() => {
-        this.isLoading = false
-        this.close()
-      }, 500)
+      this.close()
     }
   }
 }

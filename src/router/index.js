@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Dashboard from '@/views/Dashboard'
-import MyTeam from '@/views/MyTeam'
 import Players from '@/views/Players'
 import Research from '@/views/Research'
 import TopDrafts from '@/views/TopDrafts'
@@ -29,7 +28,9 @@ const NotFoundComponent = {
   </section>`
 }
 
-export default new Router({
+const MyTeam = () => import('../views/MyTeam')
+
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -38,7 +39,10 @@ export default new Router({
     },
     {
       path: '/myteam',
-      component: MyTeam,
+      component: MyTeam
+      // beforeEnter: (to, from, next) => {
+      //   // ... isLogged In User
+      // }
     },
     {
       path: '/research',
@@ -55,3 +59,5 @@ export default new Router({
     { path: '*', component: NotFoundComponent }
   ]
 })
+
+export default router

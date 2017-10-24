@@ -29,6 +29,9 @@ export default {
     commit('SET_WEATHER_FORECAST', gameWeatherInfo)
   },
   ADD_PLAYER: ({ commit }, player) => {
-    commit('UPDATE_PLAYER_TEAM', Object.assign({}, player))
+    commit('ADD_TEAM_MEMBER', Object.assign({}, player))
+  },
+  REMOVE_PLAYER: ({ commit }, player) => {
+    commit('REMOVE_TEAM_MEMBER', Object.assign({}, player))
   }
 }

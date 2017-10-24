@@ -15,7 +15,6 @@ class FantasyService extends BaseService {
   }
 
   getWeather() {
-    console.log(Weather)
     return Weather
   }
 }
