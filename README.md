@@ -1,4 +1,4 @@
-# ffx-nfl-fantasy
+#nfx-fantasy
 
 > fantasy football sports
 

@@ -4,7 +4,7 @@
       <div class="navbar-start">
         <router-link id="link-brand" class="navbar-item" to="/">
           <h1 class="title is-3">
-           FFX(NFL) Fantasy <span>{{year}}</span>
+           NFX Fantasy <span>{{year}}</span>
           </h1>
         </router-link>
       </div>

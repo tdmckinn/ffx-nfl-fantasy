@@ -1,9 +1,9 @@
-<template> 
+<template>
   <footer class="ffx-footer footer">
     <div class="container">
       <div class="content has-text-centered">
         <p>
-          <strong>FFX NFL Fantasy</strong> by
+          <strong>NFX Fantasy</strong> by
           <a href="http://jgthms.com">Tirell Mckinnon</a>
         </p>
         <p>
