@@ -1,5 +1,5 @@
-const express = require('express')
-const axios = require('axios')
+import express from 'express'
+import axios from 'axios'
 
 const router = express.Router()
 
@@ -18,7 +18,7 @@ router.get('/players', (req, res) => {
       Players: data.Players.filter(player => player.active === '1'
         && player.dob !== '0000-00-00').slice(0, 100)
     })
-  }).catch((e) => { res.json('error') })
+  }).catch(() => { res.json('error') })
 })
 
 router.get('/weather', (req, res) => {
