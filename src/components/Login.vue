@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import FfxFieldset from '@/components/Fieldset'
-import FfxInput from '@/components/Input'
-import FfxButton from '@/components/Button'
+import FfxFieldset from './Fieldset.vue'
+import FfxInput from './Input.vue'
+import FfxButton from './Button.vue'
 
 export default {
   name: 'ffx-login',

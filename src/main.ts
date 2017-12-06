@@ -3,10 +3,9 @@
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 
-import Modal from '@/components/globals/Modal'
-import PlayerModal from '@/components/player/PlayerModal'
-
-import App from './App'
+import App from './App.vue'
+import Modal from './components/globals/Modal.vue'
+import PlayerModal from './components/player/PlayerModal.vue'
 import router from './router'
 import store from './store'
 

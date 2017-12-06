@@ -10,10 +10,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import moment from 'moment'
 
-import FfxSlide from '@/components/Slide'
+import FfxSlide from '../components/Slide.vue'
+
+const gameFormat: string = 'MM/DD/YYYY'
 
 export default {
   name: 'dashboard',
@@ -23,7 +25,7 @@ export default {
   data() {
     return {
       slides: [],
-      today: moment().format('MM / DD / YYYY')
+      today: moment().format(gameFormat)
     }
   },
   computed: {

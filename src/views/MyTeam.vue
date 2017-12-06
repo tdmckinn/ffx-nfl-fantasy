@@ -1,4 +1,4 @@
-<template> 
+<template>
   <div>
     <h1 class="title"> My Team </h1>
       <div v-for="player in myTeam" :key="player.playerId">
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Player from '@/components/player/Player'
+import Player from '../components/player/Player.vue'
 
 export default {
   name: 'my-team',

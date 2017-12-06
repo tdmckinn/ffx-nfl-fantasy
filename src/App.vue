@@ -12,9 +12,9 @@
 </template>
 
 <script>
-import FfxHeader from '@/components/Header'
-import FfxFooter from '@/components/Footer'
-import Login from '@/components/Login'
+import FfxHeader from './components/Header.vue'
+import FfxFooter from './components/Footer.vue'
+import Login from './components/Login.vue'
 
 export default {
   name: 'app',
@@ -35,9 +35,9 @@ export default {
 @import "./vars";
 @import "~bulma";
 
-.app { 
-  display: flex; 
-  min-height: 100vh; 
+.app {
+  display: flex;
+  min-height: 100vh;
   flex-direction: column;
   font-size: 1.255rem;
   line-height: 30px;

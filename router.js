@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const router = express.Router()
 
-const NFX_DRAFT_KEY = process.env.NFX_DRAFT_KEY || 'gynxnqczrsmq'
+const NFX_DRAFT_KEY = process.env.NFX_DRAFT_KEY
 const api = 'https://www.fantasyfootballnerd.com/service/'
 
 router.get('/draft-rankings', (req, res) => {
@@ -27,4 +27,4 @@ router.get('/weather', (req, res) => {
   })
 })
 
-module.exports = router
+export default router

@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Dashboard from '@/views/Dashboard'
-import Players from '@/views/Players'
-import Research from '@/views/Research'
-import TopDrafts from '@/views/TopDrafts'
 
-import Modal from '@/components/globals/Modal'
+import Dashboard from '../views/Dashboard.vue'
+import Players from '../views/Players.vue'
+import Research from '../views/Research.vue'
+import TopDrafts from '../views/TopDrafts.vue'
+import Modal from '../components/globals/Modal.vue'
 
 Vue.use(Router)
 
@@ -28,7 +28,7 @@ const NotFoundComponent = {
   </section>`
 }
 
-const MyTeam = () => import('../views/MyTeam')
+const MyTeam = () => import('../views/MyTeam.vue')
 
 const router = new Router({
   mode: 'history',

@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Player from '@/components/player/Player'
+import Player from './Player.vue'
 
 export default {
   props: {

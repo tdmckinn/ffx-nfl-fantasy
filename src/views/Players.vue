@@ -1,5 +1,5 @@
-<template> 
-  <div> 
+<template>
+  <div>
     <h1 class="title"> Players </h1>
     <div v-for="player in players" :key="player.playerId">
       <player :onPlayerClicked="onPlayerClicked"
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Player from '@/components/player/Player'
+import Player from '../components/player/Player.vue'
 
 export default {
   name: 'players',
