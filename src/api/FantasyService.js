@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 
 import BaseService from './BaseService'
-import Weather from './weather.json'
+import Weather from '../../data/weather.json'
 
 class FantasyService extends BaseService {
   async getDraftRankings() {

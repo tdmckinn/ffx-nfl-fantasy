@@ -21,6 +21,9 @@
         <router-link class="navbar-item" to="/research">
           Research
         </router-link>
+        <router-link class="navbar-item" to="/draft">
+          Draft
+        </router-link>
       </div>
     </nav>
   </header>

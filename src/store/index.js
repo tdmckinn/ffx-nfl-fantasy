@@ -19,7 +19,6 @@ const state = {
   },
   players: [],
   myTeam: [],
-  topDrafts: [],
   rankings: [],
   gameInfo: []
 }

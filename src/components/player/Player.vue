@@ -16,9 +16,12 @@
       </div>
       <nav class="level is-mobile">
         <div class="level-left">
-          <a class="level-item">
-            <span class="icon is-small"><i class="fa fa-heart"></i></span>
-          </a>
+            <span class="icon is-small" @mouseover="isHovered = true" @mouseout="isHovered = false">
+              <i
+                :class="[isHovered ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"
+                class="fa"
+                ></i>
+            </span>
         </div>
       </nav>
     </div>
@@ -32,6 +35,11 @@ export default {
   props: {
     player: Object,
     onPlayerClicked: Function
+  },
+  data() {
+    return {
+      isHovered: false
+    }
   },
   methods: {
     playerClicked() {
