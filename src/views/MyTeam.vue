@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import Player from '../components/player/Player.vue'
 
 export default {
@@ -16,9 +18,9 @@ export default {
     Player
   },
   computed: {
-    myTeam() {
-      return this.$store.state.myTeam
-    }
+    ...mapState({
+      myTeam: ({ myTeam }) => myTeam
+    })
   }
 }
 </script>

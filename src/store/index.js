@@ -15,7 +15,8 @@ const state = {
     lastName: '',
     email: '',
     wins: 0,
-    loses: 0
+    loses: 0,
+    favoriteTeam: ''
   },
   players: [],
   myTeam: [],

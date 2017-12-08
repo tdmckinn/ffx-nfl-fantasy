@@ -1,10 +1,17 @@
-<template> 
+<template>
   <div> Top Drafts </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex'
+
   export default {
-    name: 'top-drafts'
+    name: 'top-drafts',
+    computed: {
+      ...mapState({
+        players: ({ players }) => players
+      })
+    }
   }
 </script>
 
