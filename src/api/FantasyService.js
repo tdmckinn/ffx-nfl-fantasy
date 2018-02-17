@@ -14,6 +14,11 @@ class FantasyService extends BaseService {
     return data.Players
   }
 
+  async getPlayerResearch() {
+    const { data } = await this.request('research')
+    return data.Players
+  }
+
   getWeather() {
     return Weather
   }

@@ -49,7 +49,7 @@ const router = new Router({
       component: Research,
     },
     {
-      path: '/topdrafts',
+      path: '/draft-rankings',
       component: TopDrafts,
     },
     {

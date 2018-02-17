@@ -9,11 +9,11 @@ const NFX_DRAFT_KEY = process.env.NFX_DRAFT_KEY
 
 const api = 'https://www.fantasyfootballnerd.com/service/'
 
-router.get('/draft-rankings', (req, res) => {
-  axios.get(`${api}players/json/${NFX_DRAFT_KEY}`).then(({ data }) => {
-    res.json(data)
-  })
-})
+// router.get('/draft-rankings', (req, res) => {
+//   axios.get(`${api}players/json/${NFX_DRAFT_KEY}`).then(({ data }) => {
+//     res.json(data)
+//   })
+// })
 
 router.get('/players', (req, res) => {
   axios.get(`${api}players/json/${NFX_DRAFT_KEY}`).then(({ data }) => {
@@ -37,10 +37,11 @@ router.get('/players', (req, res) => {
   })
 })
 
-router.get('/weather', (req, res) => {
-  axios.get(`${api}draft-rankings/json/${NFX_DRAFT_KEY}`).then(({ data }) => {
-    res.json(data)
+router.get('/draft-rankings', (req, res) => {
+  axios.get('https://api.apify.com/v1/execs/sL3skwcx7D3ob3ZdZ/results?format=json&simplified=1').then(({ data }) => {
+    res.json({ DraftRankings: data })
   })
 })
+
 
 export default router

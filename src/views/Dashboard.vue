@@ -5,6 +5,7 @@
     <div v-for="game in gameInfo.Games" :key="game.gameId">
       <div>Location: {{game.stadium}} | Weather Forecast: {{game.forecast}} <span><img :src="game.smallImg" /></span></div>
       <div>{{game.awayTeam}} VS {{game.awayTeam}} <span>Winner: {{game.winner}}</span></div>
+      <hr>
     </div>
     <ffx-slide v-once :slides="slides"></ffx-slide>
   </div>

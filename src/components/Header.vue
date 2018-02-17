@@ -9,7 +9,7 @@
         </router-link>
       </div>
       <div v-if="isLoggedInUser" class="navbar-end navbar-menu">
-         <router-link class="navbar-item" to="/topdrafts">
+         <router-link class="navbar-item" to="/draft-rankings">
            League Top Drafts
         </router-link>
          <router-link class="navbar-item" to="/myteam">

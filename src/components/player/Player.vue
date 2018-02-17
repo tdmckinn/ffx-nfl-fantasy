@@ -1,5 +1,5 @@
 <template>
-  <div v-if="player"class="ffx-player box" @click="playerClicked">
+  <div v-if="player" class="ffx-player box" @click="playerClicked">
   <article class="media">
     <div class="media-left">
       <figure class="image is-64x64">
@@ -18,7 +18,7 @@
         <div class="level-left">
             <span class="icon is-small" @mouseover="isHovered = true" @mouseout="isHovered = false">
               <i
-                :class="[isHovered ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"
+                :class="[isHovered || isPlayerOnMyTeam ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"
                 class="fa"
                 ></i>
             </span>
@@ -46,6 +46,14 @@ export default {
       if (this.onPlayerClicked) {
         this.onPlayerClicked(this.player)
       }
+    }
+  },
+  computed: {
+    isPlayerOnMyTeam() {
+      if (this.$store.state.myTeam.length !== 0 && this.player) {
+        return typeof this.$store.state.myTeam.find(item => item.playerId === this.player.playerId) !== 'undefined'
+      }
+      return false
     }
   }
 }
