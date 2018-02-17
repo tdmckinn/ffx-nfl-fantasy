@@ -44,6 +44,8 @@ export default {
   line-height: 1.875rem;
 
   &__ffx-main {
+    padding-top: 15px;
+
     &--login {
       background-image: url('./assets/sandro-schuh-143183.jpg');
       background-position: center;

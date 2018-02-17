@@ -4,7 +4,7 @@
       <div class="content has-text-centered">
         <p>
           <strong>NFX Fantasy</strong> by
-          <a href="http://jgthms.com">Tirell Mckinnon</a>
+          <a href="https://tirellmckinnon.com">Tirell Mckinnon</a>
         </p>
         <p>
           <a class="icon" href="https://github.com/tdmckinn/ffx-nfl-fantasy">

@@ -17,5 +17,9 @@ export default {
   },
   SET_WEATHER_FORECAST: (state, gameWeather) => {
     state.gameInfo = gameWeather
+  },
+  SET_DRAFT_RANKINGS: (state, draftRankings) => {
+    console.log(draftRankings)
+    state.draftRankings = draftRankings
   }
 }

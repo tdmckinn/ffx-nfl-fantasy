@@ -21,7 +21,7 @@ export default {
   },
   GET_DRAFT_RANKINGS: ({ commit }) => {
     FantasyService.getDraftRankings().then((data) => {
-      commit('SET_PLAYERS', data)
+      commit('SET_DRAFT_RANKINGS', data)
     })
   },
   GET_WEATHER: ({ commit }) => {
