@@ -1,21 +1,19 @@
-/* eslint-disable class-methods-use-this */
-
 import BaseService from './BaseService'
 import Weather from '../../data/weather.json'
 
 class FantasyService extends BaseService {
   async getDraftRankings() {
-    const { data } = await this.request('draft-rankings')
+    const { data } = await this.get('draft-rankings')
     return data.DraftRankings
   }
 
   async getPlayers() {
-    const { data } = await this.request('players')
+    const { data } = await this.get('players')
     return data.Players
   }
 
   async getPlayerResearch() {
-    const { data } = await this.request('research')
+    const { data } = await this.get('research')
     return data.Players
   }
 

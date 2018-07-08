@@ -7,6 +7,9 @@
     <main v-if="!isLoggedInUser" class="app__ffx-main--login">
       <login></login>
     </main>
+    <section>
+      <ffx-counter></ffx-counter>
+    </section>
     <ffx-footer></ffx-footer>
   </div>
 </template>

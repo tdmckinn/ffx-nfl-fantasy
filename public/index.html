@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <!-- Web Components Polyfill -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.13/webcomponents-lite.js"></script>
+  <script>
+    (function () {
+      const template = document.createElement('template');
+
+      template.innerHTML =
+        `
+          <style>
+            .ffx-counter {
+              font-size: 1.5rem;
+              color: #fab23a;
+              font-family: monospace;
+              text-align: center;
+              text-decoration: #fab23a solid underline;
+              text-decoration-skip: ink;
+            }
+          </style>
+          <h1 class="ffx-counter">FFX Draft Count Down!</h1>
+      `;
+
+      class Counter extends HTMLElement {
+        constructor() {
+          super();
+
+          this.attachShadow({
+            mode: 'open'
+          });
+          this.shadowRoot.appendChild(template.content.cloneNode(true));
+        }
+      }
+
+      window.customElements.define('ffx-counter', Counter);
+    })();
+
+  </script>
+  <title>NFX Fantasy</title>
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>

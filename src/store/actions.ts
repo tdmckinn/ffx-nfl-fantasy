@@ -1,7 +1,7 @@
 import { FantasyService } from '../api'
 
 export default {
-  AUTHENTICATE_USER: ({ commit, dispatch, state }, { email, password }) => {
+  AUTHENTICATE_USER: ({ commit }, { email, password }) => {
     console.log('user', email, password)
     // fake ajax
     commit('SET_USER', {
@@ -29,9 +29,9 @@ export default {
     commit('SET_WEATHER_FORECAST', gameWeatherInfo)
   },
   ADD_PLAYER: ({ commit }, player) => {
-    commit('ADD_TEAM_MEMBER', Object.assign({}, player))
+    commit('ADD_TEAM_MEMBER', {...player })
   },
   REMOVE_PLAYER: ({ commit }, player) => {
-    commit('REMOVE_TEAM_MEMBER', Object.assign({}, player))
+    commit('REMOVE_TEAM_MEMBER', {...player })
   }
 }

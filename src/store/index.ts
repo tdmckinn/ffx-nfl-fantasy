@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+
 import actions from './actions'
 import mutations from './mutations'
 import getters from './getters'
@@ -25,7 +26,7 @@ const state = {
 }
 
 if (localStorage.getItem('FFX_USER')) {
-  state.user = JSON.parse(localStorage.getItem('FFX_USER'))
+  state.user = JSON.parse(localStorage.getItem('FFX_USER') || '')
 }
 
 const core = {

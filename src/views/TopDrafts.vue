@@ -1,11 +1,11 @@
 <template>
   <div> 
-    <h1>Top Drafts</h1>
+    <h1 class="title">Top Drafts</h1>
     <table class="table">
       <thead>
         <tr>
           <th>
-            Position
+            Player
           </th>
         </tr>
       </thead>
@@ -26,10 +26,10 @@
     computed: {
       playerDraftRankings() {
         console.log(this.$store.state)
-        return this.$store.state.draftRankings
+        return this.$store.state.players
       }
     },
-    beforeMount() {
+    created() {
       this.$store.dispatch('GET_DRAFT_RANKINGS')
     }
   }

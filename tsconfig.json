@@ -1,13 +1,39 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "es5", "es2015"],
-    "target": "es5",
-    "module": "es2015",
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "experimentalDecorators": true,
+    "lib": ["es7", "dom", "esnext"],
+    "jsx": "preserve",
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "outDir": "./dist/",
+    "noImplicitAny": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "module": "esnext",
     "moduleResolution": "node",
     "sourceMap": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "allowJs": true
-  }
+    "strictNullChecks": true,
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "rootDir": "src",
+    "target": "es6",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "compileOnSave": false,
+  "exclude": [
+    "node_modules",
+    "dist",
+    "out",
+    "webpack"
+  ],
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./src/**/*.vue",
+    "./tests/**/*.ts",
+  ]
 }

@@ -12,7 +12,7 @@
          <router-link class="navbar-item" to="/draft-rankings">
            League Top Drafts
         </router-link>
-         <router-link class="navbar-item" to="/myteam">
+         <router-link class="navbar-item" to="/team">
            My Team
         </router-link>
         <router-link class="navbar-item" to="/players">

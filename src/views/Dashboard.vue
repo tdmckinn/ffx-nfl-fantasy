@@ -12,13 +12,15 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
+import { mapState } from 'vuex'
 import moment from 'moment'
 
 import FfxSlide from '../components/Slide.vue'
 
 const gameFormat: string = 'MM/DD/YYYY'
 
-export default {
+export default Vue.extend({
   name: 'dashboard',
   components: {
     FfxSlide
@@ -30,14 +32,14 @@ export default {
     }
   },
   computed: {
-    gameInfo() {
-      return this.$store.state.gameInfo
-    }
+    ...mapState({
+      gameInfo: ({ gameInfo }) => gameInfo
+    })
   },
-  beforeMount() {
+  created() {
     this.$store.dispatch('GET_WEATHER')
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>

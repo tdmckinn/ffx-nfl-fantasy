@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1 class="title"> Players </h1>
+  <div class="players">
+    <h1 class="players__header title"> Players </h1>
     <div v-for="player in players" :key="player.playerId">
       <player :onPlayerClicked="onPlayerClicked"
         :player="player"></player>
@@ -34,14 +34,17 @@ export default {
       this.showModal = true
     }
   },
-  beforeMount() {
+  created() {
     this.$store.dispatch('GET_PLAYERS')
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.ffx-dashboard {
-  margin-top: 50px;
+.players {
+  padding-top: 5px;
+  &__header {
+    font-weight: bold;
+  }
 }
 </style>

@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 export default {
   SET_USER: (state, user) => {
     state.user = user
@@ -19,7 +18,6 @@ export default {
     state.gameInfo = gameWeather
   },
   SET_DRAFT_RANKINGS: (state, draftRankings) => {
-    console.log(draftRankings)
     state.draftRankings = draftRankings
   }
 }
