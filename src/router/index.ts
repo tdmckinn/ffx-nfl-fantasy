@@ -38,7 +38,7 @@ const router = new Router({
       component: Dashboard,
     },
     {
-      path: '/myteam',
+      path: '/team',
       component: MyTeam
       // beforeEnter: (to, from, next) => {
       //   // ... isLogged In User

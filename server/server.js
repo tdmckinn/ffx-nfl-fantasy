@@ -20,8 +20,9 @@ const serve = (_path, cache) => express.static(resolve(_path), {
 require('dotenv').config()
 
 app.use(cors())
+app.use('/', serve('../dist'))
+app.use('/images', serve('../dist/images'))
 app.use('/static', serve('../dist/static'))
-app.use('/dist', serve('../dist'))
 app.use('/public', serve('../public'))
 
 // handle fallback for HTML5 history API
@@ -37,7 +38,6 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(resolve('../dist/index.html'))
 })
-
 
 function startAndListen(app, port) {
   return new Promise((resolve) => {
@@ -56,7 +56,7 @@ if (isProd) {
     return startAndListen(https.createServer(ssl, app), 8080);
   })
 } else {
-  app.listen(port, () => {
+  app.listen(7777, () => {
     console.log(`server started at listening at ${7777}`)
   })
 }

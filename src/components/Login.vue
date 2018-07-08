@@ -59,5 +59,10 @@ export default {
       text-align: center;
       width: 480px
     }
+
+    @media (max-width: 768px) {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
   }
 </style>

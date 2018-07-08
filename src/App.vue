@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="app">
     <ffx-header :isLoggedInUser="isLoggedInUser"></ffx-header>
-    <main v-if="isLoggedInUser" class="app__ffx-main view container is-fluid">
+    <main v-if="isLoggedInUser" class="app__ffx-main container is-fluid">
       <router-view></router-view>
     </main>
     <main v-if="!isLoggedInUser" class="app__ffx-main--login">
@@ -48,6 +48,7 @@ export default {
 
   &__ffx-main {
     padding-top: 15px;
+    flex: 1;
 
     &--login {
       background-image: url('./assets/sandro-schuh-143183.jpg');
@@ -57,8 +58,6 @@ export default {
     }
   }
 }
-
-.view { flex: 1; }
 
 .divider {
   border-top: .1rem solid #f0f1f4;

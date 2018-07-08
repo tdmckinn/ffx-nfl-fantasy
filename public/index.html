@@ -3,7 +3,21 @@
 
 <head>
   <meta charset="utf-8">
+
+  <!--
+    viewport - allows control over scaling over the viewport vs default desktop widths
+
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="<%= BASE_URL %>favicon.png">
+
+  <!--
+    manifest.json provides metadata used for PWA
+  -->
+  <link rel="manifest" href="<%= BASE_URL %>manifest.json">
+
   <!-- Web Components Polyfill -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.13/webcomponents-lite.js"></script>
   <script>
@@ -39,11 +53,84 @@
       window.customElements.define('ffx-counter', Counter);
     })();
 
+    // Install Event if web app meets Add to Home Screen Criteria
+    let installPromptEvent;
+    window.addEventListener('beforeinstallprompt', (event) => {
+      // Prevent Chrome <= 67 from automatically showing the prompt
+      event.preventDefault();
+      // Stash the event so it can be triggered later.
+      installPromptEvent = event;
+      // Update the install UI to notify the user app can be installed
+      document.querySelector('.install-banner').style.display = 'block'
+      document.querySelector('#install-button').disabled = false;
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const installButton = document.querySelector('#install-button')
+      installButton.addEventListener('click', () => {
+        // Update the install UI to remove the install button
+        installButton.disabled = true;
+        document.querySelector('.install-banner').style.display = 'none'
+        // Show the modal add to home screen dialog
+        installPromptEvent.prompt();
+        // Wait for the user to respond to the prompt
+        installPromptEvent.userChoice.then((choice) => {
+          if (choice.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          // Clear the saved prompt since it can't be used again
+          installPromptEvent = null;
+        });
+      });
+    });
+
+    // Note: The browser will only cache a service worker file for a maximum of 24 hours,
+    if ('serviceWorker' in navigator) {
+      if (navigator.serviceWorker.controller) {
+        console.log('[NFX SW] active service worker found, no need to register')
+      } else {
+        //Register the ServiceWorker
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('nfx-sw.js', {
+            scope: './'
+          }).then(function (reg) {
+            console.log('Service worker has been registered for scope:' + reg.scope);
+          });
+        })
+      }
+    }
+
   </script>
+  <style>
+    .install-banner {
+      display: flex;
+      justify-content: center;
+      background-color: #fab23a;
+    }
+
+    #install-button {
+      border: none;
+      background-color: #fab23a;
+      padding: 7px 0;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    #install-button>.fa-arrow-circle-down {
+      padding-right: 5px;
+    }
+
+  </style>
   <title>NFX Fantasy</title>
 </head>
 
 <body>
+  <div class="install-banner">
+    <button id="install-button" disabled>
+      <i class="fa fa-arrow-circle-down"></i>Install</button>
+  </div>
   <div id="app"></div>
   <!-- built files will be auto injected -->
 </body>

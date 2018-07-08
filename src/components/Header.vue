@@ -80,5 +80,11 @@ export default {
     color: $orange;
   }
 
+  @media (max-width: 768px) {
+    .navbar {
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 </style>
