@@ -1,5 +1,5 @@
 <template>
-  <div> 
+  <div class="ffx-top-drafts"> 
     <h1 class="title">Top Drafts</h1>
     <table class="table">
       <thead>
@@ -7,12 +7,18 @@
           <th>
             Player
           </th>
+          <th>
+            Position
+          </th>
+          <th>
+            Team
+          </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="({ player, pos, team }, i) in playerDraftRankings" :key="i">
-          <td>{{player}}</td>
-          <td>{{pos}}</td>
+        <tr v-for="({ displayName, position, team }, i) in playerDraftRankings" :key="i">
+          <td>{{displayName}}</td>
+          <td>{{position}}</td>
           <td>{{team}}</td>
         </tr>
       </tbody>
@@ -25,7 +31,6 @@
     name: 'top-drafts',
     computed: {
       playerDraftRankings() {
-        console.log(this.$store.state)
         return this.$store.state.players
       }
     },
@@ -36,7 +41,6 @@
 </script>
 
 <style lang="scss" scoped>
-.top-drafts {
-  margin-top: 50px;
+.ffx-top-drafts {
 }
 </style>

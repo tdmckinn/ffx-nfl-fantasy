@@ -49,15 +49,16 @@ function startAndListen(app, port) {
 }
 
 
-if (isProd) {
+if (isProd && process.env.ENV_LOCAL) {
   debug('Attempting to get certificate');
   return getDevelopmentCertificate('ffx-nfl-fantasy', { installCertutil: true }).then((ssl) => {
     debug('SSL configuration received. Starting app server');
     return startAndListen(https.createServer(ssl, app), 8080);
   })
 } else {
-  app.listen(7777, () => {
-    console.log(`server started at listening at ${7777}`)
+  const port = process.env.PORT || (isProd ? 8080 : 7777)
+  app.listen(port, () => {
+    console.log(`server started at listening at ${port}`)
   })
 }
 

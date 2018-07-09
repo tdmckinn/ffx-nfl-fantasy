@@ -47,7 +47,7 @@ export default {
   line-height: 1.875rem;
 
   &__ffx-main {
-    padding-top: 15px;
+    padding-top: 20px;
     flex: 1;
 
     &--login {
@@ -56,6 +56,11 @@ export default {
       background-size: cover;
       min-height: 900px;
     }
+  }
+
+  a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:hover, .navbar-link.is-active {
+    background-color: #fafafa;
+    color: $orange;
   }
 }
 

@@ -19,5 +19,8 @@ export default {
   },
   SET_DRAFT_RANKINGS: (state, draftRankings) => {
     state.draftRankings = draftRankings
-  }
+  },
+  SIDEBAR_TOGGLE: (state) => {
+    state.isSidebarOpen = !state.isSidebarOpen
+  },
 }

@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
+  <meta name="Description" content="fantasy football pwa">
+  <meta name="theme-color" content="#fab23a">
 
   <!--
     viewport - allows control over scaling over the viewport vs default desktop widths
@@ -56,12 +58,13 @@
     // Install Event if web app meets Add to Home Screen Criteria
     let installPromptEvent;
     window.addEventListener('beforeinstallprompt', (event) => {
+      console.log('beforeinstallprompt', event)
       // Prevent Chrome <= 67 from automatically showing the prompt
       event.preventDefault();
       // Stash the event so it can be triggered later.
       installPromptEvent = event;
       // Update the install UI to notify the user app can be installed
-      document.querySelector('.install-banner').style.display = 'block'
+      document.querySelector('.install-banner').style.display = 'flex'
       document.querySelector('#install-button').disabled = false;
     });
 
@@ -71,6 +74,7 @@
         // Update the install UI to remove the install button
         installButton.disabled = true;
         document.querySelector('.install-banner').style.display = 'none'
+
         // Show the modal add to home screen dialog
         installPromptEvent.prompt();
         // Wait for the user to respond to the prompt
@@ -104,16 +108,18 @@
 
   </script>
   <style>
+    :root {
+      --main-bg-color: #fab23a;
+    }
     .install-banner {
-      display: flex;
+      display: none;
       justify-content: center;
-      background-color: #fab23a;
+      background-color: var(--main-bg-color);
     }
 
     #install-button {
-      display: none;
       border: none;
-      background-color: #fab23a;
+      background-color: var(--main-bg-color);
       padding: 7px 0;
       font-size: 16px;
       font-weight: bold;

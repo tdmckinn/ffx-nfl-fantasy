@@ -9,7 +9,7 @@
     <div class="media-content">
       <div class="content">
         <p>
-          <strong>{{player.displayName}}</strong> <small>Jersey # - {{player.jersey}}</small> <small>31m</small>
+          <strong>{{player.displayName}}</strong> <small> Jersey # - {{player.jersey}}</small> <small>31m</small>
           <br>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
         </p>
@@ -62,5 +62,9 @@ export default {
 <style lang="scss" scoped>
 .ffx-player {
   margin: 15px 0px;
+
+  @media (max-width: 768px) {
+    border-radius: 0;
+  }
 }
 </style>

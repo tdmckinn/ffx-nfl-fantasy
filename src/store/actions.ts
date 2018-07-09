@@ -1,14 +1,13 @@
 import { FantasyService } from '../api'
 
 export default {
-  AUTHENTICATE_USER: ({ commit }, { email, password }) => {
-    console.log('user', email, password)
+  AUTHENTICATE_USER: ({ commit }, { email }) => {
     // fake ajax
     commit('SET_USER', {
       id: 'x3212sw1',
       firstName: 'John',
       lastName: 'Doe',
-      email: 'thebestemail',
+      email,
       wins: 5,
       loses: 500,
       isLoggedIn: true

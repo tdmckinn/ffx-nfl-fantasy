@@ -22,7 +22,8 @@ const state = {
   players: [],
   myTeam: [],
   rankings: [],
-  gameInfo: []
+  gameInfo: [],
+  isSidebarOpen: false
 }
 
 if (localStorage.getItem('FFX_USER')) {

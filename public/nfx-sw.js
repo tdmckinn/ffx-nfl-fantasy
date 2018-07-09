@@ -5,6 +5,8 @@ const filesToCache = ['index.html'];
 
 self.addEventListener('install', (event) => {
   // Perform install steps
+  self.skipWaiting();
+
   console.log('[Servicework] Install');
   event.waitUntil(
     caches.open(cacheName).then(cache => {
