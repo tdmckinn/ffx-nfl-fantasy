@@ -8,7 +8,7 @@
       </a>
       <div class="navbar-start">
         <router-link id="link-brand" class="navbar-item" to="/">
-          <h1 class="title is-3">
+          <h1 class="ffx-brand__title title is-3">
            NFX Fantasy <span>{{year}}</span>
           </h1>
         </router-link>
@@ -49,9 +49,8 @@ export default Vue.extend({
         { name: 'League Top Drafts', route: '/draft-rankings' },
         { name: 'My Team', route: '/team' },
         { name: 'Players', route: '/players' },
-        { name: 'Research', route: '/research' },
-        { name: 'Draft', route: '/draft' },
-        { name: 'Login', route: '/login' }
+        { name: 'Highlights', route: '/highlights' },
+        { name: 'Draft', route: '/draft' }
       ]
     }
   },
@@ -68,6 +67,20 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 @import '../vars';
+
+// .ffx-brand__title {
+//     width: 100px;
+//     height: 100px;
+//     animation-name: rotate; 
+//     animation-duration: 1s; 
+//     animation-iteration-count: infinite;
+//     animation-timing-function: linear;
+// }
+
+// @keyframes rotate {
+//     from {transform: rotate(0deg);}
+//     to {transform: rotate(360deg);}
+// }
 
 .ffx-header {
   position: fixed;

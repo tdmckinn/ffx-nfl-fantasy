@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build && node scripts/nfx-cache-update.js",
     "lint": "vue-cli-service lint",
     "dev": "concurrently \"nodemon --inspect ./server/index.js\"  \"npm run serve\"",
     "start": "cross-env NODE_ENV=production node server/index.js",

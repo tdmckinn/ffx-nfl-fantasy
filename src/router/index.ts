@@ -45,7 +45,7 @@ const router = new Router({
       // }
     },
     {
-      path: '/research',
+      path: '/highlights',
       component: Research,
     },
     {

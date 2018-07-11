@@ -1,15 +1,19 @@
 <template>
   <div class="notification">
-    <h1 class="ffx-dashboard__header">
+    <h1 class="ffx-dashboard__header title">
       Weekly Game - 
       Date: {{today}}
       Game Week: {{gameInfo.Week}}
     </h1>
-    <div v-for="game in gameInfo.Games" :key="game.gameId">
-      <div>Location: {{game.stadium}} | Weather Forecast: {{game.forecast}} <span><img :src="game.smallImg" /></span></div>
+    <section class="ffx-dashboard__games" v-for="game in gameInfo.Games" :key="game.gameId">
+      <div>Location: {{game.stadium}} | Weather Forecast: {{game.forecast}} 
+        <span>
+          <img v-if="isOnline" :src="game.smallImg" />
+        </span>
+      </div>
       <div>{{game.homeTeam}} VS {{game.awayTeam}} <span>Winner: {{game.winner}}</span></div>
       <hr>
-    </div>
+    </section>
     <ffx-slide v-once :slides="slides"></ffx-slide>
   </div>
 </template>
@@ -30,6 +34,7 @@ export default Vue.extend({
   },
   data() {
     return {
+      isOnline: navigator ? navigator.onLine : false,
       slides: [],
       today: moment().format(gameFormat)
     }
@@ -51,7 +56,6 @@ export default Vue.extend({
 
     &__header {
       font-weight: bold;
-      font-size: 20px;
       padding-bottom: 15px;
     }
   }

@@ -4,7 +4,7 @@
   "description": "Fantasy Football Progressive Web App",
   "theme_color": "#FAB23A",
   "background_color": "#FFFFFF",
-  "start_url": "https://nfx-fantasy.now.sh/",
+  "start_url": "./index.html",
   "display": "fullscreen",
   "lang": "",
   "orientation": "any",

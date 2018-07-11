@@ -48,7 +48,6 @@ function startAndListen(app, port) {
   })
 }
 
-
 if (isProd && process.env.ENV_LOCAL) {
   debug('Attempting to get certificate');
   return getDevelopmentCertificate('ffx-nfl-fantasy', { installCertutil: true }).then((ssl) => {

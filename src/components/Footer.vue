@@ -11,6 +11,7 @@
             <i class="fa fa-github"></i>
           </a>
         </p>
+        <div class="ffx-footer__disclaimer">Disclaimer: I don't own any images or music played on this site</div>
       </div>
     </div>
   </footer>
@@ -24,8 +25,14 @@
 
 <style lang="scss" scoped>
 .ffx-footer {
+  max-height: 100px;
+
   &__user-link {
     color: #fab23a;
-  } 
+  }
+
+  &__disclaimer {
+    font-size: 8px;
+  }
 }
 </style>
