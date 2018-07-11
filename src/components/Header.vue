@@ -67,21 +67,6 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 @import '../vars';
-
-// .ffx-brand__title {
-//     width: 100px;
-//     height: 100px;
-//     animation-name: rotate; 
-//     animation-duration: 1s; 
-//     animation-iteration-count: infinite;
-//     animation-timing-function: linear;
-// }
-
-// @keyframes rotate {
-//     from {transform: rotate(0deg);}
-//     to {transform: rotate(360deg);}
-// }
-
 .ffx-header {
   position: fixed;
   z-index: 1000;
@@ -91,6 +76,10 @@ export default Vue.extend({
     box-shadow: 0 2px 3px $navShadow;
     padding: 10px 0;
     background-color: $primary;
+
+    &-end {
+      padding-right: 15px;
+    }
 
     .navbar-item a,
     a.navbar-item {

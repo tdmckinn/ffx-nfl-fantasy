@@ -3,7 +3,7 @@ import Weather from '../../data/weather.json'
 
 class FantasyService extends BaseService {
   async getDraftRankings() {
-    const { data } = await this.get('draft-rankings')
+    const { data } = await this.get('players')
     return data.DraftRankings
   }
 
