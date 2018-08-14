@@ -51,13 +51,18 @@ export default {
   .ffx-login {
     display: flex;
     min-height: calc(100vh - 75px);
-    padding: 60px 0;
+    align-items: center;
 
     form {
       display: block;
       margin: 0 auto;
       text-align: center;
       width: 480px
+    }
+
+    @media (max-width: 768px) {
+      padding-left: 25px;
+      padding-right: 25px;
     }
   }
 </style>

@@ -17,7 +17,11 @@ Vue.config.productionTip = false
 Vue.component('modal', Modal)
 Vue.component('playerModal', PlayerModal)
 
-/* eslint-disable no-new */
+Vue.config.ignoredElements = [
+  'ffx-counter'
+]
+
+// tslint:disable-next-line:no-unused-expression
 new Vue({
   el: '#app',
   router,

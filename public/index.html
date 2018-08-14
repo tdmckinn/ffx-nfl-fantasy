@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="Description" content="fantasy football pwa">
+  <meta name="theme-color" content="#fab23a">
+  <meta name="msapplication-TileColor" content="#fab23a">
+  <!--
+    viewport - allows control over scaling over the viewport vs default desktop widths
+  -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  <!-- apple ios specific
+  A2HS Icon
+  <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png"> 
+
+  Splash Screen Issues 
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link href="/apple_splash_2048.png" sizemas="2048x2732" rel="apple-touch-startup-image" />
+  <link href="/apple_splash_1668.png" sizes="1668x2224" rel="apple-touch-startup-image" />
+  <link href="/apple_splash_1536.png" sizes="1536x2048" rel="apple-touch-startup-image" />
+  <link href="/apple_splash_1125.png" sizes="1125x2436" rel="apple-touch-startup-image" />
+  <link href="/apple_splash_1242.png" sizes="1242x2208" rel="apple-touch-startup-image" />
+  <link href="/apple_splash_750.png" sizes="750x1334" rel="apple-touch-startup-image" />
+  <link href="/apple_splash_640.png" sizes="640x1136" rel="apple-touch-startup-image" />
+  -->
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="shortcut icon" href="<%= BASE_URL %>favicon.png">
+
+  <!--
+    manifest.json provides metadata used for PWA
+  -->
+  <link rel="manifest" href="<%= BASE_URL %>manifest.json">
+
+  <!-- Web Components Polyfill -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.13/webcomponents-lite.js"></script>
+  <script type="text/javascript">
+    (() => {
+      const template = document.createElement('template');
+
+      template.innerHTML =
+        `
+          <style>
+            .ffx-counter {
+              font-size: 1.5rem;
+              color: #fab23a;
+              font-family: monospace;
+              text-align: center;
+              text-decoration: #fab23a solid underline;
+              text-decoration-skip: ink;
+            }
+          </style>
+          <h1 class="ffx-counter">FFX Draft Count Down!</h1>
+      `;
+
+      class Counter extends HTMLElement {
+        constructor() {
+          super();
+
+          this.attachShadow({
+            mode: 'open'
+          });
+          this.shadowRoot.appendChild(template.content.cloneNode(true));
+        }
+      }
+
+      window.customElements.define('ffx-counter', Counter);
+    })();
+
+    // Install Event if web app meets Add to Home Screen Criteria
+    let installPromptEvent;
+    window.addEventListener('beforeinstallprompt', (event) => {
+      console.log('beforeinstallprompt', event)
+      // Prevent Chrome <= 67 from automatically showing the prompt
+      event.preventDefault();
+      // Stash the event so it can be triggered later.
+      installPromptEvent = event;
+      // Update the install UI to notify the user app can be installed
+      document.querySelector('.install-banner').style.display = 'flex'
+      document.querySelector('#install-button').disabled = false;
+    });
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const installButton = document.querySelector('#install-button')
+      installButton.addEventListener('click', () => {
+        // Update the install UI to remove the install button
+        installButton.disabled = true;
+        document.querySelector('.install-banner').style.display = 'none'
+
+        // Show the modal add to home screen dialog
+        installPromptEvent.prompt();
+        // Wait for the user to respond to the prompt
+        installPromptEvent.userChoice.then((choice) => {
+          if (choice.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          // Clear the saved prompt since it can't be used again
+          installPromptEvent = null;
+        });
+      });
+    });
+
+    // var refreshing;
+    // Reproduce: redundant service worker error - https://github.com/gatsbyjs/gatsby/issues/4636
+    // https://redfin.engineering/how-to-fix-the-refresh-button-when-using-service-workers-a8e27af6df68
+    // if (`serviceWorker` in navigator) {
+    //   navigator.serviceWorker
+    //     .register(`nfx-sw.js`)
+    //     .then(function (reg) {
+    //       reg.addEventListener(`updatefound`, () => {
+    //         // The updatefound event implies that reg.installing is set; see
+    //         // https://w3c.github.io/ServiceWorker/#service-worker-registration-updatefound-event
+    //         const installingWorker = reg.installing
+    //         console.log(`installingWorker`, installingWorker)
+    //         installingWorker.addEventListener(`statechange`, () => {
+    //           switch (installingWorker.state) {
+    //             case `installed`:
+    //               if (navigator.serviceWorker.controller) {
+    //                 // At this point, the old content will have been purged and the fresh content will
+    //                 // have been added to the cache.
+    //                 // We reload immediately so the user sees the new content.
+    //                 // This could/should be made configurable in the future.
+    //                 // if (refreshing) return;
+    //                 // refreshing = true;
+    //                 window.location.reload();
+    //               } else {
+    //                 // At this point, everything has been precached.
+    //                 // It's the perfect time to display a "Content is cached for offline use." message.
+    //                 console.log(`Content is now available offline!`)
+    //                 emitter.emit(`sw:installed`)
+    //               }
+    //               break
+
+    //             case `redundant`:
+    //               console.error(`The installing service worker became redundant.`)
+    //               break
+    //           }
+    //         })
+    //       })
+    //     })
+    //     .catch(function (e) {
+    //       console.error(`Error during service worker registration:`, e)
+    //     })
+    // }
+
+    // Note: The browser will only cache a service worker file for a maximum of 24 hours,
+    if ('serviceWorker' in navigator) {
+      if (navigator.serviceWorker.controller) {
+        console.log('[NFX SW] active service worker found, no need to register')
+      } else {
+        //Register the ServiceWorker - Download
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('nfx-sw.js', {
+            scope: './'
+          }).then(function (reg) {
+            console.log('Service worker has been registered for scope:' + reg.scope);
+          });
+        })
+      }
+    }
+
+  </script>
+  <style>
+    :root {
+      --main-bg-color: #fab23a;
+    }
+
+    .install-banner {
+      display: none;
+      justify-content: center;
+      background-color: var(--main-bg-color);
+    }
+
+    #install-button {
+      border: none;
+      background-color: var(--main-bg-color);
+      padding: 7px 0;
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    #install-button>.fa-arrow-circle-down {
+      padding-right: 5px;
+    }
+  </style>
+  <title>NFX Fantasy</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div class="install-banner">
+    <button id="install-button" disabled>
+      <i class="fa fa-arrow-circle-down"></i>Install</button>
+  </div>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+
+</html>

@@ -1,61 +1,85 @@
 <template>
   <header class="ffx-header">
     <nav class="navbar">
+      <a role="button" class="navbar-burger" @click="SIDEBAR_TOGGLE"  aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
       <div class="navbar-start">
         <router-link id="link-brand" class="navbar-item" to="/">
-          <h1 class="title is-3">
+          <h1 class="ffx-brand__title title is-3">
            NFX Fantasy <span>{{year}}</span>
           </h1>
         </router-link>
       </div>
       <div v-if="isLoggedInUser" class="navbar-end navbar-menu">
-         <router-link class="navbar-item" to="/topdrafts">
-           League Top Drafts
-        </router-link>
-         <router-link class="navbar-item" to="/myteam">
-           My Team
-        </router-link>
-        <router-link class="navbar-item" to="/players">
-          Players
-        </router-link>
-        <router-link class="navbar-item" to="/research">
-          Research
-        </router-link>
-        <router-link class="navbar-item" to="/draft">
-          Draft
+         <router-link v-for="({ name, route }, index) in navBarItems" class="navbar-item" :to="route" :key="index">
+           {{name}}
         </router-link>
       </div>
     </nav>
+    <ffx-sidebar :navBarItems="navBarItems" />
   </header>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
 import * as moment from 'moment'
+import { mapMutations, mapState } from 'vuex'
 
-export default {
+import FfxSidebar from './Sidebar.vue'
+export interface INavItem {
+  name: string
+  route: string
+}
+
+export default Vue.extend({
   name: 'ffx-header',
+  components: {
+    FfxSidebar
+  },
   props: {
     isLoggedInUser: Boolean
   },
   data() {
     return {
-      year: moment().year()
+      year: moment().year(),
+      navBarItems: [
+        { name: 'League Top Drafts', route: '/draft-rankings' },
+        { name: 'My Team', route: '/team' },
+        { name: 'Players', route: '/players' },
+        { name: 'Highlights', route: '/highlights' },
+        { name: 'Draft', route: '/draft' }
+      ]
     }
   },
+  computed: mapState([
+    'isSidebarOpen'
+  ]),
   methods: {
-
+    ...mapMutations([
+        'SIDEBAR_TOGGLE',
+    ])
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
-@import "../vars";
-
+@import '../vars';
 .ffx-header {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+
   .navbar {
     box-shadow: 0 2px 3px $navShadow;
-    padding: 10px 60px;
+    padding: 10px 0;
     background-color: $primary;
+
+    &-end {
+      padding-right: 15px;
+    }
 
     .navbar-item a,
     a.navbar-item {
@@ -63,7 +87,7 @@ export default {
       border-bottom: 1px solid $primary;
 
       &:hover {
-        background:$primary;
+        background: $primary;
         border-bottom: 1px solid $orange;
       }
     }
@@ -80,5 +104,17 @@ export default {
     color: $orange;
   }
 
+  .navbar-burger {
+    position: absolute;
+    left: 0;
+    color: $orange;
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 </style>

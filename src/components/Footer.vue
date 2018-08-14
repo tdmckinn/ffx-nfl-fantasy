@@ -4,13 +4,14 @@
       <div class="content has-text-centered">
         <p>
           <strong>NFX Fantasy</strong> by
-          <a href="http://jgthms.com">Tirell Mckinnon</a>
+          <a class="ffx-footer__user-link" href="https://tirellmckinnon.com">Tirell Mckinnon</a>
         </p>
         <p>
-          <a class="icon" href="https://github.com/tdmckinn/ffx-nfl-fantasy">
+          <a class="icon ffx-footer__user-link" href="https://github.com/tdmckinn/ffx-nfl-fantasy">
             <i class="fa fa-github"></i>
           </a>
         </p>
+        <div class="ffx-footer__disclaimer">Disclaimer: I don't own any images or music played on this site</div>
       </div>
     </div>
   </footer>
@@ -24,6 +25,14 @@
 
 <style lang="scss" scoped>
 .ffx-footer {
-  // margin-top: 50px;
+  max-height: 100px;
+
+  &__user-link {
+    color: #fab23a;
+  }
+
+  &__disclaimer {
+    font-size: 8px;
+  }
 }
 </style>

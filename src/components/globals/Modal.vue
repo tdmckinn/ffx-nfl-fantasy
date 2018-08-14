@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  name: 'modal',
   props: ['show', 'onClose'],
   methods: {
     close() {

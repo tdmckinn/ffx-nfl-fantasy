@@ -64,7 +64,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
- .bt-email-modal {
-   text-align: left;
- }
+@media (max-width: 768px) {
+  .modal-card {
+    margin: 0;
+  }
+}
 </style>
