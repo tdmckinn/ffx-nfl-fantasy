@@ -13,7 +13,7 @@
 
 <script>
   export default {
-    name: 'ffx-input',
+    name: 'nfx-input',
     props: {
       attributes: [],
       className: String,

@@ -1,5 +1,5 @@
 <template>
-  <div v-if="player" class="ffx-player box" @click="playerClicked">
+  <div v-if="player" class="nfx-player box" @click="playerClicked">
   <article class="media">
     <div class="media-left">
       <figure class="image is-64x64">
@@ -60,7 +60,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ffx-player {
+.nfx-player {
   margin: 15px 0px;
 
   @media (max-width: 768px) {

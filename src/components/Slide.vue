@@ -1,5 +1,5 @@
 <template>
-  <div class="ffx-slide">
+  <div class="nfx-slide">
     <div class="siema">
       <section class="siema-slide hero" v-for="item in slides" :key="item.id">
         <div class="hero-body">
@@ -18,7 +18,7 @@
 import Siema from 'siema'
 
 export default {
-  name: 'ffx-slide',
+  name: 'nfx-slide',
   props: {
     slides: Array
   },

@@ -1,11 +1,11 @@
 <template>
   <div class="notification">
-    <h1 class="ffx-dashboard__header title">
+    <h1 class="nfx-dashboard__header title">
       Weekly Game - 
       Date: {{today}}
       Game Week: {{gameInfo.Week}}
     </h1>
-    <section class="ffx-dashboard__games" v-for="game in gameInfo.Games" :key="game.gameId">
+    <section class="nfx-dashboard__games" v-for="game in gameInfo.Games" :key="game.gameId">
       <div>Location: {{game.stadium}} | Weather Forecast: {{game.forecast}} 
         <span>
           <img v-if="isOnline" :src="game.smallImg" />
@@ -14,29 +14,29 @@
       <div>{{game.homeTeam}} VS {{game.awayTeam}} <span>Winner: {{game.winner}}</span></div>
       <hr>
     </section>
-    <ffx-slide v-once :slides="slides"></ffx-slide>
+    <nfx-slide v-once :slides="slides"></nfx-slide>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
-import moment from 'moment'
+import { format } from 'date-fns'
 
-import FfxSlide from '../components/Slide.vue'
+import nfxSlide from '../components/Slide.vue'
 
 const gameFormat: string = 'MM/DD/YYYY'
 
 export default Vue.extend({
   name: 'dashboard',
   components: {
-    FfxSlide
+    nfxSlide
   },
   data() {
     return {
       isOnline: navigator ? navigator.onLine : false,
       slides: [],
-      today: moment().format(gameFormat)
+      today: format(new Date(), gameFormat)
     }
   },
   computed: {
@@ -51,7 +51,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-  .ffx-dashboard {
+  .nfx-dashboard {
     margin-top: 50px;
 
     &__header {

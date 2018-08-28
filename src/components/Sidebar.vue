@@ -1,6 +1,6 @@
 <template>
-  <div class="ffx-overlay" v-bind:class="{ 'is-active' :isSidebarOpen }">
-    <aside class="ffx-sidebar__menu">
+  <div class="nfx-overlay" v-bind:class="{ 'is-active' :isSidebarOpen }">
+    <aside class="nfx-sidebar__menu">
       <p class="menu-label">
         General
       </p>
@@ -22,7 +22,7 @@ import { mapState, mapMutations } from 'vuex'
 import { INavItem } from './Header.vue'
 
 export default Vue.extend({
-  name: 'ffx-sidebar',
+  name: 'nfx-sidebar',
   props: {
     navBarItems: {
       type: Array as () => INavItem[]
@@ -40,7 +40,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-  .ffx-overlay {
+  .nfx-overlay {
     display: none;
     position: fixed;
     z-index: 1000;
@@ -55,7 +55,7 @@ export default Vue.extend({
     }
   }
 
-  .ffx-sidebar__menu {
+  .nfx-sidebar__menu {
     position: fixed;
     left: 0px;
     z-index: 1100;

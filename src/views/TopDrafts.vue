@@ -1,5 +1,5 @@
 <template>
-  <div class="ffx-top-drafts"> 
+  <div class="nfx-top-drafts"> 
     <h1 class="title">Top Drafts</h1>
     <table class="table">
       <thead>
@@ -41,6 +41,6 @@
 </script>
 
 <style lang="scss" scoped>
-.ffx-top-drafts {
+.nfx-top-drafts {
 }
 </style>

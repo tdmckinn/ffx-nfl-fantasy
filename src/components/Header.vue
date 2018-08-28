@@ -1,5 +1,5 @@
 <template>
-  <header class="ffx-header">
+  <header class="nfx-header">
     <nav class="navbar">
       <a role="button" class="navbar-burger" @click="SIDEBAR_TOGGLE"  aria-label="menu" aria-expanded="false">
         <span aria-hidden="true"></span>
@@ -8,7 +8,7 @@
       </a>
       <div class="navbar-start">
         <router-link id="link-brand" class="navbar-item" to="/">
-          <h1 class="ffx-brand__title title is-3">
+          <h1 class="nfx-brand__title title is-3">
            NFX Fantasy <span>{{year}}</span>
           </h1>
         </router-link>
@@ -19,32 +19,32 @@
         </router-link>
       </div>
     </nav>
-    <ffx-sidebar :navBarItems="navBarItems" />
+    <nfx-sidebar :navBarItems="navBarItems" />
   </header>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import * as moment from 'moment'
+import { getYear } from 'date-fns'
 import { mapMutations, mapState } from 'vuex'
 
-import FfxSidebar from './Sidebar.vue'
+import nfxSidebar from './Sidebar.vue'
 export interface INavItem {
   name: string
   route: string
 }
 
 export default Vue.extend({
-  name: 'ffx-header',
+  name: 'nfx-header',
   components: {
-    FfxSidebar
+    nfxSidebar
   },
   props: {
     isLoggedInUser: Boolean
   },
   data() {
     return {
-      year: moment().year(),
+      year: getYear(new Date()),
       navBarItems: [
         { name: 'League Top Drafts', route: '/draft-rankings' },
         { name: 'My Team', route: '/team' },
@@ -67,7 +67,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 @import '../vars';
-.ffx-header {
+.nfx-header {
   position: fixed;
   z-index: 1000;
   width: 100%;

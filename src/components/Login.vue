@@ -1,29 +1,29 @@
 <template>
-  <div class="ffx-login">
+  <div class="nfx-login">
     <form>
-      <ffx-fieldset
+      <nfx-fieldset
         text="Email"
         help-text="Enter your email"
         >
-        <ffx-input v-model="email.value" :isFocusOnMount="email.isFocusOnMount"></ffx-input>
-      </ffx-fieldset>
-      <ffx-fieldset
+        <nfx-input v-model="email.value" :isFocusOnMount="email.isFocusOnMount"></nfx-input>
+      </nfx-fieldset>
+      <nfx-fieldset
         text="Password"
         help-text="Enter your password">
-        <ffx-input v-model="password" type="password"></ffx-input>
-      </ffx-fieldset>
-      <ffx-button text="Login" :click="login"></ffx-button>
+        <nfx-input v-model="password" type="password"></nfx-input>
+      </nfx-fieldset>
+      <nfx-button text="Login" :click="login"></nfx-button>
     </form>
   </div>
 </template>
 
 <script>
-import FfxFieldset from './Fieldset.vue'
-import FfxInput from './Input.vue'
-import FfxButton from './Button.vue'
+import nfxFieldset from './Fieldset.vue'
+import nfxInput from './Input.vue'
+import nfxButton from './Button.vue'
 
 export default {
-  name: 'ffx-login',
+  name: 'nfx-login',
   data() {
     return {
       email: {
@@ -35,9 +35,9 @@ export default {
     }
   },
   components: {
-    FfxFieldset,
-    FfxInput,
-    FfxButton
+    nfxFieldset,
+    nfxInput,
+    nfxButton
   },
   methods: {
     login() {
@@ -48,7 +48,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .ffx-login {
+  .nfx-login {
     display: flex;
     min-height: calc(100vh - 75px);
     align-items: center;

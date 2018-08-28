@@ -1,6 +1,6 @@
 <template>
   <modal :show="show" :on-close="close">
-    <div class="ffx-player-modal modal-card">
+    <div class="nfx-player-modal modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">Player Details</p>
         <button class="delete" @click="close"></button>

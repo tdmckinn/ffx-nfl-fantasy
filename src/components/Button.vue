@@ -4,7 +4,7 @@
 
 <script>
 export default {
-  name: 'ffx-button',
+  name: 'nfx-button',
   props: {
     className: String,
     text: String,

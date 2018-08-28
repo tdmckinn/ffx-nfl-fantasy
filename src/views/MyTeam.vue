@@ -1,10 +1,15 @@
 <template>
-  <div>
-    <h1 class="title"> My Team </h1>
-      <div v-for="player in myTeam" :key="player.playerId">
-        <player :player="player"></player>
+  <section class="nfx-my-team">
+    <div v-if="condition">
+      <h1 class="title"> My Team </h1>
+        <div v-for="player in myTeam" :key="player.playerId">
+          <player :player="player"></player>
+      </div>
     </div>
-  </div>
+    <div v-else>
+      <div>Add Team</div>
+    </div>  
+  </section>
 </template>
 
 <script>
@@ -17,6 +22,14 @@ export default {
   components: {
     Player
   },
+  data() {
+    return {
+      condition: false
+    }
+  },
+  components: {
+
+  },
   computed: {
     ...mapState({
       myTeam: ({ myTeam }) => myTeam
@@ -26,7 +39,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ffx-dashboard {
+.nfx-my-team {
   margin-top: 50px;
 }
 </style>

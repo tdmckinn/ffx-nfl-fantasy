@@ -1,6 +1,6 @@
 <template>
-  <div class="ffx-players">
-    <h1 class="ffx-players__header title"> Players </h1>
+  <div class="nfx-players">
+    <h1 class="nfx-players__header title"> Players </h1>
     <div v-for="player in players" :key="player.playerId">
       <player :onPlayerClicked="onPlayerClicked"
         :player="player"></player>
@@ -41,7 +41,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ffx-players {
+.nfx-players {
   padding-top: 5px;
 
   &__header {

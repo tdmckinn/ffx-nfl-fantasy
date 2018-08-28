@@ -26,8 +26,8 @@ const state = {
   isSidebarOpen: false
 }
 
-if (localStorage.getItem('FFX_USER')) {
-  state.user = JSON.parse(localStorage.getItem('FFX_USER') || '')
+if (localStorage.getItem('NFX_USER')) {
+  state.user = JSON.parse(localStorage.getItem('NFX_USER') || '')
 }
 
 const core = {

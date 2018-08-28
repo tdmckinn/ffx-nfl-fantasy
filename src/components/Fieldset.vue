@@ -1,5 +1,5 @@
 <template>
-  <fieldset class="ffx-fieldset field">
+  <fieldset class="nfx-fieldset field">
     <label class="label">{{text}}</label>
     <div class="control">
       <slot></slot>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'ffx-fieldset',
+  name: 'nfx-fieldset',
   props: {
     text: String,
     helpText: String
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.ffx-fieldset {
+.nfx-fieldset {
   text-align: left;
   border: none;
 }
