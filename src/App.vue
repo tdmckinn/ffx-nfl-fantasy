@@ -1,35 +1,40 @@
 <template>
   <div id="app" class="app">
-    <ffx-header :isLoggedInUser="isLoggedInUser"></ffx-header>
-    <main v-if="isLoggedInUser" class="app__ffx-main container is-fluid">
+    <nfx-header :isLoggedInUser="isLoggedInUser"></nfx-header>
+    <main v-if="isLoggedInUser" class="app__nfx-main container is-fluid">
       <router-view></router-view>
     </main>
-    <main v-if="!isLoggedInUser" class="app__ffx-main--login">
+    <main v-if="!isLoggedInUser" class="app__nfx-main--login">
       <login></login>
     </main>
     <section>
-      <ffx-counter></ffx-counter>
+      <p>
+        {{hello}}
+      </p>
+      <nfx-counter></nfx-counter>
     </section>
-    <section class="ffx-music">
-      <audio id="ffx-music__audio" :src="nfxThemeMusic" width="300" height="32"></audio>
-      <div class="ffx-music__player">
-        <svg v-if="!isThemeplaying" class="ffx-music__icon" @click="onPlayClick(true)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <section class="nfx-music">
+      <audio id="nfx-music__audio" :src="nfxThemeMusic" width="300" height="32"></audio>
+      <div class="nfx-music__player">
+        <svg v-if="!isThemeplaying" class="nfx-music__icon" @click="onPlayClick(true)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M0 0h24v24H0z" fill="none"/>
           <path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
         </svg>
-        <svg v-if="isThemeplaying" class="ffx-music__icon" @click="onPlayClick(false)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <svg v-if="isThemeplaying" class="nfx-music__icon" @click="onPlayClick(false)" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M0 0h24v24H0z" fill="none"/>
           <path d="M6 6h12v12H6z"/>
         </svg>
       </div>
     </section>
-    <ffx-footer></ffx-footer>
+    <nfx-footer></nfx-footer>
   </div>
 </template>
 
 <script>
-import FfxHeader from './components/Header.vue'
-import FfxFooter from './components/Footer.vue'
+import gql from 'graphql-tag'
+
+import nfxHeader from './components/Header.vue'
+import nfxFooter from './components/Footer.vue'
 import Login from './components/Login.vue'
 
 const nfxThemeMusic = require('./assets/nfx_theme.mp3')
@@ -37,14 +42,19 @@ const nfxThemeMusic = require('./assets/nfx_theme.mp3')
 export default {
   name: 'app',
   components: {
-    FfxHeader,
-    FfxFooter,
+    nfxHeader,
+    nfxFooter,
     Login
+  },
+  apollo: {
+  // Simple query that will update the 'hello' vue property
+    hello: gql`{hello}`,
   },
   data() {
     return {
       nfxThemeMusic,
-      isThemeplaying: false
+      isThemeplaying: false,
+      hello: ''
     }
   },
   computed: {
@@ -54,7 +64,7 @@ export default {
   },
   methods: {
     onPlayClick(isPlay) {
-      const audioPlayer = document.getElementById('ffx-music__audio')
+      const audioPlayer = document.getElementById('nfx-music__audio')
       if (isPlay) {
         audioPlayer.play()
         this.isThemeplaying = !this.isThemeplaying
@@ -79,7 +89,7 @@ export default {
   line-height: 30px;
   line-height: 1.875rem;
 
-  &__ffx-main {
+  &__nfx-main {
     padding-top: 100px;
     padding-left: 10px;
     padding-right: 10px;
@@ -102,7 +112,7 @@ export default {
   }
 }
 
-.ffx-music {
+.nfx-music {
   audio:not([controls]) {
     display: none !important;
   }
@@ -118,7 +128,7 @@ export default {
   }
 }
 
-.ffx-music__icon {
+.nfx-music__icon {
   width: 38px;
   height: 38px;
 }

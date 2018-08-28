@@ -1,0 +1,20 @@
+{
+  "name": "gql-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "esm": {
+    "mode": "auto",
+    "cjs": true,
+    "await": true
+  },
+  "dependencies": {
+    "apollo-server": "^2.0.5",
+    "apollo-server-express": "^2.0.4",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.9.2"
+  }
+}

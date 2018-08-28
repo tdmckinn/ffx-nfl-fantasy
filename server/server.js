@@ -50,7 +50,7 @@ function startAndListen(app, port) {
 
 if (isProd && process.env.ENV_LOCAL) {
   debug('Attempting to get certificate');
-  return getDevelopmentCertificate('ffx-nfl-fantasy', { installCertutil: true }).then((ssl) => {
+  return getDevelopmentCertificate('nfx-fantasy', { installCertutil: true }).then((ssl) => {
     debug('SSL configuration received. Starting app server');
     return startAndListen(https.createServer(ssl, app), 8080);
   })
