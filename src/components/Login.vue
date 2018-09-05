@@ -18,9 +18,9 @@
 </template>
 
 <script>
-import nfxFieldset from './Fieldset.vue'
-import nfxInput from './Input.vue'
-import nfxButton from './Button.vue'
+import nfxFieldset from './form/BaseFieldset.vue'
+import nfxInput from './form/BaseInput.vue'
+import nfxButton from './BaseButton.vue'
 
 export default {
   name: 'nfx-login',

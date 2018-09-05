@@ -1,6 +1,9 @@
 <template>
   <footer class="nfx-footer footer">
     <div class="container">
+      <div class="nfx-experimental">
+        <slot></slot>
+      </div>
       <div class="content has-text-centered">
         <p>
           <strong>NFX Fantasy</strong> by
@@ -11,7 +14,7 @@
             <i class="fa fa-github"></i>
           </a>
         </p>
-        <div class="nfx-footer__disclaimer">Disclaimer: I don't own any images or music played on this site</div>
+        <div class="nfx-footer__disclaimer">Disclaimer: I don't own any music, video, or data related content on this site</div>
       </div>
     </div>
   </footer>
@@ -25,6 +28,7 @@
 
 <style lang="scss" scoped>
 .nfx-footer {
+  margin-top: 50px;
   max-height: 100px;
 
   &__user-link {

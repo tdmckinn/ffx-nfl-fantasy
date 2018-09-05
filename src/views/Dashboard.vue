@@ -1,9 +1,9 @@
 <template>
-  <div class="notification">
+  <div class="nfx-dashboard notification">
     <h1 class="nfx-dashboard__header title">
-      Weekly Game - 
-      Date: {{today}}
-      Game Week: {{gameInfo.Week}}
+      <span>Weekly Games </span>
+      <span>Date: {{today}}</span>
+      <span>Game Week: {{gameWeek}}</span>
     </h1>
     <section class="nfx-dashboard__games" v-for="game in gameInfo.Games" :key="game.gameId">
       <div>Location: {{game.stadium}} | Weather Forecast: {{game.forecast}} 
@@ -24,8 +24,7 @@ import { mapState } from 'vuex'
 import { format } from 'date-fns'
 
 import nfxSlide from '../components/Slide.vue'
-
-const gameFormat: string = 'MM/DD/YYYY'
+import { DEFAULT_DATE_FORMAT } from '../const'
 
 export default Vue.extend({
   name: 'dashboard',
@@ -36,7 +35,8 @@ export default Vue.extend({
     return {
       isOnline: navigator ? navigator.onLine : false,
       slides: [],
-      today: format(new Date(), gameFormat)
+      gameWeek: 1,
+      today: format(new Date(), DEFAULT_DATE_FORMAT)
     }
   },
   computed: {
@@ -52,11 +52,11 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
   .nfx-dashboard {
-    margin-top: 50px;
-
     &__header {
       font-weight: bold;
       padding-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
     }
   }
 </style>

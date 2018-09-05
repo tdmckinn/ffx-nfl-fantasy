@@ -5,6 +5,7 @@ import Dashboard from '../views/Dashboard.vue'
 import Players from '../views/Players.vue'
 import Research from '../views/Research.vue'
 import TopDrafts from '../views/TopDrafts.vue'
+import Draft from '../views/Draft.vue'
 import Modal from '../components/globals/Modal.vue'
 
 Vue.use(Router)
@@ -55,6 +56,10 @@ const router = new Router({
     {
       path: '/players',
       component: Players,
+    },
+    {
+      path: '/draft',
+      component: Draft,
     },
     { path: '*', component: NotFoundComponent }
   ]

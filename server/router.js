@@ -1,7 +1,7 @@
 import express from 'express'
 import axios from 'axios'
 
-const players = require('../data/players.json')
+const players = require('../data/nfl_adp.json')
 const router = express.Router()
 
 const NFX_DRAFT_KEY = process.env.NFX_DRAFT_KEY

@@ -1,0 +1,64 @@
+{
+  "topDraftPicks": [
+    {
+      "name": "Todd Gurley II",
+      "position": "RB",
+      "team": "LAR"
+    },
+    {
+      "name": "David Johnson",
+      "position": "RB",
+      "team": "ARI"
+    },
+    {
+      "name": "Le'Veon Bell ",
+      "position": "RB",
+      "team": "PIT"
+    },
+    {
+      "name": "Alvin Kamara",
+      "position": "RB",
+      "team": "LAR"
+    },
+    {
+      "name": "Antonio Brown ",
+      "position": "NO",
+      "team": "PIT"
+    },
+    {
+      "name": "Ezekiel Elliott",
+      "position": "RB",
+      "team": "DAL"
+    },
+    {
+      "name": "Saquon Barkley",
+      "position": "RB",
+      "team": "NYG"
+    },
+    {
+      "name": "Melvin Gordon",
+      "position": "RB",
+      "team": "LAR"
+    },
+    {
+      "name": "Julio Jones",
+      "position": "RB",
+      "team": "ATL"
+    },
+    {
+      "name": " Kareem Hunt",
+      "position": "RB",
+      "team": "KC"
+    },
+    {
+      "name": "DeAndre Hopkins",
+      "position": "WR",
+      "team": "HOU"
+    },
+    {
+      "name": "Odell Beckham Jr.",
+      "position": "WR",
+      "team": "PIT"
+    }
+  ]
+}

@@ -16,16 +16,18 @@
     "prepcerts": "npm run prepvapid && node ./server/gen-certs.js && rm -rf dist/*.pem && mkdir -p dist && cp private/*.pem dist/"
   },
   "dependencies": {
+    "EventEmitter": "^1.0.0",
     "apollo-cache-inmemory": "^1.2.7",
     "apollo-client": "^2.3.8",
     "apollo-link": "^1.2.2",
     "apollo-link-http": "^1.5.4",
     "apollo-server": "^2.0.5",
     "apollo-server-express": "^2.0.4",
+    "auth0-js": "^9.7.3",
     "axios": "^0.18.0",
     "bulma": "^0.7.0",
     "cors": "^2.8.4",
-    "date-fns": "^1.29.0",
+    "date-fns": "^2.0.0-alpha.16",
     "debug": "^3.1.0",
     "devcert-with-localhost": "^0.3.3",
     "esm": "^3.0.18",
@@ -43,6 +45,8 @@
     "web-push": "^3.3.2"
   },
   "devDependencies": {
+    "@types/auth0-js": "^8.11.5",
+    "@types/date-fns": "^2.6.0",
     "@vue/cli-plugin-typescript": "^3.0.0",
     "@vue/cli-service": "^3.0.0",
     "chalk": "^2.4.1",

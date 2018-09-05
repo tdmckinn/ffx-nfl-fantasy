@@ -1,5 +1,5 @@
 <template>
-  <modal :show="show" :on-close="close">
+  <nfx-modal :show="show" :on-close="close">
     <div class="nfx-player-modal modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">Player Details</p>
@@ -14,13 +14,14 @@
         <a class="button" @click="close">Cancel</a>
       </footer>
     </div>
-  </modal>
+  </nfx-modal>
 </template>
 
 <script>
 import Player from './Player.vue'
 
 export default {
+  name: 'player-modal',
   props: {
     show: Boolean,
     sumbit: Function,

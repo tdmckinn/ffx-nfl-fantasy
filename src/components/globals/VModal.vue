@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'modal',
+  name: 'nfx-modal',
   props: ['show', 'onClose'],
   methods: {
     close() {

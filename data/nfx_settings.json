@@ -1,0 +1,14 @@
+{
+  "NFX_SETTINGS": [
+    {
+      "leagueID": "1",
+      "draftTypes": ["Live Standard", "Live PPR"],
+      "maxTeams": [10, 12],
+      "waiverType": "rolling continous",
+      "rosterPositions": [
+        "QB", "RB", "RB", "WR", "WR", "TE", "W/R/T", "K", "DEF", "BN", "BN", "BN", "BN"
+      ],
+      "tradeDeadLine": "2018-11-10T00:00:00.000-05:00"
+    }
+  ]
+}

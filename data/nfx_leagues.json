@@ -1,0 +1,16 @@
+{
+  "NFX_LEAGUES": [
+    {
+      "draftID": "1",
+      "ownerName": "John Doe",
+      "ownerId": "1",
+      "leagueName": "Vue Ballers",
+      "leagueTeams": [{
+        "teamID": "1"
+      }],
+      "dateCreated": "2018-08-17T00:00:00.000-04:00",
+      "draftComplete": false,
+      "settings": {}
+    }
+  ]
+}

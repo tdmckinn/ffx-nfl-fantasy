@@ -31,8 +31,8 @@ sync(store, router)
 Vue.config.productionTip = false
 
 // register global components
-Vue.component('modal', Modal)
-Vue.component('playerModal', PlayerModal)
+Vue.component('nfx-modal', Modal)
+Vue.component('player-modal', PlayerModal)
 
 Vue.config.ignoredElements = ['nfx-counter']
 
