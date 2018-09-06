@@ -28,7 +28,8 @@ import Vue from 'vue'
 import { getYear } from 'date-fns'
 import { mapMutations, mapState } from 'vuex'
 
-import nfxSidebar from './Sidebar.vue'
+import NfxSidebar from './NfxSidebar.vue'
+
 export interface INavItem {
   name: string
   route: string
@@ -37,7 +38,7 @@ export interface INavItem {
 export default Vue.extend({
   name: 'nfx-header',
   components: {
-    nfxSidebar
+    NfxSidebar
   },
   props: {
     isLoggedInUser: Boolean
@@ -46,8 +47,9 @@ export default Vue.extend({
     return {
       year: getYear(new Date()),
       navBarItems: [
-        { name: 'League Top Drafts', route: '/draft-rankings' },
         { name: 'My Team', route: '/team' },
+        { name: 'Leagues', route: '/leagues' },
+        { name: 'Top Drafts', route: '/draft-rankings' },
         { name: 'Players', route: '/players' },
         { name: 'Highlights', route: '/highlights' },
         { name: 'Draft', route: '/draft' }

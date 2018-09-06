@@ -31,7 +31,7 @@
 
 <script>
 export default {
-  name: 'player',
+  name: 'nfx-player',
   props: {
     player: Object,
     onPlayerClicked: Function

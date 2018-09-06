@@ -6,7 +6,7 @@
         <button class="delete" @click="close"></button>
       </header>
       <section v-if="player" class="modal-card-body">
-        <player :player="player"></player>
+        <nfx-player :player="player"></nfx-player>
       </section>
       <footer class="modal-card-foot">
         <a v-if="!isPlayerOnMyTeam" class="button is-success" :class="{ 'is-loading': isLoading }" @click="addPlayer">Add Player</a>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import Player from './Player.vue'
+import NfxPlayer from './NfxPlayer.vue'
 
 export default {
   name: 'player-modal',
@@ -28,7 +28,7 @@ export default {
     player: Object
   },
   components: {
-    Player
+    NfxPlayer
   },
   data() {
     return {

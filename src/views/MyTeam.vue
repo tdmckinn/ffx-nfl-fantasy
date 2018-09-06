@@ -15,12 +15,13 @@
 <script>
 import { mapState } from 'vuex'
 
-import Player from '../components/player/Player.vue'
+import { EmptyState, NfxPlayer } from '../components'
 
 export default {
   name: 'my-team',
   components: {
-    Player
+    EmptyState,
+    NfxPlayer
   },
   data() {
     return {
@@ -28,7 +29,8 @@ export default {
     }
   },
   components: {
-
+    EmptyState,
+    Player
   },
   computed: {
     ...mapState({

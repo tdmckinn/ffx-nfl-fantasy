@@ -23,13 +23,13 @@ import Vue from 'vue'
 import { mapState } from 'vuex'
 import { format } from 'date-fns'
 
-import nfxSlide from '../components/Slide.vue'
+import { NfxSlide } from '../components'
 import { DEFAULT_DATE_FORMAT } from '../const'
 
 export default Vue.extend({
   name: 'dashboard',
   components: {
-    nfxSlide
+    NfxSlide
   },
   data() {
     return {

@@ -29,7 +29,7 @@
 <style lang="scss" scoped>
 .nfx-footer {
   margin-top: 50px;
-  max-height: 100px;
+  max-height: 305px;
 
   &__user-link {
     color: #fab23a;

@@ -6,7 +6,7 @@
       </p>
       <ul class="menu-list">
         <li router-link v-for="({ name, route }, index) in navBarItems"  :key="index">
-          <router-link class="navbar-item" :to="route" v-on:click.native="SIDEBAR_TOGGLE">
+          <router-link class="navbar-item" :to="route" @click.native="SIDEBAR_TOGGLE">
             {{name}}
           </router-link>
         </li>
@@ -19,7 +19,7 @@
 import Vue from 'vue'
 import { mapState, mapMutations } from 'vuex'
 
-import { INavItem } from './Header.vue'
+import { INavItem } from './NfxHeader.vue'
 
 export default Vue.extend({
   name: 'nfx-sidebar',

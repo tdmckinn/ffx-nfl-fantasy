@@ -26,28 +26,27 @@
   </div>
 </template>
 
-<script>
-import AuthService from './api/AuthService'
+<script lang="ts">
+import Vue from 'vue'
 
-import nfxHeader from './components/Header.vue'
-import nfxFooter from './components/Footer.vue'
-import Login from './components/Login.vue'
+import AuthService from './api/AuthService'
+import { NfxHeader, NfxFooter, NfxLogin } from './components'
 
 const auth = new AuthService()
-const { login, logout, authenticated, authNotifier } = auth
+const { authenticated, authNotifier } = auth
 
 const nfxThemeMusic = require('./assets/nfx_theme.mp3')
 
-export default {
+export default Vue.extend({
   name: 'app',
   components: {
-    nfxHeader,
-    nfxFooter,
-    Login
+    NfxHeader,
+    NfxFooter,
+    NfxLogin
   },
   data() {
     authNotifier.on('authChange', authState => {
-      this.authenticated = authState.authenticated
+      (this as any).authenticated = (authState.authenticated as any)
     })
 
     return {
@@ -59,12 +58,12 @@ export default {
   },
   computed: {
     isLoggedInUser() {
-      return this.$store.state.user.isLoggedIn
+      return (this as any).$store.state.user.isLoggedIn
     }
   },
   methods: {
     onPlayClick(isPlay) {
-      const audioPlayer = document.getElementById('nfx-music__audio')
+      const audioPlayer = document.getElementById('nfx-music__audio') as HTMLAudioElement
       if (isPlay) {
         audioPlayer.play()
         this.isThemeplaying = !this.isThemeplaying
@@ -74,7 +73,7 @@ export default {
       }
     }
   }
-}
+})
 </script>
 
 <style lang="scss">

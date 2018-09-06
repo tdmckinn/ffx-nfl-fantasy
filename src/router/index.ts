@@ -6,12 +6,9 @@ import Players from '../views/Players.vue'
 import Research from '../views/Research.vue'
 import TopDrafts from '../views/TopDrafts.vue'
 import Draft from '../views/Draft.vue'
-import Modal from '../components/globals/Modal.vue'
+import AppLeagues from '../views/AppLeagues.vue'
 
 Vue.use(Router)
-
-// register global components
-Vue.component('modal', Modal)
 
 const NotFoundComponent = {
   template: `
@@ -46,8 +43,8 @@ const router = new Router({
       // }
     },
     {
-      path: '/highlights',
-      component: Research,
+      path: '/leagues',
+      component: AppLeagues,
     },
     {
       path: '/draft-rankings',
@@ -56,6 +53,10 @@ const router = new Router({
     {
       path: '/players',
       component: Players,
+    },
+    {
+      path: '/highlights',
+      component: Research,
     },
     {
       path: '/draft',

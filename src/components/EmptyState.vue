@@ -1,17 +1,27 @@
 <template>
-  <div class="nfx-empty">
-    <i class="fa fa-folder-open" aria-hidden="true"></i>
+  <div class="nfx-empty-state">
+    <img :src="emptyStateImg" />
   </div>
 </template>
 
 <script>
   export default {
-    name: 'app-footer'
+    props: {
+      size: Number,
+      height: Number,
+      width: Number,
+      maxHeight: Number
+    },
+    data() {
+      return {
+        emptyStateImg: require('../assets/empty-backpack.png')
+      }
+    }
   }
 </script>
 
 <style lang="scss" scoped>
-.nfx-empty {
+.nfx-empty-state {
    
 }
 </style>

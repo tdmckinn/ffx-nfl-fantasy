@@ -10,12 +10,12 @@
 </template>
 
 <script>
-import Player from '../components/player/Player.vue'
+import { NfxPlayer } from '../components'
 
 export default {
   name: 'players',
   components: {
-    Player
+    NfxPlayer
   },
   data() {
     return {
