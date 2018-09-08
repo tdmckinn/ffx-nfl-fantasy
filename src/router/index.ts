@@ -1,13 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Dashboard from '../views/Dashboard.vue'
-import Players from '../views/Players.vue'
-import Research from '../views/Research.vue'
-import TopDrafts from '../views/TopDrafts.vue'
-import Draft from '../views/Draft.vue'
-import AppLeagues from '../views/AppLeagues.vue'
-
 Vue.use(Router)
 
 const NotFoundComponent = {
@@ -26,7 +19,13 @@ const NotFoundComponent = {
   </section>`
 }
 
-const MyTeam = () => import('../views/MyTeam.vue')
+const MyTeam = () => import('../views/MyTeam.vue' /* webpackChunkName: "my-team" */)
+const Dashboard = () => import('../views/Dashboard.vue' /* webpackChunkName: "dashboard" */)
+const Players = () => import('../views/Players.vue' /* webpackChunkName: "players" */)
+const Research = () => import('../views/Research.vue' /* webpackChunkName: "research" */)
+const TopDrafts = () => import('../views/TopDrafts.vue' /* webpackChunkName: "top-drafts" */)
+const Draft = () => import('../views/Draft.vue' /* webpackChunkName: "draft" */)
+const AppLeagues = () => import('../views/AppLeagues.vue' /* webpackChunkName: "leagues" */)
 
 const router = new Router({
   mode: 'history',
@@ -36,11 +35,16 @@ const router = new Router({
       component: Dashboard,
     },
     {
+      path: '/logout',
+      beforeEnter: () => {
+        router.push('/');
+        localStorage.clear();
+        location.reload();
+      }
+    },
+    {
       path: '/team',
       component: MyTeam
-      // beforeEnter: (to, from, next) => {
-      //   // ... isLogged In User
-      // }
     },
     {
       path: '/leagues',

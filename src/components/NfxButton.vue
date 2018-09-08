@@ -1,5 +1,12 @@
 <template>
-  <button type="button" class="button is-primary" @click="click">{{text}}</button>
+  <button 
+    type="button" 
+    class="button is-primary"
+    :class="className"
+    @click="click"
+  >
+    {{text}}
+  </button>
 </template>
 
 <script>
@@ -8,7 +15,8 @@ export default {
   props: {
     className: String,
     text: String,
-    click: Function
+    click: Function,
+    alt: Boolean
   }
 }
 </script>

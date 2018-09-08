@@ -24,6 +24,11 @@ import NfxButton from './NfxButton.vue'
 
 export default {
   name: 'nfx-login',
+  components: {
+    NfxFieldset,
+    NfxInput,
+    NfxButton
+  },
   data() {
     return {
       email: {
@@ -33,11 +38,6 @@ export default {
       password: '',
       isValidForm: true
     }
-  },
-  components: {
-    NfxFieldset,
-    NfxInput,
-    NfxButton
   },
   methods: {
     login() {

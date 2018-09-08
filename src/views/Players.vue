@@ -1,15 +1,17 @@
 <template>
   <div class="nfx-players">
     <h1 class="nfx-players__header title"> Players </h1>
-    <div v-for="player in players" :key="player.playerId">
-      <player :onPlayerClicked="onPlayerClicked"
-        :player="player"></player>
+    <div v-for="player in players" :key="player.id">
+      <nfx-player :onPlayerClicked="onPlayerClicked"
+        :player="player"></nfx-player>
     </div>
     <player-modal :player="selectedPlayer" :show="showModal" v-on:closing="showModal = false"></player-modal>
   </div>
 </template>
 
 <script>
+import gql from 'graphql-tag'
+
 import { NfxPlayer } from '../components'
 
 export default {
@@ -19,23 +21,27 @@ export default {
   },
   data() {
     return {
+      players: [],
       showModal: false,
       selectedPlayer: null
     }
   },
-  computed: {
-    players() {
-      return this.$store.state.players
-    }
+  apollo: {
+    players: gql`
+      {
+        players {
+          id
+          Name
+          Rank
+        }
+      }
+    `
   },
   methods: {
     onPlayerClicked(player) {
       this.selectedPlayer = player
       this.showModal = true
     }
-  },
-  created() {
-    this.$store.dispatch('GET_PLAYERS')
   }
 }
 </script>

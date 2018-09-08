@@ -6,10 +6,9 @@ import { HttpLink } from 'apollo-link-http'
 import VueApollo from 'vue-apollo'
 
 import App from './App.vue'
-import NfxModal from './components/globals/NfxModal.vue'
-import PlayerModal from './components/player/PlayerModal.vue'
 import router from './router'
 import store from './store'
+import './registerGlobals'
 
 const httpLink = new HttpLink({
   // You should use an absolute URL here
@@ -30,9 +29,7 @@ sync(store, router)
 
 Vue.config.productionTip = false
 
-// register global components
-Vue.component('nfx-modal', NfxModal)
-Vue.component('player-modal', PlayerModal)
+
 
 Vue.config.ignoredElements = ['nfx-counter']
 

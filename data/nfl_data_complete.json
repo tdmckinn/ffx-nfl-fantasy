@@ -2,7 +2,7 @@
   "NFL_DATA": [
     {
       "Rank": 1,
-      "PlayerID": 2593,
+      "id": 2593,
       "Name": "Aaron Rodgers",
       "Team": "GB",
       "Position": "QB",
@@ -24,7 +24,7 @@
     },
     {
       "Rank": 2,
-      "PlayerID": 14536,
+      "id": 14536,
       "Name": "Russell Wilson",
       "Team": "SEA",
       "Position": "QB",
@@ -46,7 +46,7 @@
     },
     {
       "Rank": 3,
-      "PlayerID": 4314,
+      "id": 4314,
       "Name": "Tom Brady",
       "Team": "NE",
       "Position": "QB",
@@ -68,7 +68,7 @@
     },
     {
       "Rank": 4,
-      "PlayerID": 13320,
+      "id": 13320,
       "Name": "Cam Newton",
       "Team": "CAR",
       "Position": "QB",
@@ -90,7 +90,7 @@
     },
     {
       "Rank": 5,
-      "PlayerID": 18857,
+      "id": 18857,
       "Name": "Deshaun Watson",
       "Team": "HOU",
       "Position": "QB",
@@ -112,7 +112,7 @@
     },
     {
       "Rank": 6,
-      "PlayerID": 14008,
+      "id": 14008,
       "Name": "Andrew Luck",
       "Team": "IND",
       "Position": "QB",
@@ -134,7 +134,7 @@
     },
     {
       "Rank": 7,
-      "PlayerID": 7242,
+      "id": 7242,
       "Name": "Drew Brees",
       "Team": "NO",
       "Position": "QB",
@@ -156,7 +156,7 @@
     },
     {
       "Rank": 8,
-      "PlayerID": 9038,
+      "id": 9038,
       "Name": "Matthew Stafford",
       "Team": "DET",
       "Position": "QB",
@@ -178,7 +178,7 @@
     },
     {
       "Rank": 9,
-      "PlayerID": 16771,
+      "id": 16771,
       "Name": "Todd Gurley",
       "Team": "LAR",
       "Position": "RB",
@@ -200,7 +200,7 @@
     },
     {
       "Rank": 10,
-      "PlayerID": 16041,
+      "id": 16041,
       "Name": "Jimmy Garoppolo",
       "Team": "SF",
       "Position": "QB",
@@ -222,7 +222,7 @@
     },
     {
       "Rank": 11,
-      "PlayerID": 3807,
+      "id": 3807,
       "Name": "Ben Roethlisberger",
       "Team": "PIT",
       "Position": "QB",
@@ -244,7 +244,7 @@
     },
     {
       "Rank": 12,
-      "PlayerID": 17922,
+      "id": 17922,
       "Name": "Jared Goff",
       "Team": "LAR",
       "Position": "QB",
@@ -266,7 +266,7 @@
     },
     {
       "Rank": 13,
-      "PlayerID": 14252,
+      "id": 14252,
       "Name": "Kirk Cousins",
       "Team": "MIN",
       "Position": "QB",
@@ -288,7 +288,7 @@
     },
     {
       "Rank": 14,
-      "PlayerID": 6739,
+      "id": 6739,
       "Name": "Alex Smith",
       "Team": "WAS",
       "Position": "QB",
@@ -310,7 +310,7 @@
     },
     {
       "Rank": 15,
-      "PlayerID": 732,
+      "id": 732,
       "Name": "Matt Ryan",
       "Team": "ATL",
       "Position": "QB",
@@ -332,7 +332,7 @@
     },
     {
       "Rank": 16,
-      "PlayerID": 16763,
+      "id": 16763,
       "Name": "Marcus Mariota",
       "Team": "TEN",
       "Position": "QB",
@@ -354,7 +354,7 @@
     },
     {
       "Rank": 17,
-      "PlayerID": 17920,
+      "id": 17920,
       "Name": "Carson Wentz",
       "Team": "PHI",
       "Position": "QB",
@@ -376,7 +376,7 @@
     },
     {
       "Rank": 18,
-      "PlayerID": 18055,
+      "id": 18055,
       "Name": "Dak Prescott",
       "Team": "DAL",
       "Position": "QB",
@@ -398,7 +398,7 @@
     },
     {
       "Rank": 19,
-      "PlayerID": 8244,
+      "id": 8244,
       "Name": "Philip Rivers",
       "Team": "LAC",
       "Position": "QB",
@@ -420,7 +420,7 @@
     },
     {
       "Rank": 20,
-      "PlayerID": 18890,
+      "id": 18890,
       "Name": "Patrick Mahomes",
       "Team": "KC",
       "Position": "QB",
@@ -442,7 +442,7 @@
     },
     {
       "Rank": 21,
-      "PlayerID": 17923,
+      "id": 17923,
       "Name": "Ezekiel Elliott",
       "Team": "DAL",
       "Position": "RB",
@@ -464,7 +464,7 @@
     },
     {
       "Rank": 22,
-      "PlayerID": 14967,
+      "id": 14967,
       "Name": "Le'Veon Bell",
       "Team": "PIT",
       "Position": "RB",
@@ -486,7 +486,7 @@
     },
     {
       "Rank": 23,
-      "PlayerID": 12841,
+      "id": 12841,
       "Name": "Andy Dalton",
       "Team": "CIN",
       "Position": "QB",
@@ -508,7 +508,7 @@
     },
     {
       "Rank": 24,
-      "PlayerID": 16245,
+      "id": 16245,
       "Name": "Blake Bortles",
       "Team": "JAX",
       "Position": "QB",
@@ -530,7 +530,7 @@
     },
     {
       "Rank": 25,
-      "PlayerID": 16847,
+      "id": 16847,
       "Name": "David Johnson",
       "Team": "ARI",
       "Position": "RB",
@@ -552,7 +552,7 @@
     },
     {
       "Rank": 26,
-      "PlayerID": 15694,
+      "id": 15694,
       "Name": "Case Keenum",
       "Team": "DEN",
       "Position": "QB",
@@ -574,7 +574,7 @@
     },
     {
       "Rank": 27,
-      "PlayerID": 18811,
+      "id": 18811,
       "Name": "Mitch Trubisky",
       "Team": "CHI",
       "Position": "QB",
@@ -596,7 +596,7 @@
     },
     {
       "Rank": 28,
-      "PlayerID": 4932,
+      "id": 4932,
       "Name": "Eli Manning",
       "Team": "NYG",
       "Position": "QB",
@@ -618,7 +618,7 @@
     },
     {
       "Rank": 29,
-      "PlayerID": 16311,
+      "id": 16311,
       "Name": "Derek Carr",
       "Team": "OAK",
       "Position": "QB",
@@ -640,7 +640,7 @@
     },
     {
       "Rank": 30,
-      "PlayerID": 13799,
+      "id": 13799,
       "Name": "Ryan Tannehill",
       "Team": "MIA",
       "Position": "QB",
@@ -662,7 +662,7 @@
     },
     {
       "Rank": 31,
-      "PlayerID": 18803,
+      "id": 18803,
       "Name": "Leonard Fournette",
       "Team": "JAX",
       "Position": "RB",
@@ -684,7 +684,7 @@
     },
     {
       "Rank": 32,
-      "PlayerID": 18878,
+      "id": 18878,
       "Name": "Alvin Kamara",
       "Team": "NO",
       "Position": "RB",
@@ -706,7 +706,7 @@
     },
     {
       "Rank": 33,
-      "PlayerID": 16762,
+      "id": 16762,
       "Name": "Jameis Winston",
       "Team": "TB",
       "Position": "QB",
@@ -728,7 +728,7 @@
     },
     {
       "Rank": 34,
-      "PlayerID": 18944,
+      "id": 18944,
       "Name": "Kareem Hunt",
       "Team": "KC",
       "Position": "RB",
@@ -750,7 +750,7 @@
     },
     {
       "Rank": 35,
-      "PlayerID": 11056,
+      "id": 11056,
       "Name": "Antonio Brown",
       "Team": "PIT",
       "Position": "WR",
@@ -772,7 +772,7 @@
     },
     {
       "Rank": 36,
-      "PlayerID": 16776,
+      "id": 16776,
       "Name": "Melvin Gordon",
       "Team": "LAC",
       "Position": "RB",
@@ -794,7 +794,7 @@
     },
     {
       "Rank": 37,
-      "PlayerID": 19766,
+      "id": 19766,
       "Name": "Saquon Barkley",
       "Team": "NYG",
       "Position": "RB",
@@ -816,7 +816,7 @@
     },
     {
       "Rank": 38,
-      "PlayerID": 611,
+      "id": 611,
       "Name": "Joe Flacco",
       "Team": "BAL",
       "Position": "QB",
@@ -838,7 +838,7 @@
     },
     {
       "Rank": 39,
-      "PlayerID": 18872,
+      "id": 18872,
       "Name": "Dalvin Cook",
       "Team": "MIN",
       "Position": "RB",
@@ -860,7 +860,7 @@
     },
     {
       "Rank": 40,
-      "PlayerID": 16389,
+      "id": 16389,
       "Name": "Odell Beckham Jr",
       "Team": "NYG",
       "Position": "WR",
@@ -882,7 +882,7 @@
     },
     {
       "Rank": 41,
-      "PlayerID": 14986,
+      "id": 14986,
       "Name": "DeAndre Hopkins",
       "Team": "HOU",
       "Position": "WR",
@@ -904,7 +904,7 @@
     },
     {
       "Rank": 42,
-      "PlayerID": 16524,
+      "id": 16524,
       "Name": "Devonta Freeman",
       "Team": "ATL",
       "Position": "RB",
@@ -926,7 +926,7 @@
     },
     {
       "Rank": 43,
-      "PlayerID": 19790,
+      "id": 19790,
       "Name": "Baker Mayfield",
       "Team": "CLE",
       "Position": "QB",
@@ -948,7 +948,7 @@
     },
     {
       "Rank": 44,
-      "PlayerID": 18067,
+      "id": 18067,
       "Name": "Jordan Howard",
       "Team": "CHI",
       "Position": "RB",
@@ -970,7 +970,7 @@
     },
     {
       "Rank": 45,
-      "PlayerID": 13291,
+      "id": 13291,
       "Name": "Julio Jones",
       "Team": "ATL",
       "Position": "WR",
@@ -992,7 +992,7 @@
     },
     {
       "Rank": 46,
-      "PlayerID": 16470,
+      "id": 16470,
       "Name": "Davante Adams",
       "Team": "GB",
       "Position": "WR",
@@ -1014,7 +1014,7 @@
     },
     {
       "Rank": 47,
-      "PlayerID": 18858,
+      "id": 18858,
       "Name": "Joe Mixon",
       "Team": "CIN",
       "Position": "RB",
@@ -1036,7 +1036,7 @@
     },
     {
       "Rank": 48,
-      "PlayerID": 18877,
+      "id": 18877,
       "Name": "Christian McCaffrey",
       "Team": "CAR",
       "Position": "RB",
@@ -1058,7 +1058,7 @@
     },
     {
       "Rank": 49,
-      "PlayerID": 11932,
+      "id": 11932,
       "Name": "LeSean McCoy",
       "Team": "BUF",
       "Position": "RB",
@@ -1080,7 +1080,7 @@
     },
     {
       "Rank": 50,
-      "PlayerID": 17960,
+      "id": 17960,
       "Name": "Michael Thomas",
       "Team": "NO",
       "Position": "WR",
@@ -1102,7 +1102,7 @@
     },
     {
       "Rank": 51,
-      "PlayerID": 19812,
+      "id": 19812,
       "Name": "Sam Darnold",
       "Team": "NYJ",
       "Position": "QB",
@@ -1124,7 +1124,7 @@
     },
     {
       "Rank": 52,
-      "PlayerID": 12845,
+      "id": 12845,
       "Name": "AJ Green",
       "Team": "CIN",
       "Position": "WR",
@@ -1146,7 +1146,7 @@
     },
     {
       "Rank": 53,
-      "PlayerID": 10974,
+      "id": 10974,
       "Name": "Rob Gronkowski",
       "Team": "NE",
       "Position": "TE",
@@ -1168,7 +1168,7 @@
     },
     {
       "Rank": 54,
-      "PlayerID": 18082,
+      "id": 18082,
       "Name": "Tyreek Hill",
       "Team": "KC",
       "Position": "WR",
@@ -1190,7 +1190,7 @@
     },
     {
       "Rank": 55,
-      "PlayerID": 16597,
+      "id": 16597,
       "Name": "Mike Evans",
       "Team": "TB",
       "Position": "WR",
@@ -1212,7 +1212,7 @@
     },
     {
       "Rank": 56,
-      "PlayerID": 15076,
+      "id": 15076,
       "Name": "Keenan Allen",
       "Team": "LAC",
       "Position": "WR",
@@ -1234,7 +1234,7 @@
     },
     {
       "Rank": 57,
-      "PlayerID": 18003,
+      "id": 18003,
       "Name": "Kenyan Drake",
       "Team": "MIA",
       "Position": "RB",
@@ -1256,7 +1256,7 @@
     },
     {
       "Rank": 58,
-      "PlayerID": 17959,
+      "id": 17959,
       "Name": "Derrick Henry",
       "Team": "TEN",
       "Position": "RB",
@@ -1278,7 +1278,7 @@
     },
     {
       "Rank": 59,
-      "PlayerID": 14005,
+      "id": 14005,
       "Name": "T.Y. Hilton",
       "Team": "IND",
       "Position": "WR",
@@ -1300,7 +1300,7 @@
     },
     {
       "Rank": 60,
-      "PlayerID": 18088,
+      "id": 18088,
       "Name": "Alex Collins",
       "Team": "BAL",
       "Position": "RB",
@@ -1322,7 +1322,7 @@
     },
     {
       "Rank": 61,
-      "PlayerID": 16906,
+      "id": 16906,
       "Name": "Stefon Diggs",
       "Team": "MIN",
       "Position": "WR",
@@ -1344,7 +1344,7 @@
     },
     {
       "Rank": 62,
-      "PlayerID": 18883,
+      "id": 18883,
       "Name": "Juju Smith-Schuster",
       "Team": "PIT",
       "Position": "WR",
@@ -1366,7 +1366,7 @@
     },
     {
       "Rank": 63,
-      "PlayerID": 16909,
+      "id": 16909,
       "Name": "Jay Ajayi",
       "Team": "PHI",
       "Position": "RB",
@@ -1388,7 +1388,7 @@
     },
     {
       "Rank": 64,
-      "PlayerID": 13791,
+      "id": 13791,
       "Name": "Lamar Miller",
       "Team": "HOU",
       "Position": "RB",
@@ -1410,7 +1410,7 @@
     },
     {
       "Rank": 65,
-      "PlayerID": 19823,
+      "id": 19823,
       "Name": "Royce Freeman",
       "Team": "DEN",
       "Position": "RB",
@@ -1432,7 +1432,7 @@
     },
     {
       "Rank": 66,
-      "PlayerID": 15534,
+      "id": 15534,
       "Name": "Adam Thielen",
       "Team": "MIN",
       "Position": "WR",
@@ -1454,7 +1454,7 @@
     },
     {
       "Rank": 67,
-      "PlayerID": 13337,
+      "id": 13337,
       "Name": "Mark Ingram",
       "Team": "NO",
       "Position": "RB",
@@ -1476,7 +1476,7 @@
     },
     {
       "Rank": 68,
-      "PlayerID": 12708,
+      "id": 12708,
       "Name": "Dion Lewis",
       "Team": "TEN",
       "Position": "RB",
@@ -1498,7 +1498,7 @@
     },
     {
       "Rank": 69,
-      "PlayerID": 13460,
+      "id": 13460,
       "Name": "Doug Baldwin",
       "Team": "SEA",
       "Position": "WR",
@@ -1520,7 +1520,7 @@
     },
     {
       "Rank": 70,
-      "PlayerID": 19801,
+      "id": 19801,
       "Name": "Josh Allen",
       "Team": "BUF",
       "Position": "QB",
@@ -1542,7 +1542,7 @@
     },
     {
       "Rank": 71,
-      "PlayerID": 13870,
+      "id": 13870,
       "Name": "Marvin Jones",
       "Team": "DET",
       "Position": "WR",
@@ -1564,7 +1564,7 @@
     },
     {
       "Rank": 72,
-      "PlayerID": 16765,
+      "id": 16765,
       "Name": "Amari Cooper",
       "Team": "OAK",
       "Position": "WR",
@@ -1586,7 +1586,7 @@
     },
     {
       "Rank": 73,
-      "PlayerID": 14828,
+      "id": 14828,
       "Name": "Chris Hogan",
       "Team": "NE",
       "Position": "WR",
@@ -1608,7 +1608,7 @@
     },
     {
       "Rank": 74,
-      "PlayerID": 16668,
+      "id": 16668,
       "Name": "Carlos Hyde",
       "Team": "CLE",
       "Position": "RB",
@@ -1630,7 +1630,7 @@
     },
     {
       "Rank": 75,
-      "PlayerID": 12386,
+      "id": 12386,
       "Name": "Marshawn Lynch",
       "Team": "OAK",
       "Position": "RB",
@@ -1652,7 +1652,7 @@
     },
     {
       "Rank": 75,
-      "PlayerID": 18375,
+      "id": 18375,
       "Name": "Peyton Barber",
       "Team": "TB",
       "Position": "RB",
@@ -1674,7 +1674,7 @@
     },
     {
       "Rank": 77,
-      "PlayerID": 16263,
+      "id": 16263,
       "Name": "Allen Robinson",
       "Team": "CHI",
       "Position": "WR",
@@ -1696,7 +1696,7 @@
     },
     {
       "Rank": 77,
-      "PlayerID": 5571,
+      "id": 5571,
       "Name": "Larry Fitzgerald",
       "Team": "ARI",
       "Position": "WR",
@@ -1718,7 +1718,7 @@
     },
     {
       "Rank": 79,
-      "PlayerID": 13941,
+      "id": 13941,
       "Name": "Zach Brown",
       "Team": "WAS",
       "Position": "ILB",
@@ -1740,7 +1740,7 @@
     },
     {
       "Rank": 80,
-      "PlayerID": 14587,
+      "id": 14587,
       "Name": "Josh Gordon",
       "Team": "CLE",
       "Position": "WR",
@@ -1762,7 +1762,7 @@
     },
     {
       "Rank": 81,
-      "PlayerID": 16834,
+      "id": 16834,
       "Name": "Tevin Coleman",
       "Team": "ATL",
       "Position": "RB",
@@ -1784,7 +1784,7 @@
     },
     {
       "Rank": 82,
-      "PlayerID": 18995,
+      "id": 18995,
       "Name": "Jamaal Williams",
       "Team": "GB",
       "Position": "RB",
@@ -1806,7 +1806,7 @@
     },
     {
       "Rank": 83,
-      "PlayerID": 2982,
+      "id": 2982,
       "Name": "Stephen Gostkowski",
       "Team": "NE",
       "Position": "K",
@@ -1828,7 +1828,7 @@
     },
     {
       "Rank": 84,
-      "PlayerID": 18879,
+      "id": 18879,
       "Name": "Corey Davis",
       "Team": "TEN",
       "Position": "WR",
@@ -1850,7 +1850,7 @@
     },
     {
       "Rank": 85,
-      "PlayerID": 13749,
+      "id": 13749,
       "Name": "Chandler Jones",
       "Team": "ARI",
       "Position": "DE",
@@ -1872,7 +1872,7 @@
     },
     {
       "Rank": 86,
-      "PlayerID": 16568,
+      "id": 16568,
       "Name": "Brandin Cooks",
       "Team": "LAR",
       "Position": "WR",
@@ -1894,7 +1894,7 @@
     },
     {
       "Rank": 87,
-      "PlayerID": 15048,
+      "id": 15048,
       "Name": "Travis Kelce",
       "Team": "KC",
       "Position": "TE",
@@ -1916,7 +1916,7 @@
     },
     {
       "Rank": 88,
-      "PlayerID": 11611,
+      "id": 11611,
       "Name": "Golden Tate",
       "Team": "DET",
       "Position": "WR",
@@ -1938,7 +1938,7 @@
     },
     {
       "Rank": 89,
-      "PlayerID": 11063,
+      "id": 11063,
       "Name": "Emmanuel Sanders",
       "Team": "DEN",
       "Position": "WR",
@@ -1960,7 +1960,7 @@
     },
     {
       "Rank": 90,
-      "PlayerID": 14856,
+      "id": 14856,
       "Name": "Zach Ertz",
       "Team": "PHI",
       "Position": "TE",
@@ -1982,7 +1982,7 @@
     },
     {
       "Rank": 91,
-      "PlayerID": 16781,
+      "id": 16781,
       "Name": "Nelson Agholor",
       "Team": "PHI",
       "Position": "WR",
@@ -2004,7 +2004,7 @@
     },
     {
       "Rank": 92,
-      "PlayerID": 14865,
+      "id": 14865,
       "Name": "Marquise Goodwin",
       "Team": "SF",
       "Position": "WR",
@@ -2026,7 +2026,7 @@
     },
     {
       "Rank": 93,
-      "PlayerID": 14917,
+      "id": 14917,
       "Name": "Rex Burkhead",
       "Team": "NE",
       "Position": "RB",
@@ -2048,7 +2048,7 @@
     },
     {
       "Rank": 94,
-      "PlayerID": 52,
+      "id": 52,
       "Name": "Jacksonville Jaguars",
       "Team": "JAX",
       "Position": "DST",
@@ -2070,7 +2070,7 @@
     },
     {
       "Rank": 95,
-      "PlayerID": 17916,
+      "id": 17916,
       "Name": "Will Fuller",
       "Team": "HOU",
       "Position": "WR",
@@ -2092,7 +2092,7 @@
     },
     {
       "Rank": 96,
-      "PlayerID": 19763,
+      "id": 19763,
       "Name": "Josh Rosen",
       "Team": "ARI",
       "Position": "QB",
@@ -2114,7 +2114,7 @@
     },
     {
       "Rank": 97,
-      "PlayerID": 84,
+      "id": 84,
       "Name": "Los Angeles Chargers",
       "Team": "LAC",
       "Position": "DST",
@@ -2136,7 +2136,7 @@
     },
     {
       "Rank": 98,
-      "PlayerID": 14534,
+      "id": 14534,
       "Name": "Bobby Wagner",
       "Team": "SEA",
       "Position": "ILB",
@@ -2158,7 +2158,7 @@
     },
     {
       "Rank": 99,
-      "PlayerID": 18187,
+      "id": 18187,
       "Name": "Robby Anderson",
       "Team": "NYJ",
       "Position": "WR",
@@ -2180,7 +2180,7 @@
     },
     {
       "Rank": 100,
-      "PlayerID": 14697,
+      "id": 14697,
       "Name": "Greg Zuerlein",
       "Team": "LAR",
       "Position": "K",
@@ -2202,7 +2202,7 @@
     },
     {
       "Rank": 101,
-      "PlayerID": 16093,
+      "id": 16093,
       "Name": "CJ Mosley",
       "Team": "BAL",
       "Position": "ILB",
@@ -2224,7 +2224,7 @@
     },
     {
       "Rank": 102,
-      "PlayerID": 16020,
+      "id": 16020,
       "Name": "Jarvis Landry",
       "Team": "CLE",
       "Position": "WR",
@@ -2246,7 +2246,7 @@
     },
     {
       "Rank": 102,
-      "PlayerID": 14871,
+      "id": 14871,
       "Name": "Robert Woods",
       "Team": "LAR",
       "Position": "WR",
@@ -2268,7 +2268,7 @@
     },
     {
       "Rank": 104,
-      "PlayerID": 18052,
+      "id": 18052,
       "Name": "Blake Martinez",
       "Team": "GB",
       "Position": "ILB",
@@ -2290,7 +2290,7 @@
     },
     {
       "Rank": 105,
-      "PlayerID": 18478,
+      "id": 18478,
       "Name": "Wil Lutz",
       "Team": "NO",
       "Position": "K",
@@ -2312,7 +2312,7 @@
     },
     {
       "Rank": 106,
-      "PlayerID": 8355,
+      "id": 8355,
       "Name": "Julian Edelman",
       "Team": "NE",
       "Position": "WR",
@@ -2334,7 +2334,7 @@
     },
     {
       "Rank": 107,
-      "PlayerID": 14187,
+      "id": 14187,
       "Name": "Alshon Jeffery",
       "Team": "PHI",
       "Position": "WR",
@@ -2356,7 +2356,7 @@
     },
     {
       "Rank": 108,
-      "PlayerID": 18882,
+      "id": 18882,
       "Name": "Cooper Kupp",
       "Team": "LAR",
       "Position": "WR",
@@ -2378,7 +2378,7 @@
     },
     {
       "Rank": 109,
-      "PlayerID": 9331,
+      "id": 9331,
       "Name": "Michael Crabtree",
       "Team": "BAL",
       "Position": "WR",
@@ -2400,7 +2400,7 @@
     },
     {
       "Rank": 110,
-      "PlayerID": 32,
+      "id": 32,
       "Name": "Los Angeles Rams",
       "Team": "LAR",
       "Position": "DST",
@@ -2422,7 +2422,7 @@
     },
     {
       "Rank": 111,
-      "PlayerID": 14338,
+      "id": 14338,
       "Name": "Luke Kuechly",
       "Team": "CAR",
       "Position": "ILB",
@@ -2444,7 +2444,7 @@
     },
     {
       "Rank": 112,
-      "PlayerID": 16003,
+      "id": 16003,
       "Name": "Sammy Watkins",
       "Team": "KC",
       "Position": "WR",
@@ -2466,7 +2466,7 @@
     },
     {
       "Rank": 113,
-      "PlayerID": 26,
+      "id": 26,
       "Name": "Philadelphia Eagles",
       "Team": "PHI",
       "Position": "DST",
@@ -2488,7 +2488,7 @@
     },
     {
       "Rank": 114,
-      "PlayerID": 3388,
+      "id": 3388,
       "Name": "Matt Bryant",
       "Team": "ATL",
       "Position": "K",
@@ -2510,7 +2510,7 @@
     },
     {
       "Rank": 114,
-      "PlayerID": 14688,
+      "id": 14688,
       "Name": "Justin Tucker",
       "Team": "BAL",
       "Position": "K",
@@ -2532,7 +2532,7 @@
     },
     {
       "Rank": 114,
-      "PlayerID": 16191,
+      "id": 16191,
       "Name": "Chris Boswell",
       "Team": "PIT",
       "Position": "K",
@@ -2554,7 +2554,7 @@
     },
     {
       "Rank": 117,
-      "PlayerID": 16323,
+      "id": 16323,
       "Name": "Khalil Mack",
       "Team": "CHI",
       "Position": "OLB",
@@ -2576,7 +2576,7 @@
     },
     {
       "Rank": 118,
-      "PlayerID": 11197,
+      "id": 11197,
       "Name": "Demaryius Thomas",
       "Team": "DEN",
       "Position": "WR",
@@ -2598,7 +2598,7 @@
     },
     {
       "Rank": 119,
-      "PlayerID": 12831,
+      "id": 12831,
       "Name": "Tyrod Taylor",
       "Team": "CLE",
       "Position": "QB",
@@ -2620,7 +2620,7 @@
     },
     {
       "Rank": 120,
-      "PlayerID": 16127,
+      "id": 16127,
       "Name": "Isaiah Crowell",
       "Team": "NYJ",
       "Position": "RB",
@@ -2642,7 +2642,7 @@
     },
     {
       "Rank": 121,
-      "PlayerID": 14375,
+      "id": 14375,
       "Name": "Lavonte David",
       "Team": "TB",
       "Position": "OLB",
@@ -2664,7 +2664,7 @@
     },
     {
       "Rank": 122,
-      "PlayerID": 3258,
+      "id": 3258,
       "Name": "Adam Vinatieri",
       "Team": "IND",
       "Position": "K",
@@ -2686,7 +2686,7 @@
     },
     {
       "Rank": 122,
-      "PlayerID": 19073,
+      "id": 19073,
       "Name": "Harrison Butker",
       "Team": "KC",
       "Position": "K",
@@ -2708,7 +2708,7 @@
     },
     {
       "Rank": 122,
-      "PlayerID": 19989,
+      "id": 19989,
       "Name": "Daniel Carlson",
       "Team": "MIN",
       "Position": "K",
@@ -2730,7 +2730,7 @@
     },
     {
       "Rank": 125,
-      "PlayerID": 17983,
+      "id": 17983,
       "Name": "Deion Jones",
       "Team": "ATL",
       "Position": "ILB",
@@ -2752,7 +2752,7 @@
     },
     {
       "Rank": 126,
-      "PlayerID": 14269,
+      "id": 14269,
       "Name": "Alfred Morris",
       "Team": "SF",
       "Position": "RB",
@@ -2774,7 +2774,7 @@
     },
     {
       "Rank": 127,
-      "PlayerID": 14975,
+      "id": 14975,
       "Name": "Vince Williams",
       "Team": "PIT",
       "Position": "ILB",
@@ -2796,7 +2796,7 @@
     },
     {
       "Rank": 128,
-      "PlayerID": 1694,
+      "id": 1694,
       "Name": "Mason Crosby",
       "Team": "GB",
       "Position": "K",
@@ -2818,7 +2818,7 @@
     },
     {
       "Rank": 128,
-      "PlayerID": 1410,
+      "id": 1410,
       "Name": "Robbie Gould",
       "Team": "SF",
       "Position": "K",
@@ -2840,7 +2840,7 @@
     },
     {
       "Rank": 128,
-      "PlayerID": 19041,
+      "id": 19041,
       "Name": "Jake Elliott",
       "Team": "PHI",
       "Position": "K",
@@ -2862,7 +2862,7 @@
     },
     {
       "Rank": 131,
-      "PlayerID": 16133,
+      "id": 16133,
       "Name": "Christian Kirksey",
       "Team": "CLE",
       "Position": "OLB",
@@ -2884,7 +2884,7 @@
     },
     {
       "Rank": 132,
-      "PlayerID": 16802,
+      "id": 16802,
       "Name": "Devin Funchess",
       "Team": "CAR",
       "Position": "WR",
@@ -2906,7 +2906,7 @@
     },
     {
       "Rank": 133,
-      "PlayerID": 4556,
+      "id": 4556,
       "Name": "Jordy Nelson",
       "Team": "OAK",
       "Position": "WR",
@@ -2928,7 +2928,7 @@
     },
     {
       "Rank": 134,
-      "PlayerID": 14057,
+      "id": 14057,
       "Name": "Danny Trevathan",
       "Team": "CHI",
       "Position": "ILB",
@@ -2950,7 +2950,7 @@
     },
     {
       "Rank": 135,
-      "PlayerID": 19822,
+      "id": 19822,
       "Name": "Kerryon Johnson",
       "Team": "DET",
       "Position": "RB",
@@ -2972,7 +2972,7 @@
     },
     {
       "Rank": 136,
-      "PlayerID": 16550,
+      "id": 16550,
       "Name": "Kelvin Benjamin",
       "Team": "BUF",
       "Position": "WR",
@@ -2994,7 +2994,7 @@
     },
     {
       "Rank": 136,
-      "PlayerID": 10333,
+      "id": 10333,
       "Name": "Graham Gano",
       "Team": "CAR",
       "Position": "K",
@@ -3016,7 +3016,7 @@
     },
     {
       "Rank": 138,
-      "PlayerID": 17961,
+      "id": 17961,
       "Name": "Sterling Shepard",
       "Team": "NYG",
       "Position": "WR",
@@ -3038,7 +3038,7 @@
     },
     {
       "Rank": 139,
-      "PlayerID": 6767,
+      "id": 6767,
       "Name": "Pierre Garcon",
       "Team": "SF",
       "Position": "WR",
@@ -3060,7 +3060,7 @@
     },
     {
       "Rank": 140,
-      "PlayerID": 12215,
+      "id": 12215,
       "Name": "Reshad Jones",
       "Team": "MIA",
       "Position": "SS",
@@ -3082,7 +3082,7 @@
     },
     {
       "Rank": 141,
-      "PlayerID": 18998,
+      "id": 18998,
       "Name": "Marlon Mack",
       "Team": "IND",
       "Position": "RB",
@@ -3104,7 +3104,7 @@
     },
     {
       "Rank": 142,
-      "PlayerID": 14877,
+      "id": 14877,
       "Name": "Caleb Sturgis",
       "Team": "LAC",
       "Position": "K",
@@ -3126,7 +3126,7 @@
     },
     {
       "Rank": 142,
-      "PlayerID": 12594,
+      "id": 12594,
       "Name": "Steven Hauschka",
       "Team": "BUF",
       "Position": "K",
@@ -3148,7 +3148,7 @@
     },
     {
       "Rank": 144,
-      "PlayerID": 1658,
+      "id": 1658,
       "Name": "Greg Olsen",
       "Team": "CAR",
       "Position": "TE",
@@ -3170,7 +3170,7 @@
     },
     {
       "Rank": 145,
-      "PlayerID": 13036,
+      "id": 13036,
       "Name": "Justin Houston",
       "Team": "KC",
       "Position": "OLB",
@@ -3192,7 +3192,7 @@
     },
     {
       "Rank": 146,
-      "PlayerID": 19319,
+      "id": 19319,
       "Name": "Matt Breida",
       "Team": "SF",
       "Position": "RB",
@@ -3214,7 +3214,7 @@
     },
     {
       "Rank": 147,
-      "PlayerID": 549,
+      "id": 549,
       "Name": "Matt Prater",
       "Team": "DET",
       "Position": "K",
@@ -3236,7 +3236,7 @@
     },
     {
       "Rank": 147,
-      "PlayerID": 17139,
+      "id": 17139,
       "Name": "Josh Lambo",
       "Team": "JAX",
       "Position": "K",
@@ -3258,7 +3258,7 @@
     },
     {
       "Rank": 149,
-      "PlayerID": 19119,
+      "id": 19119,
       "Name": "Chris Carson",
       "Team": "SEA",
       "Position": "RB",
@@ -3280,7 +3280,7 @@
     },
     {
       "Rank": 150,
-      "PlayerID": 17989,
+      "id": 17989,
       "Name": "Sean Davis",
       "Team": "PIT",
       "Position": "FS",
@@ -3302,7 +3302,7 @@
     },
     {
       "Rank": 151,
-      "PlayerID": 17915,
+      "id": 17915,
       "Name": "Joey Bosa",
       "Team": "LAC",
       "Position": "DE",
@@ -3324,7 +3324,7 @@
     },
     {
       "Rank": 152,
-      "PlayerID": 16236,
+      "id": 16236,
       "Name": "Cody Parkey",
       "Team": "CHI",
       "Position": "K",
@@ -3346,7 +3346,7 @@
     },
     {
       "Rank": 153,
-      "PlayerID": 14867,
+      "id": 14867,
       "Name": "Dustin Hopkins",
       "Team": "WAS",
       "Position": "K",
@@ -3368,7 +3368,7 @@
     },
     {
       "Rank": 153,
-      "PlayerID": 18215,
+      "id": 18215,
       "Name": "Ka'imi Fairbairn",
       "Team": "HOU",
       "Position": "K",
@@ -3390,7 +3390,7 @@
     },
     {
       "Rank": 155,
-      "PlayerID": 7175,
+      "id": 7175,
       "Name": "Delanie Walker",
       "Team": "TEN",
       "Position": "TE",
@@ -3412,7 +3412,7 @@
     },
     {
       "Rank": 156,
-      "PlayerID": 19799,
+      "id": 19799,
       "Name": "Rashaad Penny",
       "Team": "SEA",
       "Position": "RB",
@@ -3434,7 +3434,7 @@
     },
     {
       "Rank": 157,
-      "PlayerID": 8750,
+      "id": 8750,
       "Name": "Ryan Succop",
       "Team": "TEN",
       "Position": "K",
@@ -3456,7 +3456,7 @@
     },
     {
       "Rank": 158,
-      "PlayerID": 15196,
+      "id": 15196,
       "Name": "Kenny Stills",
       "Team": "MIA",
       "Position": "WR",
@@ -3478,7 +3478,7 @@
     },
     {
       "Rank": 159,
-      "PlayerID": 11276,
+      "id": 11276,
       "Name": "Sean Lee",
       "Team": "DAL",
       "Position": "OLB",
@@ -3500,7 +3500,7 @@
     },
     {
       "Rank": 160,
-      "PlayerID": 18912,
+      "id": 18912,
       "Name": "Evan Engram",
       "Team": "NYG",
       "Position": "TE",
@@ -3522,7 +3522,7 @@
     },
     {
       "Rank": 161,
-      "PlayerID": 13810,
+      "id": 13810,
       "Name": "Demario Davis",
       "Team": "NO",
       "Position": "OLB",
@@ -3544,7 +3544,7 @@
     },
     {
       "Rank": 162,
-      "PlayerID": 16806,
+      "id": 16806,
       "Name": "Eric Kendricks",
       "Team": "MIN",
       "Position": "ILB",
@@ -3566,7 +3566,7 @@
     },
     {
       "Rank": 163,
-      "PlayerID": 5334,
+      "id": 5334,
       "Name": "Wesley Woodyard",
       "Team": "TEN",
       "Position": "ILB",
@@ -3588,7 +3588,7 @@
     },
     {
       "Rank": 164,
-      "PlayerID": 16885,
+      "id": 16885,
       "Name": "Kwon Alexander",
       "Team": "TB",
       "Position": "ILB",
@@ -3610,7 +3610,7 @@
     },
     {
       "Rank": 165,
-      "PlayerID": 67,
+      "id": 67,
       "Name": "Minnesota Vikings",
       "Team": "MIN",
       "Position": "DST",
@@ -3632,7 +3632,7 @@
     },
     {
       "Rank": 165,
-      "PlayerID": 3253,
+      "id": 3253,
       "Name": "Sebastian Janikowski",
       "Team": "SEA",
       "Position": "K",
@@ -3654,7 +3654,7 @@
     },
     {
       "Rank": 165,
-      "PlayerID": 5714,
+      "id": 5714,
       "Name": "Phil Dawson",
       "Team": "ARI",
       "Position": "K",
@@ -3676,7 +3676,7 @@
     },
     {
       "Rank": 168,
-      "PlayerID": 11527,
+      "id": 11527,
       "Name": "Sam Bradford",
       "Team": "ARI",
       "Position": "QB",
@@ -3698,7 +3698,7 @@
     },
     {
       "Rank": 169,
-      "PlayerID": 16794,
+      "id": 16794,
       "Name": "Landon Collins",
       "Team": "NYG",
       "Position": "SS",
@@ -3720,7 +3720,7 @@
     },
     {
       "Rank": 170,
-      "PlayerID": 16866,
+      "id": 16866,
       "Name": "Jamison Crowder",
       "Team": "WAS",
       "Position": "WR",
@@ -3742,7 +3742,7 @@
     },
     {
       "Rank": 171,
-      "PlayerID": 13788,
+      "id": 13788,
       "Name": "Rishard Matthews",
       "Team": "TEN",
       "Position": "WR",
@@ -3764,7 +3764,7 @@
     },
     {
       "Rank": 172,
-      "PlayerID": 17967,
+      "id": 17967,
       "Name": "Joe Schobert",
       "Team": "CLE",
       "Position": "ILB",
@@ -3786,7 +3786,7 @@
     },
     {
       "Rank": 173,
-      "PlayerID": 49,
+      "id": 49,
       "Name": "Denver Broncos",
       "Team": "DEN",
       "Position": "DST",
@@ -3808,7 +3808,7 @@
     },
     {
       "Rank": 173,
-      "PlayerID": 28,
+      "id": 28,
       "Name": "Pittsburgh Steelers",
       "Team": "PIT",
       "Position": "DST",
@@ -3830,7 +3830,7 @@
     },
     {
       "Rank": 173,
-      "PlayerID": 36,
+      "id": 36,
       "Name": "Baltimore Ravens",
       "Team": "BAL",
       "Position": "DST",
@@ -3852,7 +3852,7 @@
     },
     {
       "Rank": 176,
-      "PlayerID": 15228,
+      "id": 15228,
       "Name": "Alex Okafor",
       "Team": "NO",
       "Position": "DE",
@@ -3874,7 +3874,7 @@
     },
     {
       "Rank": 177,
-      "PlayerID": 16366,
+      "id": 16366,
       "Name": "Demarcus Lawrence",
       "Team": "DAL",
       "Position": "DE",
@@ -3896,7 +3896,7 @@
     },
     {
       "Rank": 178,
-      "PlayerID": 14996,
+      "id": 14996,
       "Name": "Brandon McManus",
       "Team": "DEN",
       "Position": "K",
@@ -3918,7 +3918,7 @@
     },
     {
       "Rank": 178,
-      "PlayerID": 18645,
+      "id": 18645,
       "Name": "Aldrick Rosas",
       "Team": "NYG",
       "Position": "K",
@@ -3940,7 +3940,7 @@
     },
     {
       "Rank": 178,
-      "PlayerID": 19828,
+      "id": 19828,
       "Name": "Sony Michel",
       "Team": "NE",
       "Position": "RB",
@@ -3962,7 +3962,7 @@
     },
     {
       "Rank": 181,
-      "PlayerID": 18915,
+      "id": 18915,
       "Name": "Takk McKinley",
       "Team": "ATL",
       "Position": "DE",
@@ -3984,7 +3984,7 @@
     },
     {
       "Rank": 182,
-      "PlayerID": 16266,
+      "id": 16266,
       "Name": "Telvin Smith",
       "Team": "JAX",
       "Position": "OLB",
@@ -4006,7 +4006,7 @@
     },
     {
       "Rank": 183,
-      "PlayerID": 15102,
+      "id": 15102,
       "Name": "Chris Thompson",
       "Team": "WAS",
       "Position": "RB",
@@ -4028,7 +4028,7 @@
     },
     {
       "Rank": 184,
-      "PlayerID": 13181,
+      "id": 13181,
       "Name": "Mario Addison",
       "Team": "CAR",
       "Position": "DE",
@@ -4050,7 +4050,7 @@
     },
     {
       "Rank": 185,
-      "PlayerID": 5,
+      "id": 5,
       "Name": "Carolina Panthers",
       "Team": "CAR",
       "Position": "DST",
@@ -4072,7 +4072,7 @@
     },
     {
       "Rank": 186,
-      "PlayerID": 11488,
+      "id": 11488,
       "Name": "Jimmy Graham",
       "Team": "GB",
       "Position": "TE",
@@ -4094,7 +4094,7 @@
     },
     {
       "Rank": 187,
-      "PlayerID": 17935,
+      "id": 17935,
       "Name": "Leonard Floyd",
       "Team": "CHI",
       "Position": "OLB",
@@ -4116,7 +4116,7 @@
     },
     {
       "Rank": 188,
-      "PlayerID": 13,
+      "id": 13,
       "Name": "Houston Texans",
       "Team": "HOU",
       "Position": "DST",
@@ -4138,7 +4138,7 @@
     },
     {
       "Rank": 188,
-      "PlayerID": 38,
+      "id": 38,
       "Name": "Chicago Bears",
       "Team": "CHI",
       "Position": "DST",
@@ -4160,7 +4160,7 @@
     },
     {
       "Rank": 190,
-      "PlayerID": 19079,
+      "id": 19079,
       "Name": "Zane Gonzalez",
       "Team": "CLE",
       "Position": "K",
@@ -4182,7 +4182,7 @@
     },
     {
       "Rank": 190,
-      "PlayerID": 16644,
+      "id": 16644,
       "Name": "Chandler Catanzaro",
       "Team": "TB",
       "Position": "K",
@@ -4204,7 +4204,7 @@
     },
     {
       "Rank": 192,
-      "PlayerID": 16830,
+      "id": 16830,
       "Name": "Tyler Lockett",
       "Team": "SEA",
       "Position": "WR",
@@ -4226,7 +4226,7 @@
     },
     {
       "Rank": 193,
-      "PlayerID": 12109,
+      "id": 12109,
       "Name": "Ted Ginn",
       "Team": "NO",
       "Position": "WR",
@@ -4248,7 +4248,7 @@
     },
     {
       "Rank": 194,
-      "PlayerID": 13338,
+      "id": 13338,
       "Name": "Cameron Jordan",
       "Team": "NO",
       "Position": "DE",
@@ -4270,7 +4270,7 @@
     },
     {
       "Rank": 195,
-      "PlayerID": 13961,
+      "id": 13961,
       "Name": "Randy Bullock",
       "Team": "CIN",
       "Position": "K",
@@ -4292,7 +4292,7 @@
     },
     {
       "Rank": 196,
-      "PlayerID": 18927,
+      "id": 18927,
       "Name": "Budda Baker",
       "Team": "ARI",
       "Position": "SS",
@@ -4314,7 +4314,7 @@
     },
     {
       "Rank": 197,
-      "PlayerID": 3943,
+      "id": 3943,
       "Name": "DeSean Jackson",
       "Team": "TB",
       "Position": "WR",
@@ -4336,7 +4336,7 @@
     },
     {
       "Rank": 198,
-      "PlayerID": 14860,
+      "id": 14860,
       "Name": "Jordan Poyer",
       "Team": "BUF",
       "Position": "FS",
@@ -4358,7 +4358,7 @@
     },
     {
       "Rank": 199,
-      "PlayerID": 15100,
+      "id": 15100,
       "Name": "Jordan Reed",
       "Team": "WAS",
       "Position": "TE",
@@ -4380,7 +4380,7 @@
     },
     {
       "Rank": 200,
-      "PlayerID": 13022,
+      "id": 13022,
       "Name": "Von Miller",
       "Team": "DEN",
       "Position": "OLB",
@@ -4402,7 +4402,7 @@
     },
     {
       "Rank": 201,
-      "PlayerID": 16769,
+      "id": 16769,
       "Name": "Vic Beasley",
       "Team": "ATL",
       "Position": "DE",
@@ -4424,7 +4424,7 @@
     },
     {
       "Rank": 202,
-      "PlayerID": 16640,
+      "id": 16640,
       "Name": "John Brown",
       "Team": "BAL",
       "Position": "WR",
@@ -4446,7 +4446,7 @@
     },
     {
       "Rank": 203,
-      "PlayerID": 14294,
+      "id": 14294,
       "Name": "Nick Perry",
       "Team": "GB",
       "Position": "OLB",
@@ -4468,7 +4468,7 @@
     },
     {
       "Rank": 204,
-      "PlayerID": 55,
+      "id": 55,
       "Name": "Kansas City Chiefs",
       "Team": "KC",
       "Position": "DST",
@@ -4490,7 +4490,7 @@
     },
     {
       "Rank": 204,
-      "PlayerID": 19514,
+      "id": 19514,
       "Name": "Keelan Cole",
       "Team": "JAX",
       "Position": "WR",
@@ -4512,7 +4512,7 @@
     },
     {
       "Rank": 204,
-      "PlayerID": 20033,
+      "id": 20033,
       "Name": "Jason Sanders",
       "Team": "MIA",
       "Position": "K",
@@ -4534,7 +4534,7 @@
     },
     {
       "Rank": 207,
-      "PlayerID": 18977,
+      "id": 18977,
       "Name": "Kenny Golladay",
       "Team": "DET",
       "Position": "WR",
@@ -4556,7 +4556,7 @@
     },
     {
       "Rank": 208,
-      "PlayerID": 13166,
+      "id": 13166,
       "Name": "Ryan Kerrigan",
       "Team": "WAS",
       "Position": "OLB",
@@ -4578,7 +4578,7 @@
     },
     {
       "Rank": 209,
-      "PlayerID": 13275,
+      "id": 13275,
       "Name": "Kyle Rudolph",
       "Team": "MIN",
       "Position": "TE",
@@ -4600,7 +4600,7 @@
     },
     {
       "Rank": 210,
-      "PlayerID": 11735,
+      "id": 11735,
       "Name": "Mike Nugent",
       "Team": "OAK",
       "Position": "K",
@@ -4622,7 +4622,7 @@
     },
     {
       "Rank": 210,
-      "PlayerID": 15854,
+      "id": 15854,
       "Name": "Brett Maher",
       "Team": "DAL",
       "Position": "K",
@@ -4644,7 +4644,7 @@
     },
     {
       "Rank": 212,
-      "PlayerID": 19003,
+      "id": 19003,
       "Name": "Tarik Cohen",
       "Team": "CHI",
       "Position": "RB",
@@ -4666,7 +4666,7 @@
     },
     {
       "Rank": 213,
-      "PlayerID": 12800,
+      "id": 12800,
       "Name": "Bilal Powell",
       "Team": "NYJ",
       "Position": "RB",
@@ -4688,7 +4688,7 @@
     },
     {
       "Rank": 214,
-      "PlayerID": 12902,
+      "id": 12902,
       "Name": "Cameron Heyward",
       "Team": "PIT",
       "Position": "DE",
@@ -4710,7 +4710,7 @@
     },
     {
       "Rank": 215,
-      "PlayerID": 2,
+      "id": 2,
       "Name": "Atlanta Falcons",
       "Team": "ATL",
       "Position": "DST",
@@ -4732,7 +4732,7 @@
     },
     {
       "Rank": 216,
-      "PlayerID": 16642,
+      "id": 16642,
       "Name": "Deone Bucannon",
       "Team": "ARI",
       "Position": "OLB",
@@ -4754,7 +4754,7 @@
     },
     {
       "Rank": 216,
-      "PlayerID": 15122,
+      "id": 15122,
       "Name": "Ezekiel Ansah",
       "Team": "DET",
       "Position": "DE",
@@ -4776,7 +4776,7 @@
     },
     {
       "Rank": 218,
-      "PlayerID": 16862,
+      "id": 16862,
       "Name": "Trey Flowers",
       "Team": "NE",
       "Position": "DE",
@@ -4798,7 +4798,7 @@
     },
     {
       "Rank": 219,
-      "PlayerID": 3341,
+      "id": 3341,
       "Name": "Calais Campbell",
       "Team": "JAX",
       "Position": "DE",
@@ -4820,7 +4820,7 @@
     },
     {
       "Rank": 220,
-      "PlayerID": 18913,
+      "id": 18913,
       "Name": "Jarrad Davis",
       "Team": "DET",
       "Position": "ILB",
@@ -4842,7 +4842,7 @@
     },
     {
       "Rank": 221,
-      "PlayerID": 16467,
+      "id": 16467,
       "Name": "Kyle Van Noy",
       "Team": "NE",
       "Position": "LB",
@@ -4864,7 +4864,7 @@
     },
     {
       "Rank": 222,
-      "PlayerID": 11414,
+      "id": 11414,
       "Name": "Everson Griffen",
       "Team": "MIN",
       "Position": "DE",
@@ -4886,7 +4886,7 @@
     },
     {
       "Rank": 223,
-      "PlayerID": 18916,
+      "id": 18916,
       "Name": "TJ Watt",
       "Team": "PIT",
       "Position": "OLB",
@@ -4908,7 +4908,7 @@
     },
     {
       "Rank": 224,
-      "PlayerID": 69,
+      "id": 69,
       "Name": "New Orleans Saints",
       "Team": "NO",
       "Position": "DST",
@@ -4930,7 +4930,7 @@
     },
     {
       "Rank": 225,
-      "PlayerID": 15113,
+      "id": 15113,
       "Name": "Jon Bostic",
       "Team": "PIT",
       "Position": "ILB",
@@ -4952,7 +4952,7 @@
     },
     {
       "Rank": 226,
-      "PlayerID": 14730,
+      "id": 14730,
       "Name": "Neiko Thorpe",
       "Team": "SEA",
       "Position": "CB",
@@ -4974,7 +4974,7 @@
     },
     {
       "Rank": 227,
-      "PlayerID": 14032,
+      "id": 14032,
       "Name": "Brandon Marshall",
       "Team": "DEN",
       "Position": "ILB",
@@ -4996,7 +4996,7 @@
     },
     {
       "Rank": 228,
-      "PlayerID": 21,
+      "id": 21,
       "Name": "New England Patriots",
       "Team": "NE",
       "Position": "DST",
@@ -5018,7 +5018,7 @@
     },
     {
       "Rank": 228,
-      "PlayerID": 97,
+      "id": 97,
       "Name": "Washington Redskins",
       "Team": "WAS",
       "Position": "DST",
@@ -5040,7 +5040,7 @@
     },
     {
       "Rank": 228,
-      "PlayerID": 34,
+      "id": 34,
       "Name": "Tennessee Titans",
       "Team": "TEN",
       "Position": "DST",
@@ -5062,7 +5062,7 @@
     },
     {
       "Rank": 231,
-      "PlayerID": 14916,
+      "id": 14916,
       "Name": "Giovani Bernard",
       "Team": "CIN",
       "Position": "RB",
@@ -5084,7 +5084,7 @@
     },
     {
       "Rank": 232,
-      "PlayerID": 14750,
+      "id": 14750,
       "Name": "Emmanuel Lamur",
       "Team": "OAK",
       "Position": "OLB",
@@ -5106,7 +5106,7 @@
     },
     {
       "Rank": 233,
-      "PlayerID": 17939,
+      "id": 17939,
       "Name": "Josh Doctson",
       "Team": "WAS",
       "Position": "WR",
@@ -5128,7 +5128,7 @@
     },
     {
       "Rank": 234,
-      "PlayerID": 16849,
+      "id": 16849,
       "Name": "Danielle Hunter",
       "Team": "MIN",
       "Position": "DE",
@@ -5150,7 +5150,7 @@
     },
     {
       "Rank": 235,
-      "PlayerID": 90,
+      "id": 90,
       "Name": "Seattle Seahawks",
       "Team": "SEA",
       "Position": "DST",
@@ -5172,7 +5172,7 @@
     },
     {
       "Rank": 235,
-      "PlayerID": 12,
+      "id": 12,
       "Name": "Green Bay Packers",
       "Team": "GB",
       "Position": "DST",
@@ -5194,7 +5194,7 @@
     },
     {
       "Rank": 235,
-      "PlayerID": 16838,
+      "id": 16838,
       "Name": "Duke Johnson",
       "Team": "CLE",
       "Position": "RB",
@@ -5216,7 +5216,7 @@
     },
     {
       "Rank": 238,
-      "PlayerID": 15220,
+      "id": 15220,
       "Name": "Alec Ogletree",
       "Team": "NYG",
       "Position": "ILB",
@@ -5238,7 +5238,7 @@
     },
     {
       "Rank": 239,
-      "PlayerID": 19045,
+      "id": 19045,
       "Name": "Aaron Jones",
       "Team": "GB",
       "Position": "RB",
@@ -5260,7 +5260,7 @@
     },
     {
       "Rank": 239,
-      "PlayerID": 16694,
+      "id": 16694,
       "Name": "Paul Richardson",
       "Team": "WAS",
       "Position": "WR",
@@ -5282,7 +5282,7 @@
     },
     {
       "Rank": 241,
-      "PlayerID": 11940,
+      "id": 11940,
       "Name": "Lorenzo Alexander",
       "Team": "BUF",
       "Position": "OLB",
@@ -5304,7 +5304,7 @@
     },
     {
       "Rank": 242,
-      "PlayerID": 19009,
+      "id": 19009,
       "Name": "Jalen Reeves-Maybin",
       "Team": "DET",
       "Position": "OLB",
@@ -5326,7 +5326,7 @@
     },
     {
       "Rank": 243,
-      "PlayerID": 16804,
+      "id": 16804,
       "Name": "Benardrick McKinney",
       "Team": "HOU",
       "Position": "ILB",
@@ -5348,7 +5348,7 @@
     },
     {
       "Rank": 244,
-      "PlayerID": 17167,
+      "id": 17167,
       "Name": "Cameron Meredith",
       "Team": "NO",
       "Position": "WR",
@@ -5370,7 +5370,7 @@
     },
     {
       "Rank": 245,
-      "PlayerID": 14635,
+      "id": 14635,
       "Name": "Mark Barron",
       "Team": "LAR",
       "Position": "ILB",
@@ -5392,7 +5392,7 @@
     },
     {
       "Rank": 246,
-      "PlayerID": 11,
+      "id": 11,
       "Name": "Detroit Lions",
       "Team": "DET",
       "Position": "DST",
@@ -5414,7 +5414,7 @@
     },
     {
       "Rank": 247,
-      "PlayerID": 17951,
+      "id": 17951,
       "Name": "Darron Lee",
       "Team": "NYJ",
       "Position": "ILB",
@@ -5436,7 +5436,7 @@
     },
     {
       "Rank": 248,
-      "PlayerID": 15020,
+      "id": 15020,
       "Name": "CJ Anderson",
       "Team": "CAR",
       "Position": "RB",
@@ -5458,7 +5458,7 @@
     },
     {
       "Rank": 248,
-      "PlayerID": 19844,
+      "id": 19844,
       "Name": "D.J. Moore",
       "Team": "CAR",
       "Position": "WR",
@@ -5480,7 +5480,7 @@
     },
     {
       "Rank": 250,
-      "PlayerID": 19802,
+      "id": 19802,
       "Name": "Calvin Ridley",
       "Team": "ATL",
       "Position": "WR",
@@ -5502,7 +5502,7 @@
     },
     {
       "Rank": 251,
-      "PlayerID": 12247,
+      "id": 12247,
       "Name": "Jason Pierre-Paul",
       "Team": "TB",
       "Position": "DE",
@@ -5524,7 +5524,7 @@
     },
     {
       "Rank": 252,
-      "PlayerID": 18880,
+      "id": 18880,
       "Name": "Chris Godwin",
       "Team": "TB",
       "Position": "WR",
@@ -5546,7 +5546,7 @@
     },
     {
       "Rank": 253,
-      "PlayerID": 1,
+      "id": 1,
       "Name": "Arizona Cardinals",
       "Team": "ARI",
       "Position": "DST",
@@ -5568,7 +5568,7 @@
     },
     {
       "Rank": 253,
-      "PlayerID": 75,
+      "id": 75,
       "Name": "New York Giants",
       "Team": "NYG",
       "Position": "DST",
@@ -5590,7 +5590,7 @@
     },
     {
       "Rank": 255,
-      "PlayerID": 16902,
+      "id": 16902,
       "Name": "Adrian Amos",
       "Team": "CHI",
       "Position": "FS",
@@ -5612,7 +5612,7 @@
     },
     {
       "Rank": 256,
-      "PlayerID": 17942,
+      "id": 17942,
       "Name": "Keanu Neal",
       "Team": "ATL",
       "Position": "SS",
@@ -5634,7 +5634,7 @@
     },
     {
       "Rank": 257,
-      "PlayerID": 11977,
+      "id": 11977,
       "Name": "Julius Peppers",
       "Team": "CAR",
       "Position": "DE",
@@ -5656,7 +5656,7 @@
     },
     {
       "Rank": 258,
-      "PlayerID": 15071,
+      "id": 15071,
       "Name": "Latavius Murray",
       "Team": "MIN",
       "Position": "RB",
@@ -5678,7 +5678,7 @@
     },
     {
       "Rank": 259,
-      "PlayerID": 4807,
+      "id": 4807,
       "Name": "Adrian Peterson",
       "Team": "WAS",
       "Position": "RB",
@@ -5700,7 +5700,7 @@
     },
     {
       "Rank": 260,
-      "PlayerID": 16432,
+      "id": 16432,
       "Name": "Kyle Fuller",
       "Team": "CHI",
       "Position": "CB",
@@ -5722,7 +5722,7 @@
     },
     {
       "Rank": 261,
-      "PlayerID": 11386,
+      "id": 11386,
       "Name": "Morgan Burnett",
       "Team": "PIT",
       "Position": "SS",
@@ -5744,7 +5744,7 @@
     },
     {
       "Rank": 262,
-      "PlayerID": 95,
+      "id": 95,
       "Name": "Tampa Bay Buccaneers",
       "Team": "TB",
       "Position": "DST",
@@ -5766,7 +5766,7 @@
     },
     {
       "Rank": 263,
-      "PlayerID": 16819,
+      "id": 16819,
       "Name": "Markus Golden",
       "Team": "ARI",
       "Position": "DE",
@@ -5788,7 +5788,7 @@
     },
     {
       "Rank": 264,
-      "PlayerID": 7383,
+      "id": 7383,
       "Name": "Terrell Suggs",
       "Team": "BAL",
       "Position": "OLB",
@@ -5810,7 +5810,7 @@
     },
     {
       "Rank": 265,
-      "PlayerID": 16056,
+      "id": 16056,
       "Name": "James White",
       "Team": "NE",
       "Position": "RB",
@@ -5832,7 +5832,7 @@
     },
     {
       "Rank": 266,
-      "PlayerID": 13227,
+      "id": 13227,
       "Name": "Randall Cobb",
       "Team": "GB",
       "Position": "WR",
@@ -5854,7 +5854,7 @@
     },
     {
       "Rank": 267,
-      "PlayerID": 16364,
+      "id": 16364,
       "Name": "Anthony Hitchens",
       "Team": "KC",
       "Position": "ILB",
@@ -5876,7 +5876,7 @@
     },
     {
       "Rank": 268,
-      "PlayerID": 14461,
+      "id": 14461,
       "Name": "Harrison Smith",
       "Team": "MIN",
       "Position": "FS",
@@ -5898,7 +5898,7 @@
     },
     {
       "Rank": 269,
-      "PlayerID": 16370,
+      "id": 16370,
       "Name": "Terrance Mitchell",
       "Team": "CLE",
       "Position": "CB",
@@ -5920,7 +5920,7 @@
     },
     {
       "Rank": 270,
-      "PlayerID": 18881,
+      "id": 18881,
       "Name": "John Ross",
       "Team": "CIN",
       "Position": "WR",
@@ -5942,7 +5942,7 @@
     },
     {
       "Rank": 271,
-      "PlayerID": 17992,
+      "id": 17992,
       "Name": "James Bradberry",
       "Team": "CAR",
       "Position": "CB",
@@ -5964,7 +5964,7 @@
     },
     {
       "Rank": 272,
-      "PlayerID": 16232,
+      "id": 16232,
       "Name": "Donte Moncrief",
       "Team": "JAX",
       "Position": "WR",
@@ -5986,7 +5986,7 @@
     },
     {
       "Rank": 273,
-      "PlayerID": 37,
+      "id": 37,
       "Name": "Buffalo Bills",
       "Team": "BUF",
       "Position": "DST",
@@ -6008,7 +6008,7 @@
     },
     {
       "Rank": 273,
-      "PlayerID": 19548,
+      "id": 19548,
       "Name": "Corey Clement",
       "Team": "PHI",
       "Position": "RB",
@@ -6030,7 +6030,7 @@
     },
     {
       "Rank": 275,
-      "PlayerID": 16618,
+      "id": 16618,
       "Name": "Aaron Donald",
       "Team": "LAR",
       "Position": "DT",
@@ -6052,7 +6052,7 @@
     },
     {
       "Rank": 276,
-      "PlayerID": 16283,
+      "id": 16283,
       "Name": "Bradley Roby",
       "Team": "DEN",
       "Position": "CB",
@@ -6074,7 +6074,7 @@
     },
     {
       "Rank": 277,
-      "PlayerID": 18914,
+      "id": 18914,
       "Name": "Mike Williams",
       "Team": "LAC",
       "Position": "WR",
@@ -6096,7 +6096,7 @@
     },
     {
       "Rank": 278,
-      "PlayerID": 48,
+      "id": 48,
       "Name": "Dallas Cowboys",
       "Team": "DAL",
       "Position": "DST",
@@ -6118,7 +6118,7 @@
     },
     {
       "Rank": 278,
-      "PlayerID": 19861,
+      "id": 19861,
       "Name": "Ronald Jones II",
       "Team": "TB",
       "Position": "RB",
@@ -6140,7 +6140,7 @@
     },
     {
       "Rank": 280,
-      "PlayerID": 15602,
+      "id": 15602,
       "Name": "Jack Doyle",
       "Team": "IND",
       "Position": "TE",
@@ -6162,7 +6162,7 @@
     },
     {
       "Rank": 280,
-      "PlayerID": 15986,
+      "id": 15986,
       "Name": "Preston Brown",
       "Team": "CIN",
       "Position": "ILB",
@@ -6184,7 +6184,7 @@
     },
     {
       "Rank": 282,
-      "PlayerID": 13188,
+      "id": 13188,
       "Name": "Chris Conte",
       "Team": "TB",
       "Position": "FS",
@@ -6206,7 +6206,7 @@
     },
     {
       "Rank": 283,
-      "PlayerID": 17925,
+      "id": 17925,
       "Name": "Myles Jack",
       "Team": "JAX",
       "Position": "ILB",
@@ -6228,7 +6228,7 @@
     },
     {
       "Rank": 284,
-      "PlayerID": 18064,
+      "id": 18064,
       "Name": "Matt Judon",
       "Team": "BAL",
       "Position": "OLB",
@@ -6250,7 +6250,7 @@
     },
     {
       "Rank": 285,
-      "PlayerID": 18992,
+      "id": 18992,
       "Name": "Dede Westbrook",
       "Team": "JAX",
       "Position": "WR",
@@ -6272,7 +6272,7 @@
     },
     {
       "Rank": 286,
-      "PlayerID": 12880,
+      "id": 12880,
       "Name": "Jabaal Sheard",
       "Team": "IND",
       "Position": "DE",
@@ -6294,7 +6294,7 @@
     },
     {
       "Rank": 287,
-      "PlayerID": 7,
+      "id": 7,
       "Name": "Cincinnati Bengals",
       "Team": "CIN",
       "Position": "DST",
@@ -6316,7 +6316,7 @@
     },
     {
       "Rank": 287,
-      "PlayerID": 93,
+      "id": 93,
       "Name": "San Francisco 49ers",
       "Team": "SF",
       "Position": "DST",
@@ -6338,7 +6338,7 @@
     },
     {
       "Rank": 287,
-      "PlayerID": 15127,
+      "id": 15127,
       "Name": "Darius Slay",
       "Team": "DET",
       "Position": "CB",
@@ -6360,7 +6360,7 @@
     },
     {
       "Rank": 290,
-      "PlayerID": 13358,
+      "id": 13358,
       "Name": "Mason Foster",
       "Team": "WAS",
       "Position": "ILB",
@@ -6382,7 +6382,7 @@
     },
     {
       "Rank": 291,
-      "PlayerID": 15226,
+      "id": 15226,
       "Name": "Tyrann Mathieu",
       "Team": "HOU",
       "Position": "FS",
@@ -6404,7 +6404,7 @@
     },
     {
       "Rank": 292,
-      "PlayerID": 19798,
+      "id": 19798,
       "Name": "Nick Chubb",
       "Team": "CLE",
       "Position": "RB",
@@ -6426,7 +6426,7 @@
     },
     {
       "Rank": 293,
-      "PlayerID": 17215,
+      "id": 17215,
       "Name": "Jason Myers",
       "Team": "NYJ",
       "Position": "K",
@@ -6448,7 +6448,7 @@
     },
     {
       "Rank": 294,
-      "PlayerID": 19864,
+      "id": 19864,
       "Name": "Anthony Miller",
       "Team": "CHI",
       "Position": "WR",
@@ -6470,7 +6470,7 @@
     },
     {
       "Rank": 294,
-      "PlayerID": 15136,
+      "id": 15136,
       "Name": "Micah Hyde",
       "Team": "BUF",
       "Position": "SS",
@@ -6492,7 +6492,7 @@
     },
     {
       "Rank": 296,
-      "PlayerID": 13878,
+      "id": 13878,
       "Name": "Mohamed Sanu",
       "Team": "ATL",
       "Position": "WR",
@@ -6514,7 +6514,7 @@
     },
     {
       "Rank": 297,
-      "PlayerID": 12554,
+      "id": 12554,
       "Name": "Andrew Sendejo",
       "Team": "MIN",
       "Position": "SS",
@@ -6536,7 +6536,7 @@
     },
     {
       "Rank": 298,
-      "PlayerID": 16783,
+      "id": 16783,
       "Name": "Bud Dupree",
       "Team": "PIT",
       "Position": "OLB",
@@ -6558,7 +6558,7 @@
     },
     {
       "Rank": 299,
-      "PlayerID": 16775,
+      "id": 16775,
       "Name": "Devante Parker",
       "Team": "MIA",
       "Position": "WR",
@@ -6580,7 +6580,7 @@
     },
     {
       "Rank": 300,
-      "PlayerID": 14358,
+      "id": 14358,
       "Name": "Akiem Hicks",
       "Team": "CHI",
       "Position": "DE",

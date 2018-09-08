@@ -2,19 +2,19 @@
   "NFX_USERS": [
     {
       "id": "1",
-      "name": "John Doe",
-      "leaguesJoined": 1,
-      "ownedLeagues": 1,
-      "avatar": null,
-      "teams": [{
+      "Name": "John Doe",
+      "LeaguesJoined": 1,
+      "OwnedLeagues": 1,
+      "Avatar": null,
+      "Teams": [{
         "teamID": "1"
       }],
-      "leagues": [{ 
+      "Leagues": [{ 
         "leagueID": "1"
       }],
-      "timeZone": "America/Charlotte",
-      "email": "johndoe@gmail.com",
-      "dateCreated": "2018-08-15T00:00:00.000-04:00"
+      "TimeZone": "America/Charlotte",
+      "Email": "johndoe@gmail.com",
+      "DateCreated": "2018-08-15 00:08:00"
     }
   ]
 }

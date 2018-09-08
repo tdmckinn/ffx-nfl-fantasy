@@ -17,6 +17,16 @@
          <router-link v-for="({ name, route }, index) in navBarItems" class="navbar-item" :to="route" :key="index">
            {{name}}
         </router-link>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">
+            <img :src="helmentIcon"/>
+          </a>
+          <div class="navbar-dropdown is-boxed">
+            <router-link class="navbar-item" to="/logout">
+              Logout
+            </router-link>
+          </div>
+        </div>
       </div>
     </nav>
     <nfx-sidebar :navBarItems="navBarItems" />
@@ -29,6 +39,8 @@ import { getYear } from 'date-fns'
 import { mapMutations, mapState } from 'vuex'
 
 import NfxSidebar from './NfxSidebar.vue'
+
+const helmentIcon = require('../assets/defaultHelment.svg')
 
 export interface INavItem {
   name: string
@@ -45,24 +57,21 @@ export default Vue.extend({
   },
   data() {
     return {
+      helmentIcon,
       year: getYear(new Date()),
       navBarItems: [
         { name: 'My Team', route: '/team' },
         { name: 'Leagues', route: '/leagues' },
-        { name: 'Top Drafts', route: '/draft-rankings' },
+        // { name: 'Top Drafts', route: '/draft-rankings' },
         { name: 'Players', route: '/players' },
         { name: 'Highlights', route: '/highlights' },
         { name: 'Draft', route: '/draft' }
       ]
     }
   },
-  computed: mapState([
-    'isSidebarOpen'
-  ]),
+  computed: mapState(['isSidebarOpen']),
   methods: {
-    ...mapMutations([
-        'SIDEBAR_TOGGLE',
-    ])
+    ...mapMutations(['SIDEBAR_TOGGLE'])
   }
 })
 </script>
@@ -92,6 +101,15 @@ export default Vue.extend({
         background: $primary;
         border-bottom: 1px solid $orange;
       }
+    }
+
+    &-link::after {
+      border-color: white;
+    }
+
+    .navbar-item.has-dropdown:hover .navbar-link,
+    .navbar-item.has-dropdown.is-active .navbar-link {
+      background-color: $primary;
     }
 
     #link-brand {

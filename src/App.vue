@@ -5,7 +5,7 @@
       <router-view></router-view>
     </main>
     <main v-if="!isLoggedInUser" class="nfx-app__main--login">
-      <login></login>
+      <nfx-login></nfx-login>
     </main>
     <nfx-footer>
       <section class="nfx-music">
@@ -110,6 +110,12 @@ export default Vue.extend({
       background-color: #fafafa;
       color: $orange;
     }
+  }
+
+  &__divider {
+    display: block;
+    margin: .5rem 0;
+    border-bottom: 1px solid $divider-color;
   }
 }
 

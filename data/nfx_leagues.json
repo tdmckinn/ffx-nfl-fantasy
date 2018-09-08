@@ -1,16 +1,52 @@
 {
   "NFX_LEAGUES": [
     {
-      "draftID": "1",
-      "ownerName": "John Doe",
-      "ownerId": "1",
-      "leagueName": "Vue Ballers",
-      "leagueTeams": [{
-        "teamID": "1"
-      }],
-      "dateCreated": "2018-08-17T00:00:00.000-04:00",
-      "draftComplete": false,
-      "settings": {}
+      "id": "1",
+      "DraftID": "1",
+      "CommissionerName": "John Doe",
+      "CommissionerId": "1",
+      "LeagueName": "Vue Ballers",
+      "LeagueTeams": [
+        {
+          "teamID": "1"
+        }
+      ],
+      "DateCreated": "2018-08-17 00:08:00",
+      "DraftComplete": false,
+      "Settings": {
+        "LeagueID": 1,
+        "DraftTypes": [
+          "Snake",
+          "Auction"
+        ],
+        "Scoring": [
+          "Live Standard",
+          "Live PPR"
+        ],
+        "MaxTeams": [
+          10,
+          12
+        ],
+        "WaiverType": "rolling continous",
+        "RosterPositions": [
+          "QB",
+          "RB",
+          "RB",
+          "WR",
+          "WR",
+          "TE",
+          "W/R/T",
+          "K",
+          "DEF",
+          "BN",
+          "BN",
+          "BN",
+          "BN",
+          "BN",
+          "BN"
+        ],
+        "TradeDeadLine": "2018-11-10T00:00:00.000-05:00"
+      }
     }
   ]
 }

@@ -4,9 +4,9 @@ export default {
   AUTHENTICATE_USER: ({ commit }, { email }) => {
     // fake ajax
     commit('SET_USER', {
-      id: 'x3212sw1',
-      firstName: 'John',
-      lastName: 'Doe',
+      id: '2',
+      firstName: 'Tim',
+      lastName: 'Banks',
       email,
       wins: 5,
       loses: 500,

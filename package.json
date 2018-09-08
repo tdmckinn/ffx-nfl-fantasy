@@ -33,6 +33,8 @@
     "esm": "^3.0.18",
     "graphql": "^0.13.2",
     "graphql-tag": "^2.9.2",
+    "knex": "^0.15.2",
+    "pg": "^7.4.3",
     "siema": "^1.5.1",
     "tslint-config-prettier": "^1.14.0",
     "vue": "^2.5.17",

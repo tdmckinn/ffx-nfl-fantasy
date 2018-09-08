@@ -1,27 +1,17 @@
-<template>
+<template functional>
   <div class="nfx-empty-state">
-    <img :src="emptyStateImg" />
+    <img :src="require('../assets/empty-backpack.png')" />
   </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      size: Number,
-      height: Number,
-      width: Number,
-      maxHeight: Number
-    },
-    data() {
-      return {
-        emptyStateImg: require('../assets/empty-backpack.png')
-      }
-    }
-  }
-</script>
-
 <style lang="scss" scoped>
 .nfx-empty-state {
-   
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: auto;
+    height: 400px;
+  }
 }
 </style>

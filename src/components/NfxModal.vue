@@ -11,7 +11,6 @@
 
 <script>
 export default {
-  name: 'nfx-modal',
   props: ['show', 'onClose'],
   methods: {
     close() {
@@ -29,6 +28,9 @@ export default {
 </script>
 
 <style lang="scss">
+.nfx-modal.nfx-modal {
+  z-index: 1050;
+}
 .fade-enter-active, .fade-leave-active {
   transition: opacity .5s
 }
