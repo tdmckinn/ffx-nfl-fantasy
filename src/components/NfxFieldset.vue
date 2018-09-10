@@ -4,7 +4,7 @@
     <div class="control">
       <slot></slot>
     </div>
-    <p class="help">{{helpText}}</p>
+    <p v-if="helpText" class="help">{{helpText}}</p>
   </fieldset>
 </template>
 

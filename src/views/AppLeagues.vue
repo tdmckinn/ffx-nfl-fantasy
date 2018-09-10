@@ -34,11 +34,11 @@
         <div>{{league.LeagueName}}</div>
         <div class="nfx-leagues__actions">
           <nfx-button text="Join League" :click="joinLeague" alt></nfx-button>
-          <nfx-button text="Edit League" :click="editLeague" alt></nfx-button>
+          <nfx-button text="Edit League" :click="editLeague" alt disabled></nfx-button>
         </div>
       </div>
     </section>
-    <create-league-modal :show="showModal" v-on:closing="showModal = false"></create-league-modal>
+    <league-modifer-modal :show="showModal" v-on:closing="showModal = false"></league-modifer-modal>
   </div>
 </template>
 
@@ -75,7 +75,7 @@ export default Vue.extend({
 
     },
     editLeague() {
-
+      // TODO: Implement me!
     }
   }
 })

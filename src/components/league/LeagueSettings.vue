@@ -1,29 +1,32 @@
 <template>
   <div class="league-settings">
-    <h4 class="title is-4">League Configuration / Settings</h4>
-    <form>
-      <nfx-fieldset
-        text="Draft Type"
-      >
-         placeholder
-      </nfx-fieldset>
-      <nfx-fieldset
-        text="Scoring"
-      >
-      </nfx-fieldset>
-      <nfx-fieldset
-        text="Max Teams"
-      >
-        placeholder
-      </nfx-fieldset>
-      <div>
-        WaiverType
-      </div>
-      <div>
-        Roster Positions
-      </div>
-      <div>
-        Trade DeadLine
+    <h5 class="league-settings__title title is-5">League Configuration / Draft Settings</h5>
+    <form v-if="defaultSettingsConfig.length !== 0">
+      <div v-for="config in defaultSettingsConfig" :key="config.id">
+        <nfx-fieldset
+          v-if="config.type === 'radio'"
+          :text="config.text"
+        >
+          <nfx-radio-control :id="config.id" :radios="config.values" v-model="leagueSettings[config.id]"></nfx-radio-control>
+        </nfx-fieldset>
+        <nfx-fieldset
+          v-if="config.type === 'dropdown'"
+          :text="config.text"
+        >
+          <nfx-dropdown :id="config.id" placeholder="Select Item" :items="config.values" v-model="leagueSettings[config.id]"></nfx-dropdown>
+        </nfx-fieldset>
+        <nfx-fieldset
+          v-if="config.type === 'input'"
+          :text="config.text"
+        >
+          <nfx-input type="text" :disabled="config.readOnly" :placeholder="config.value" v-model="leagueSettings[config.id]"></nfx-input>
+        </nfx-fieldset>
+        <nfx-fieldset
+          v-if="config.type === 'other'"
+          :text="config.text"
+        >
+          <nfx-input type="text" :disabled="config.readOnly" :placeholder="config.singleValues.join(',')" v-model="leagueSettings[config.id]"></nfx-input>
+        </nfx-fieldset>
       </div>
     </form>
   </div>
@@ -32,18 +35,26 @@
 <script lang="ts">
 import Vue from 'vue'
 
-import { NfxInput }  from '../'
+import { NfxInput, NfxFieldset, NfxDropdown, NfxRadioControl } from '../'
 
 export default Vue.extend({
-  props: ['LeagueID', 'DraftTypes', 'Scoring'],
+  props: ['isLeagueOwner', 'leagueSettings', 'defaultSettingsConfig'],
   components: {
-    NfxInput
+    NfxInput,
+    NfxFieldset,
+    NfxDropdown,
+    NfxRadioControl
   }
 })
 </script>
 
 <style lang="scss" scoped>
 .league-settings {
-  // display: flex;
+  form {
+    height: 225px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 }
 </style>

@@ -11,12 +11,13 @@ const { NFX_USERS } = require('../data/nfx_users.json')
 const { NFX_LEAGUES } = require('../data/nfx_leagues.json')
 const { NFX_TEAMS } = require('../data/nfx_teams.json')
 const { NFX_SETTINGS } = require('../data/nfx_settings.json')
+const { NFX_LEAGUE_SETTINGS } = require('../data/nfx_league_settings.json')
 
 const fs = require('fs')
 
 // export const pubsub = new PubSub();
 
-// The GraphQL schema
+//#region GraphQL schema
 const typeDefs = gql`
   type RosterPosition {
     id: Int
@@ -65,31 +66,48 @@ const typeDefs = gql`
     id: Int
     LeagueID: Int
     Name: String
-    OwnerName: String
+    OwnerID: String
     Players: [ADP_Player]
     DateCreated: String
   }
 
-  type Settings {
+  type LeagueSettings {
+    id: Int
     LeagueID: Int
-    DraftTypes: [String]
-    Scoring: [String]
-    MaxTeams: [Int]
+    DraftType: String
+    Scoring: String
+    MaxTeams: Int
     WaiverType: String
     RosterPositions: [String]
-    TradeDealine: String
+    TradeDeadline: String
+  }
+
+  type ConfigValue {
+    id: String
+    value: String
+  }
+
+  type LeagueConfigSetting {
+    id: String
+    type: String
+    text: String
+    value: String
+    values: [ConfigValue]
+    singleValues: [String]
+    readOnly: Boolean
   }
 
   type League {
     id: Int
     DraftID: Int
+    DraftDateTime: String
     CommissionerName: String
     CommissionerID: String
     LeagueName: String
     LeagueTeams: [UserTeam]
+    LeagueSettings: LeagueSettings
     Users: [User]
     DateCreated: String
-    Settings: String
     DraftComplete: Boolean
   }
 
@@ -111,8 +129,10 @@ const typeDefs = gql`
     teams: [NFXTeam]
     leagues: [League]
     rosterPositions: [RosterPosition]
+    settings: [LeagueConfigSetting]
   }
 
+  # Inputs 
   input CreateTeamInput {
     name: String
     owner: String
@@ -121,14 +141,28 @@ const typeDefs = gql`
   input CreateLeagueInput {
     LeagueName: String
     CommissionerName: String
+    DraftDateTime: String
+  }
+
+  input UpdateLeagueSettingsInput {
+    id: Int
+    LeagueID: Int
+    DraftType: String
+    Scoring: String
+    MaxTeams: Int
+    WaiverType: String
+    RosterPositions: [String]
+    TradeDeadline: String
   }
 
   # The mutation root type, used to define all mutations.
   type Mutation {
     createTeam(team: CreateTeamInput!): UserTeam
     createLeague(league: CreateLeagueInput!): League
+    updateLeagueSettings(settings: UpdateLeagueSettingsInput!): LeagueSettings
   }
 `
+//#endregion
 
 const resolvers = {
   Query: {
@@ -139,7 +173,8 @@ const resolvers = {
     userTeams: () => NFX_TEAMS,
     leagues: () => NFX_LEAGUES,
     rosterPositions: () => NFL_POSITONS,
-    users: () => NFX_USERS
+    users: () => NFX_USERS,
+    settings: () => NFX_SETTINGS
   },
   Mutation: {
     createTeam(team) {
@@ -147,37 +182,42 @@ const resolvers = {
       return {
         id: 1,
         LeagueID: 1,
-        Name: 'Boozoo',
+        Name: 'Boozoo 49',
         OwnerName: 'John Doe',
         Players: [],
         DateCreated: '12-02-2008'
       }
     },
     createLeague(root, { league }, context) {
-
-      NFX_SETTINGS.LeagueID = 2
-
+    // TODO: Save league data to database and create owners team by default
       const leagueData =  Object.assign({}, league, {
         id: 2,
-        CommissionerId: 2,
+        CommissionerID: 2,
         DraftComplete: false,
-        DateCreated: format(new Date(), 'YYYY-MM-DD HH:MM:SS'),
+        DateCreated: format(new Date(), 'YYYY-MM-DD'),
         LeagueTeams: [{
-          teamID: 2
+          id: 1,
+          OwnerID: 2,
+          LeagueID: 2,
+          Name: `${league.CommissionerName} Team`,
+          DateCreated: format(new Date(), 'YYYY-MM-DD'),
         }],
-        Settings: NFX_SETTINGS
+        Settings: Object.assign({}, NFX_LEAGUE_SETTINGS, { id: 2, LeagueID: 2 })
       })
 
-      NFX_LEAGUES.push(leagueData)
-       
-      const newLeagues = {
-        NFX_LEAGUES
-      }
+      // NFX_LEAGUES.push(leagueData)
+
+      // const newLeagues = {
+      //   NFX_LEAGUES
+      // }
 
       console.log(NFX_LEAGUES)
 
-      fs.writeFileSync('../data/nfx_leagues.json', JSON.stringify(newLeagues, null, 2))
-      return { id: 2 }
+      // fs.writeFileSync('../data/nfx_leagues.json', JSON.stringify(newLeagues, null, 2))
+      return leagueData
+    },
+    updateLeagueSettings(root, { settings }, context) {
+      console.log(settings)
     }
   }
   // Subscription: {

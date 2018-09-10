@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="nfx-input">
     <input
       class="input"
       :type="type"
@@ -7,6 +7,7 @@
       :value="value"
       @input="updateValue($event.target.value)"
       ref="input"
+      :disabled="disabled"
     >
   </div>
 </template>
@@ -21,6 +22,7 @@ export default Vue.extend({
     className: String,
     isInvalid: Boolean,
     isFocusOnMount: Boolean,
+    disabled: Boolean,
     name: String,
     placeholder: {
       type: String,

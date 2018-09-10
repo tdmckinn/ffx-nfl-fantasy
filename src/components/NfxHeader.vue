@@ -14,7 +14,13 @@
         </router-link>
       </div>
       <div v-if="isLoggedInUser" class="navbar-end navbar-menu">
-         <router-link v-for="({ name, route }, index) in navBarItems" class="navbar-item" :to="route" :key="index">
+         <router-link 
+          v-for="({ name, route, isOnlyMobile }, index) in navBarItems" 
+          class="navbar-item" 
+          :to="route" 
+          :key="index"
+          v-if="!isOnlyMobile"
+        >
            {{name}}
         </router-link>
         <div class="navbar-item has-dropdown is-hoverable">
@@ -62,10 +68,10 @@ export default Vue.extend({
       navBarItems: [
         { name: 'My Team', route: '/team' },
         { name: 'Leagues', route: '/leagues' },
-        // { name: 'Top Drafts', route: '/draft-rankings' },
         { name: 'Players', route: '/players' },
         { name: 'Highlights', route: '/highlights' },
-        { name: 'Draft', route: '/draft' }
+        { name: 'Draft', route: '/draft' },
+        { name: 'Logout', route: '/logout', isOnlyMobile: true },
       ]
     }
   },

@@ -8,7 +8,7 @@
 import Vue from 'vue'
 import gql from 'graphql-tag'
 
-import NfxDropdown from './NfxDropdown.vue'
+import { NfxDropdown } from './'
 
 export default Vue.extend({
   components: {
