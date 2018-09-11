@@ -89,8 +89,8 @@ export default Vue.extend({
       user: ({ user }) => user
     }),
     modalTitle() {
-      return this.isSettingsEditMode
-        ? `Edit League Settings - ${this.leagueName.value}`
+      return (this as any).isSettingsEditMode
+        ? `Edit League Settings - ${(this as any).leagueName.value}`
         : 'Create New League'
     }
   },

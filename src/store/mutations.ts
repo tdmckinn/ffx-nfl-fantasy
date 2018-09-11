@@ -23,4 +23,7 @@ export default {
   SIDEBAR_TOGGLE: (state) => {
     state.isSidebarOpen = !state.isSidebarOpen
   },
+  IS_USER_DRAFT_LOADING(state, isUserDraftLoading) {
+    state.isUserDraftLoading = isUserDraftLoading
+  }
 }

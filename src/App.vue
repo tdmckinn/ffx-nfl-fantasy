@@ -23,14 +23,21 @@
       </section>
       <nfx-counter></nfx-counter>
     </nfx-footer>
+    <div v-if="isUserDraftLoading" class="nfx-loading--fullscreen">
+      <h2 class="nfx-loading__header">NFX FANTASY</h2>
+      <div>Loading Draft Please Wait...</div>
+      <nfx-svg-loading></nfx-svg-loading>
+      <!-- <div style="height: 100px;" v-html="require('./assets/loading.svg')"></div> -->
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
 
 import AuthService from './api/AuthService'
-import { NfxHeader, NfxFooter, NfxLogin } from './components'
+import { NfxHeader, NfxFooter, NfxLogin, NfxSvgLoading } from './components'
 
 const auth = new AuthService()
 const { authenticated, authNotifier } = auth
@@ -42,11 +49,12 @@ export default Vue.extend({
   components: {
     NfxHeader,
     NfxFooter,
-    NfxLogin
+    NfxLogin,
+    NfxSvgLoading
   },
   data() {
     authNotifier.on('authChange', authState => {
-      (this as any).authenticated = (authState.authenticated as any)
+      (this as any).authenticated = authState.authenticated as any
     })
 
     return {
@@ -57,13 +65,16 @@ export default Vue.extend({
     }
   },
   computed: {
-    isLoggedInUser() {
-      return (this as any).$store.state.user.isLoggedIn
-    }
+    ...mapState({
+      isLoggedInUser: ({ user }) => user.isLoggedIn,
+      isUserDraftLoading: ({ isUserDraftLoading }) => isUserDraftLoading
+    } as any)
   },
   methods: {
     onPlayClick(isPlay) {
-      const audioPlayer = document.getElementById('nfx-music__audio') as HTMLAudioElement
+      const audioPlayer = document.getElementById(
+        'nfx-music__audio'
+      ) as HTMLAudioElement
       if (isPlay) {
         audioPlayer.play()
         this.isThemeplaying = !this.isThemeplaying
@@ -114,7 +125,7 @@ export default Vue.extend({
 
   &__divider {
     display: block;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
     border-bottom: 1px solid $divider-color;
   }
 }
@@ -133,16 +144,30 @@ export default Vue.extend({
     justify-content: center;
     align-items: center;
   }
+
+  &__icon {
+    width: 38px;
+    height: 38px;
+  }
 }
 
-.nfx-music__icon {
-  width: 38px;
-  height: 38px;
-}
+.nfx-loading {
+  &--fullscreen {
+    position: absolute;
+    background-color: #1c2227;
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000000;
+  }
 
-.divider {
-  border-top: 0.1rem solid #f0f1f4;
-  height: 0.1rem;
-  margin: 1rem 0;
+  &__header {
+    font-weight: bold;
+    color: $orange;
+  }
 }
 </style>

@@ -30,49 +30,99 @@
           <p class="level-item"><a class="button is-success" @click.prevent="showModal = true">Create League</a></p>
         </div>
       </nav>
-      <div class="nfx-leagues" v-for="league in leagues" :key="league.id">
-        <div>{{league.LeagueName}}</div>
-        <div class="nfx-leagues__actions">
-          <nfx-button text="Join League" :click="joinLeague" alt></nfx-button>
+      <nfx-league type="appLeagues" :leagues="leagues">
+        <div slot="actions" slot-scope="{ league }" class="nfx-league__actions">
+          <nfx-button text="Join League" :click="() => { joinLeague(league.id) }" alt></nfx-button>
           <nfx-button text="Edit League" :click="editLeague" alt disabled></nfx-button>
         </div>
-      </div>
+        <div slot="settings" class="nfx-league__settings">
+          <div class="nfx__divider"></div>
+          <span><i class="material-icons">perm_data_setting</i></span> Settings
+        </div>
+      </nfx-league>
     </section>
     <league-modifer-modal :show="showModal" v-on:closing="showModal = false"></league-modifer-modal>
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue'
+import { mapState } from 'vuex'
+
 import gql from 'graphql-tag'
 
-import { NfxSectionHeader, NfxButton } from '../components'
+import { NfxSectionHeader, NfxButton, NfxLeague } from '../components'
 
 export default Vue.extend({
   components: {
     NfxButton,
-    NfxSectionHeader
+    NfxSectionHeader,
+    NfxLeague
   },
-  data () {
+  data() {
     return {
       showModal: false,
       leagues: []
     }
+  },
+  computed: {
+    ...mapState({
+      user: ({ user }) => user
+    })
   },
   apollo: {
     leagues: gql`
       {
         leagues {
           id
-          CommissionerName
+          DraftDateTime
           LeagueName
+          LeagueSettings {
+            DraftType
+            Scoring
+            MaxTeams
+            WaiverType
+            RosterPositions
+            TradeDeadline
+          }
+          LeagueTeams {
+            id
+          }
         }
       }
     `
   },
   methods: {
-    joinLeague() {
+    joinLeague(leagueId) {
+      const { user } = (this.$store as any).state
 
+      this.$apollo
+        .mutate({
+          mutation: gql`
+            mutation($input: JoinLeagueInput!) {
+              joinLeague(input: $input) {
+                id
+                LeagueID
+                OwnerID
+              }
+            }
+          `,
+          variables: {
+            input: {
+              id: leagueId,
+              name: user.firstName
+            }
+          }
+        })
+        .then(() => {
+          if (
+            confirm(
+              'Joined the league succesfully, check out your generated team!'
+            )
+          ) {
+            // push route to my teams
+          }
+        })
     },
     editLeague() {
       // TODO: Implement me!
@@ -82,20 +132,5 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.nfx-app__leagues {
-}
-.nfx-leagues {
-  display: flex;
-  justify-content: space-between;
-  border: 1px solid lightgray;
-  border-radius: 6px;
-  padding: 12px;
-  margin-top: 50px;
 
-  &__actions {
-    .button:first-child {
-      margin-right: 15px;
-    }
-  }
-}
 </style>

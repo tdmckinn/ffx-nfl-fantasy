@@ -66,7 +66,7 @@ const typeDefs = gql`
     id: Int
     LeagueID: Int
     Name: String
-    OwnerID: String
+    OwnerID: Int
     Players: [ADP_Player]
     DateCreated: String
   }
@@ -144,6 +144,11 @@ const typeDefs = gql`
     DraftDateTime: String
   }
 
+  input JoinLeagueInput {
+    id: String
+    name: String
+  }
+
   input UpdateLeagueSettingsInput {
     id: Int
     LeagueID: Int
@@ -160,6 +165,7 @@ const typeDefs = gql`
     createTeam(team: CreateTeamInput!): UserTeam
     createLeague(league: CreateLeagueInput!): League
     updateLeagueSettings(settings: UpdateLeagueSettingsInput!): LeagueSettings
+    joinLeague(input: JoinLeagueInput!): UserTeam
   }
 `
 //#endregion
@@ -215,6 +221,14 @@ const resolvers = {
 
       // fs.writeFileSync('../data/nfx_leagues.json', JSON.stringify(newLeagues, null, 2))
       return leagueData
+    },
+    joinLeague(root, { input }, context) {
+      console.log(input)
+      return {
+        id: 2,
+        LeagueID: 1,
+        OwnerID: 2
+      }
     },
     updateLeagueSettings(root, { settings }, context) {
       console.log(settings)

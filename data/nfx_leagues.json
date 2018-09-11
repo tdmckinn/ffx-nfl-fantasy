@@ -1,33 +1,25 @@
 {
   "NFX_LEAGUES": [
     {
-      "id": "1",
-      "DraftID": "1",
+      "id": 1,
+      "DraftID": 1,
       "CommissionerName": "John Doe",
-      "CommissionerId": "1",
+      "CommissionerId": 1,
       "LeagueName": "Vue Ballers",
       "LeagueTeams": [
         {
-          "id": "1"
+          "id": 1,
+          "OwnerID": 1
         }
       ],
       "DraftDateTime": "2018-09-21 00:08:00",
       "DateCreated": "2018-08-17 00:08:00",
       "DraftComplete": false,
-      "Settings": {
+      "LeagueSettings": {
         "LeagueID": 1,
-        "DraftType": [
-          "Snake",
-          "Auction"
-        ],
-        "Scoring": [
-          "Live Standard",
-          "Live PPR"
-        ],
-        "MaxTeams": [
-          10,
-          12
-        ],
+        "DraftType": "Snake",
+        "Scoring": "Live Standard",
+        "MaxTeams": 10,
         "WaiverType": "rolling continous",
         "RosterPositions": [
           "QB",

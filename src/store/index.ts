@@ -23,7 +23,8 @@ const state = {
   myTeam: [],
   rankings: [],
   gameInfo: [],
-  isSidebarOpen: false
+  isSidebarOpen: false,
+  isUserDraftLoading: false
 }
 
 if (localStorage.getItem('NFX_USER')) {

@@ -19,13 +19,14 @@ const NotFoundComponent = {
   </section>`
 }
 
-const MyTeam = () => import('../views/MyTeam.vue' /* webpackChunkName: "my-team" */)
-const Dashboard = () => import('../views/Dashboard.vue' /* webpackChunkName: "dashboard" */)
-const Players = () => import('../views/Players.vue' /* webpackChunkName: "players" */)
-const Research = () => import('../views/Research.vue' /* webpackChunkName: "research" */)
-const TopDrafts = () => import('../views/TopDrafts.vue' /* webpackChunkName: "top-drafts" */)
-const Draft = () => import('../views/Draft.vue' /* webpackChunkName: "draft" */)
-const AppLeagues = () => import('../views/AppLeagues.vue' /* webpackChunkName: "leagues" */)
+const MyTeam = () => import('../views/AppMyTeam.vue' /* webpackChunkName: "my-team" */)
+const Dashboard = () => import('../views/AppDashboard.vue' /* webpackChunkName: "dashboard" */)
+const Players = () => import('../views/AppPlayers.vue' /* webpackChunkName: "players" */)
+const Research = () => import('../views/AppResearch.vue' /* webpackChunkName: "research" */)
+const TopDrafts = () => import('../views/AppTopDrafts.vue' /* webpackChunkName: "top-drafts" */)
+const AppDraft = () => import('../views/AppDraft.vue' /* webpackChunkName: "draft" */)
+const Leagues = () => import('../views/AppLeagues.vue' /* webpackChunkName: "leagues" */)
+const NfxDraft = () => import('../components/draft/NfxDraft.vue' /* webpackChunkName: "nfx-draft-live" */)
 
 const router = new Router({
   mode: 'history',
@@ -48,7 +49,7 @@ const router = new Router({
     },
     {
       path: '/leagues',
-      component: AppLeagues,
+      component: Leagues,
     },
     {
       path: '/draft-rankings',
@@ -64,7 +65,14 @@ const router = new Router({
     },
     {
       path: '/draft',
-      component: Draft,
+      component: AppDraft,
+      children: [
+        {
+          path: 'live',
+          name: 'live',
+          component: NfxDraft
+        }
+      ]
     },
     { path: '*', component: NotFoundComponent }
   ]
