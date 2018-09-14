@@ -66,7 +66,7 @@ export default Vue.extend({
       helmentIcon,
       year: getYear(new Date()),
       navBarItems: [
-        { name: 'My Team', route: '/team' },
+        { name: 'My Teams', route: '/teams' },
         { name: 'Leagues', route: '/leagues' },
         { name: 'Players', route: '/players' },
         { name: 'Highlights', route: '/highlights' },

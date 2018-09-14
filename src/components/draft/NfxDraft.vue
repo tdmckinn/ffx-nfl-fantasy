@@ -47,7 +47,7 @@ import Vue from 'vue'
 import gql from 'graphql-tag'
 
 import NfxDraftOrder from './NfxDraftOrder.vue'
-import { NfxButton, NfxSectionHeader, NfxLeague } from '../'
+import { NfxButton, NfxSectionHeader } from '../'
 
 export default Vue.extend({
   components: {

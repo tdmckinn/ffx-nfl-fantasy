@@ -50,7 +50,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
-import { format } from 'date-fns/esm'
+import { format } from 'date-fns'
 import gql from 'graphql-tag'
 import flatpickr from 'flatpickr'
 
@@ -178,7 +178,9 @@ export default Vue.extend({
         .then(({ data: { createLeague } }: any) => {
           alert('League saved continue editing...')
           this.teamID = createLeague.LeagueTeams.find(
-            team => team.OwnerID === createLeague.CommissionerID
+            team => {
+              return team.OwnerID === createLeague.CommissionerID
+            }
           ).id
           this.isSettingsEditMode = true
         })

@@ -19,7 +19,7 @@ const NotFoundComponent = {
   </section>`
 }
 
-const MyTeam = () => import('../views/AppMyTeam.vue' /* webpackChunkName: "my-team" */)
+const AppUserTeams = () => import('../views/AppUserTeams.vue' /* webpackChunkName: "my-team" */)
 const Dashboard = () => import('../views/AppDashboard.vue' /* webpackChunkName: "dashboard" */)
 const Players = () => import('../views/AppPlayers.vue' /* webpackChunkName: "players" */)
 const Research = () => import('../views/AppResearch.vue' /* webpackChunkName: "research" */)
@@ -44,8 +44,8 @@ const router = new Router({
       }
     },
     {
-      path: '/team',
-      component: MyTeam
+      path: '/teams',
+      component: AppUserTeams
     },
     {
       path: '/leagues',

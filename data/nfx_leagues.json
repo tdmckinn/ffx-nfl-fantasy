@@ -2,7 +2,6 @@
   "NFX_LEAGUES": [
     {
       "id": 1,
-      "DraftID": 1,
       "CommissionerName": "John Doe",
       "CommissionerId": 1,
       "LeagueName": "Vue Ballers",
@@ -14,7 +13,7 @@
       ],
       "DraftDateTime": "2018-09-21 00:08:00",
       "DateCreated": "2018-08-17 00:08:00",
-      "DraftComplete": false,
+      "IsDraftComplete": false,
       "LeagueSettings": {
         "LeagueID": 1,
         "DraftType": "Snake",

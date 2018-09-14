@@ -69,14 +69,43 @@ export default Vue.extend({
     `
   },
   methods: {
-    enterDraft(leagueID: number) {
+    enterDraft(leagueId: number) {
       this.$store.commit('IS_USER_DRAFT_LOADING', true)
-      setTimeout(() => {
-        this.isUserDrafting = true
-        this.$router.push({ name: 'live' })
-        this.$store.commit('IS_USER_DRAFT_LOADING', false)
-      }, 2000)
-      console.log(leagueID)
+      this.$apollo
+        .mutate({
+          mutation: gql`
+            mutation($leagueId: String!) {
+              enteredDraft(leagueId: $leagueId) {
+                LeagueID
+                CurrentRound
+                CurrentUserDrafting
+                DraftDateTime
+                IsDraftComplete
+                Rounds
+                Teams {
+                  id
+                  OwnerID
+                  Name
+                  Picks
+                  Players {
+                    id
+                    Name
+                  }
+                }
+              }
+            }
+          `,
+          // Parameters
+          variables: {
+            leagueId
+          }
+        })
+        .then(({ data: { enteredDraft } }: any) => {
+          console.log(enteredDraft)
+          this.isUserDrafting = true
+          this.$router.push({ name: 'live' })
+          this.$store.commit('IS_USER_DRAFT_LOADING', false)
+        })
     }
   }
 })

@@ -1,8 +1,12 @@
 <template>
   <button 
     type="button" 
-    class="button is-primary"
-    :class="className"
+    class="nfx-button button"
+    :class="{
+      className,
+      'is-primary': !alt,
+      'is-alt': alt
+    }"
     @click="click"
   >
     {{text}}
@@ -20,3 +24,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../vars';
+
+ .nfx-button {
+   &.is-alt {
+     background-color: $orange;
+    border-color: $orange;
+   }
+ }
+</style>
