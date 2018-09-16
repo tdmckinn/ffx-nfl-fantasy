@@ -24,19 +24,19 @@ const state = {
   rankings: [],
   gameInfo: [],
   isSidebarOpen: false,
-  isUserDraftLoading: false
+  draftConfig: {
+    isUserDrafting: false,
+    isUserDraftLoading: false
+  }
 }
 
 if (localStorage.getItem('NFX_USER')) {
   state.user = JSON.parse(localStorage.getItem('NFX_USER') || '')
 }
 
-const core = {
+export default new Vuex.Store({
+  state,
   actions,
   mutations,
   getters
-}
-export default new Vuex.Store({
-  state,
-  ...core
 })

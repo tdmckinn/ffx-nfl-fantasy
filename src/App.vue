@@ -67,7 +67,7 @@ export default Vue.extend({
   computed: {
     ...mapState({
       isLoggedInUser: ({ user }) => user.isLoggedIn,
-      isUserDraftLoading: ({ isUserDraftLoading }) => isUserDraftLoading
+      isUserDraftLoading: ({ draftConfig }) => draftConfig.isUserDraftLoading
     } as any)
   },
   methods: {

@@ -1,8 +1,8 @@
-const { ApolloServer, gql, PubSub } = require('apollo-server')
+const { ApolloServer, gql } = require('apollo-server')
+const { RedisPubSub } = require('graphql-redis-subscriptions')
 const { format } = require('date-fns')
 const fs = require('fs')
 const shuffle = require('lodash.shuffle')
-const { RedisPubSub } = require('graphql-redis-subscriptions')
 const Redis = require('ioredis')
 const faker = require('faker')
 
@@ -56,19 +56,21 @@ const draftPicksByRound = (numberOfTeams = 10, numOfRosterPositions = 15) => {
   return allDraftPicks
 }
 
-const setupDraft = (leagueID = 1) => {
-  // const currentDraft = redis.get(`draft_${leagueID}`)
+const setupDraft = async (leagueId = 1) => {
+  const draftId = `draft_${leagueId}`
+  const currentDraft = await redis.get(draftId)
 
-  // if (currentDraft) {
-  //   return currentDraft;
-  // } else {
-  const league = NFX_LEAGUES.find(league => league.id === 1)
-  let teams = league.LeagueTeams
-  const teamPickOrder = getShuffledUserDraftPositions()
+  if (currentDraft) {
+    const draftData = JSON.parse(currentDraft)
+    return draftData
+  } else {
+    const league = NFX_LEAGUES.find(league => league.id === 1)
+    let teams = league.LeagueTeams
+    const teamPickOrder = getShuffledUserDraftPositions()
 
-  while (teams.length < 10) {
-    /**
-       * 
+    while (teams.length < 10) {
+      /**
+       *
        * User Creation Info
         OwnerID: teams.length + 1,
         Name: faker.name.findName(),
@@ -76,43 +78,50 @@ const setupDraft = (leagueID = 1) => {
         DateCreated: format(new Date(), 'YYYY-MM-DD'),
         TimeZone: "America/Charlotte",
        */
-    teams.push({
-      id: teams.length + 1,
-      OwnerID: teams.length + 1,
-      LeagueID: leagueID,
-      Name: faker.commerce.productName(),
-      DateCreated: format(new Date(), 'YYYY-MM-DD'),
-      Players: []
+      teams.push({
+        id: teams.length + 1,
+        OwnerID: teams.length + 1,
+        LeagueID: leagueId,
+        Name: faker.commerce.productName(),
+        DateCreated: format(new Date(), 'YYYY-MM-DD'),
+        Players: []
+      })
+    }
+
+    const picks = draftPicksByRound()
+
+    teams = teams.map((team, index) => {
+      const draftingPosition = teamPickOrder[index]
+      team.Picks = picks[draftingPosition]
+      return team
     })
-  }
 
-  const picks = draftPicksByRound()
+    redis.set(
+      draftId,
+      JSON.stringify({
+        id: draftId,
+        LeagueID: 1,
+        CurrentRound: 1,
+        CurrentUserDrafting: 'John Doe',
+        DraftDateTime: league.DraftDateTime,
+        IsDraftComplete: league.IsDraftComplete,
+        Players: NFL_ADP,
+        Rounds: 15,
+        Teams: teams
+      })
+    )
 
-  teams = teams.map((team, index) => {
-    const draftingPosition = teamPickOrder[index]
-    team.Picks = picks[draftingPosition]
-    return team
-  })
-
-  // redis.set(`draft_${leagueID}`, JSON.stringify({
-  //   LeagueID: 1,
-  //   CurrentRound: 1,
-  //   CurrentUserDrafting: 'John Doe',
-  //   DraftDateTime: league.DraftDateTime,
-  //   IsDraftComplete: league.IsDraftComplete,
-  //   Rounds: 15,
-  //   TeamsDrafting: teams
-  // }))
-  // }
-
-  return {
-    LeagueID: 1,
-    CurrentRound: 1,
-    CurrentUserDrafting: 'John Doe',
-    DraftDateTime: league.DraftDateTime,
-    IsDraftComplete: league.IsDraftComplete,
-    Rounds: 15,
-    Teams: teams
+    return {
+      id: draftId,
+      LeagueID: 1,
+      CurrentRound: 1,
+      CurrentUserDrafting: 'John Doe',
+      DraftDateTime: league.DraftDateTime,
+      IsDraftComplete: league.IsDraftComplete,
+      Players: NFL_ADP,
+      Rounds: 15,
+      Teams: teams
+    }
   }
 }
 
@@ -143,7 +152,7 @@ const typeDefs = gql`
     FantasyPointsPerGame: Float
   }
 
-  type ADP_Player {
+  type NFL_ADP_Player {
     id: Int
     Rank: Int
     Name: String
@@ -217,12 +226,20 @@ const typeDefs = gql`
     LeagueID: Int
     Name: String
     OwnerID: Int
-    Players: [ADP_Player]
+    Players: [UserPlayer]
     DateCreated: String
     Picks: [Int]
   }
 
+  type UserPlayer {
+    id: Int
+    TeamID: Int
+    Name: String
+    LineUpPosition: String
+  }
+
   type Draft {
+    id: String
     LeagueID: Int
     CurrentRound: Int
     CurrentUserDrafting: String
@@ -230,12 +247,13 @@ const typeDefs = gql`
     IsDraftComplete: Boolean
     Rounds: Int
     Teams: [UserTeam]
+    Players: [NFL_ADP_Player]
   }
 
   # QUERIES
   type Query {
     players: [Player]
-    draft: [ADP_Player]
+    draft(draftId: String): Draft
     users: [User]
     userTeams(userId: Int): [UserTeam]
     leagues: [League]
@@ -274,6 +292,8 @@ const typeDefs = gql`
 
   input PlayerPickInput {
     id: Int
+    DraftID: String
+    TeamID: Int
     Name: String
     LineUpPosition: String
   }
@@ -285,23 +305,33 @@ const typeDefs = gql`
     updateLeagueSettings(settings: UpdateLeagueSettingsInput!): LeagueSettings
     joinLeague(input: JoinLeagueInput!): UserTeam
     enteredDraft(leagueId: String!): Draft
+    addDraftPickToUserTeam(selectedPick: PlayerPickInput!): UserPlayer
   }
 
   # SUBSCRIPTIONS
   type Subscription {
     draftStatusChanged(isDraftStarted: Boolean!): Boolean
-    newUserDraftPick(selectedPick: PlayerPickInput!): ADP_Player
+    newUserDraftPick(selectedPick: PlayerPickInput!): UserPlayer
   }
 `
 //#endregion
 
 const DRAFT_STATUS_CHANGED = 'draft_status_changed'
 const DRAFT_COMPLETE = 'draft_complete'
+const NEW_USER_DRAFT_PICK = 'new_user_draft_pick'
 
 const resolvers = {
   Query: {
     // draft - NFX player info used for live draft
-    draft: () => NFL_ADP,
+    draft: async (root, { draftId }) => {
+      console.log(draftId)
+      const draftData = await redis.get(draftId)
+      if (draftId && draftData) {
+        return JSON.parse(draftData)
+      }
+
+      return false
+    },
     players: () => NFL_DATA,
     teams: () => NFL_TEAMS,
     userTeams: (_, { userId }) => {
@@ -355,7 +385,7 @@ const resolvers = {
       // fs.writeFileSync('../data/nfx_leagues.json', JSON.stringify(newLeagues, null, 2))
       return leagueData
     },
-    joinLeague(root, { input }, context) {
+    joinLeague(_, { input }, context) {
       console.log(input)
       return {
         id: 2,
@@ -363,11 +393,15 @@ const resolvers = {
         OwnerID: 2
       }
     },
-    updateLeagueSettings(root, { settings }, context) {
-      console.log(settings)
+    updateLeagueSettings(_, { settings }, context) {
+      console.log('User Settings', settings)
     },
-    enteredDraft(leagueID) {
-      return setupDraft(leagueID)
+    enteredDraft(_, { leagueId }) {
+      return setupDraft(leagueId)
+    },
+    addDraftPickToUserTeam(_, { selectedPick }) {
+      pubsub.publish(NEW_USER_DRAFT_PICK, { selectedPick })
+      return selectedPick
     }
   },
   Subscription: {
@@ -379,39 +413,24 @@ const resolvers = {
       subscribe: () => pubsub.asyncIterator(DRAFT_STATUS_CHANGED)
     },
     newUserDraftPick: {
-      subscribe: () => pubsub.asyncIterator('newUserDraftPick')
+      resolve: payload => {
+        console.log('Apollo Subscription - New User', payload.selectedPick)
+        return payload.selectedPick
+      },
+      subscribe: () => pubsub.asyncIterator(NEW_USER_DRAFT_PICK)
     }
   }
 }
-
-//#region subscriptions
-// pubsub.publish('draftStatusChanged', { draftStatusChanged: { isDraftStarted: true } })
-// pubsub.publish('userSelectedPick', {
-//   newUserDraftPick: { selectedPick: { id: 1, Name: 'Todd Gurley!', Rank: 1 } }
-// })
-
 //#endregion
 
-// TODO: Save draft results from (redis?) to DB
+// TODO: On Completion of draft save results from redis to DB
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
   subscriptions: true,
   cors: true
 })
-
-pubsub.subscribe(DRAFT_STATUS_CHANGED, payload => {
-  console.log(payload)
-  redis.set('foo', 'bar')
-  return { draftStatusChanged: payload.isDraftStarted }
-})
-
-//publish events every second
-setInterval(() => {
-  pubsub.publish(DRAFT_STATUS_CHANGED, {
-    draftStatusChanged: { isDraftStarted: true }
-  })
-}, 10000)
 
 server.listen().then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`)

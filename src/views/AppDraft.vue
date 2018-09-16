@@ -47,7 +47,7 @@ export default Vue.extend({
   },
   computed: {
     ...mapState({
-      isUserDraftLoading: ({ isUserDraftLoading }) => isUserDraftLoading
+      isUserDraftLoading: ({ draftConfig }) => draftConfig.isUserDraftLoading
     } as any)
   },
   apollo: {
@@ -70,7 +70,11 @@ export default Vue.extend({
   },
   methods: {
     enterDraft(leagueId: number) {
-      this.$store.commit('IS_USER_DRAFT_LOADING', true)
+      this.$store.commit('UPDATE_DRAFT_CONFIG', {
+        isUserDrafting: false,
+        isUserDraftLoading: true
+      })
+
       this.$apollo
         .mutate({
           mutation: gql`
@@ -101,10 +105,23 @@ export default Vue.extend({
           }
         })
         .then(({ data: { enteredDraft } }: any) => {
-          console.log(enteredDraft)
-          this.isUserDrafting = true
-          this.$router.push({ name: 'live' })
-          this.$store.commit('IS_USER_DRAFT_LOADING', false)
+          if (enteredDraft) {
+            this.isUserDrafting = true
+            this.$store.commit('UPDATE_DRAFT_CONFIG', {
+              isUserDrafting: true,
+              isUserDraftLoading: false
+            })
+
+            this.$nextTick().then(() => {
+              this.$router.push({
+                name: 'live',
+                params: { id: leagueId.toString() }
+              })
+            })
+
+            return true
+          }
+          console.log('Sorry could not enter draft please try again!')
         })
     }
   }

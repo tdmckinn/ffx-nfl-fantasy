@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
 
 Vue.use(Router)
 
@@ -68,9 +69,21 @@ const router = new Router({
       component: AppDraft,
       children: [
         {
-          path: 'live',
+          path: 'live/:id',
           name: 'live',
-          component: NfxDraft
+          component: NfxDraft,
+          beforeEnter: (_to, _from, next) => {
+            const { draftConfig: { isUserDrafting } } = store.state
+            if (!isUserDrafting) {
+              if (location.pathname.includes('/draft/live')) {
+                router.push('/draft')
+              } else {
+                router.push('/')
+              }
+            }
+            next()
+            return
+          }
         }
       ]
     },
