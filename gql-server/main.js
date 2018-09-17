@@ -58,76 +58,9 @@ const draftPicksByRound = (numberOfTeams = 10, numOfRosterPositions = 15) => {
   return allDraftPicks
 }
 
-const setupDraft = async (leagueId = 1) => {
-  const draftId = `draft_${leagueId}`
-  const currentDraft = await redis.get(draftId)
-
-  if (currentDraft) {
-    const draftData = JSON.parse(currentDraft)
-    return draftData
-  } else {
-    const league = NFX_LEAGUES.find(league => league.id === 1)
-    let teams = league.LeagueTeams
-    const teamPickOrder = getShuffledUserDraftPositions()
-
-    while (teams.length < 10) {
-      /**
-       *
-       * User Creation Info
-        OwnerID: teams.length + 1,
-        Name: faker.name.findName(),
-        Email: faker.internet.email(),
-        DateCreated: format(new Date(), 'YYYY-MM-DD'),
-        TimeZone: "America/Charlotte",
-       */
-      teams.push({
-        id: teams.length + 1,
-        OwnerID: teams.length + 1,
-        LeagueID: leagueId,
-        Name: faker.commerce.productName(),
-        DateCreated: format(new Date(), 'YYYY-MM-DD'),
-        Players: []
-      })
-    }
-
-    const picks = draftPicksByRound()
-
-    teams = teams.map((team, index) => {
-      const draftingPosition = teamPickOrder[index]
-      team.Picks = picks[draftingPosition]
-      return team
-    })
-
-    redis.set(
-      draftId,
-      JSON.stringify({
-        id: draftId,
-        LeagueID: 1,
-        CurrentRound: 1,
-        CurrentUserDrafting: 'John Doe',
-        DraftDateTime: league.DraftDateTime,
-        IsDraftComplete: league.IsDraftComplete,
-        Players: NFL_ADP,
-        Rounds: 15,
-        Teams: teams
-      })
-    )
-
-    return {
-      id: draftId,
-      LeagueID: 1,
-      CurrentRound: 1,
-      CurrentUserDrafting: 'John Doe',
-      DraftDateTime: league.DraftDateTime,
-      IsDraftComplete: league.IsDraftComplete,
-      Players: NFL_ADP,
-      Rounds: 15,
-      Teams: teams
-    }
-  }
-}
-
-
+/**
+ * Subscription Events
+ */
 const DRAFT_STATUS_CHANGED = 'draft_status_changed'
 const DRAFT_COMPLETE = 'draft_complete'
 const NEW_USER_DRAFT_PICK = 'new_user_draft_pick'
@@ -136,9 +69,9 @@ const resolvers = {
   Query: {
     // draft - NFX player info used for live draft
     draft: async (root, { draftId }) => {
-      const draftData = await redis.get(draftId)
-      if (draftId && draftData) {
-        return JSON.parse(draftData)
+      const userDraft = await redis.get(draftId)
+      if (draftId && userDraft) {
+        return JSON.parse(userDraft)
       }
 
       return null
@@ -207,11 +140,98 @@ const resolvers = {
     updateLeagueSettings(_, { settings }, context) {
       console.log('User Settings', settings)
     },
-    enteredDraft(_, { leagueId }) {
-      return setupDraft(leagueId)
+    enteredDraft: async (_, { leagueId }) => {
+      try {
+        if (!leagueId) {
+          throw 'League Id Required to Enter Draft'
+        }
+
+        const draftId = `draft_${leagueId}`
+        const currentDraft = await redis.get(draftId)
+
+        if (currentDraft) {
+          const draftData = JSON.parse(currentDraft)
+          return draftData
+        } else {
+          const league = NFX_LEAGUES.find(league => league.id === 1)
+          let teams = league.LeagueTeams.map(({ id, LeagueID }) => {
+            const team = NFX_TEAMS.find(
+              team => team.id === id
+            )
+            return team
+          })
+
+          const teamPickOrder = getShuffledUserDraftPositions()
+
+          while (teams.length < 10) {
+            /**
+           *
+           * User Creation Info
+            OwnerID: teams.length + 1,
+            Name: faker.name.findName(),
+            Email: faker.internet.email(),
+            DateCreated: format(new Date(), 'YYYY-MM-DD'),
+            TimeZone: "America/Charlotte",
+           */
+            teams.push({
+              id: Number(teams.length + 1),
+              OwnerID: Number(teams.length + 1),
+              LeagueID: Number(leagueId),
+              Name: faker.commerce.productName(),
+              DateCreated: format(new Date(), 'YYYY-MM-DD'),
+              Players: []
+            })
+          }
+
+          const picks = draftPicksByRound()
+
+          teams = teams.map((team, index) => {
+            const draftingPosition = teamPickOrder[index]
+            team.Picks = picks[draftingPosition]
+            return team
+          })
+
+          const draftSetup = {
+            id: draftId,
+            LeagueID: 1,
+            CurrentRound: 1,
+            CurrentUserDrafting: 'John Doe',
+            DraftDateTime: league.DraftDateTime,
+            IsDraftComplete: league.IsDraftComplete,
+            Players: NFL_ADP,
+            Rounds: 15,
+            Teams: teams
+          }
+
+          redis.set(draftId, JSON.stringify(draftSetup))
+
+          return draftSetup
+        }
+      } catch (error) {
+        return {
+          error
+        }
+      }
     },
-    addDraftPickToUserTeam(_, { selectedPick }) {
+    addDraftPickToUserTeam: async (_, { selectedPick }) => {
       pubsub.publish(NEW_USER_DRAFT_PICK, { selectedPick })
+      const userDraft = await redis.get(selectedPick.DraftID)
+
+      if (userDraft) {
+        let parsedDraftSession = JSON.parse(userDraft)
+        parsedDraftSession.Teams.find(
+          team => team.id === selectedPick.TeamID
+        ).Players.push({
+          id: selectedPick.id,
+          Name: selectedPick.Name,
+          LineUpPosition: selectedPick.LineUpPosition
+        })
+
+        const index = parsedDraftSession.Players.findIndex(player => player.id === selectedPick.id)
+        parsedDraftSession.Players.splice(index, 1)
+
+        redis.set(selectedPick.DraftID, JSON.stringify(parsedDraftSession))
+      }
       return selectedPick
     }
   },

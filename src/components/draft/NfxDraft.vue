@@ -1,12 +1,22 @@
 <template>
   <div class="nfx-draft">
+    <!-- <div class="nfx-draft__sticky">Hello</div> -->
+    <div class="nfx-draft__exit">
+      <nfx-button text="Exit Draft" :click="exitDraft">
+        <i class="material-icons">
+          exit_to_app
+        </i>
+      </nfx-button>
+    </div>
     <div class="nfx-draft__header">
-      <div v-show="selectedPick" class="nfx-draft__queued-pick">
+      <div class="nfx-draft__queued-pick">
         <span>
-          <i class="nfx-draft__queued-icon material-icons">person</i>{{selectedPick && selectedPick.Name}}</span>
-        <nfx-button text="Draft Player" :click="draftPlayer"></nfx-button>
+          <i class="nfx-draft__queued-icon material-icons">person</i>
+          <span v-if="!selectedPick">No Player Selected</span>
+          {{selectedPick && selectedPick.Name}}
+        </span>
+        <nfx-button text="Draft Player" :click="draftPlayer" alt :disabled="!selectedPick"></nfx-button>
       </div>
-      <div><nfx-button text="Exit Draft" :click="exitDraft"></nfx-button></div>
     </div>
     <section class="nfx-draft__content">
       <table class="table">
@@ -15,7 +25,7 @@
             <th></th>
             <th><abbr title="Position">Pos</abbr></th>
             <th><abbr title="Rank">Rnk</abbr></th>
-            <th><abbr title="Name">Name</abbr></th>
+            <th style="width: 100%;"><abbr title="Name">Name</abbr></th>
             <th><abbr title="ADP">ADP</abbr></th>
             <th><abbr title="FX Pts">FTP</abbr></th>
             <th><abbr title="Age">Age</abbr></th>
@@ -23,7 +33,16 @@
         </thead>
         <tbody>
           <tr v-for="player in draft.Players" :key="player.id" @click="playerSelected(player)">
-            <th><i class="material-icons">star_border</i></th>
+            <th>
+              <i @click.stop="toggleQueuedPlayer(player)"
+                class="nfx-draft__star-icon material-icons"
+                :class="{
+                  'is-active': isPlayerQueued(player),
+                }"
+              >
+                {{starIcon(player)}}
+              </i>
+            </th>
             <th>{{player.Position}}</th>
             <td>{{player.Rank}}</td>
             <td>{{player.Name}}</td>
@@ -37,20 +56,40 @@
     <div class="nfx-draft__sidebar-left">
       <div class="nfx-draft__timer">Draft Start / Timer</div>
       <div class="nfx-draft__pick">You have the {{draftPickNumber}}th Pick</div>
-      <nfx-draft-order></nfx-draft-order>
+      <nfx-draft-order :teams="teamsDraftingByRound"></nfx-draft-order>
     </div>
     <div class="nfx-draft__sidebar-right">
-      <div class="nfx-draft__picks">My Picks</div>
-      <div class="nfx-draft__picks">My Queue</div>
+      <div class="nfx-draft__picks">
+        <h3>My Picks</h3>
+        <aside v-if="userTeam" class="menu">
+          <ul class="menu-list">
+            <li v-for="(userPick, index) in userTeam.Players" :key="`user_pick_${index}`">
+              <span>{{index + 1}}. </span><span>{{userPick.Name}}</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <div class="nfx-draft__queued">
+        <h3>My Queue</h3>
+        <aside v-if="myQueue" class="menu">
+          <ul class="menu-list">
+            <li v-for="(queuedPlayer, index) in myQueue" :key="`queue_${queuedPlayer.id}`">
+              <span>{{index + 1}}. </span><span>{{queuedPlayer.Name}}</span>
+            </li>
+          </ul>
+        </aside>
+      </div>
     </div>
-    <div class="nfx-draft__footer">. . .</div>
+    <div class="nfx-draft__footer">The Last Pick Was: {{lastPick}}</div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
 import { mapState } from 'vuex'
+import cloneDeep from 'lodash.clonedeep'
 import gql from 'graphql-tag'
+import stickybits from 'stickybits'
 
 import NfxDraftOrder from './NfxDraftOrder.vue'
 import { NfxButton, NfxSectionHeader } from '../'
@@ -63,8 +102,9 @@ export default Vue.extend({
   },
   data() {
     return {
-      draft: [],
-      selectedPick: {},
+      draft: {},
+      myQueue: [],
+      selectedPick: null,
       leagueId: this.$route.params.id,
       isUserDrafting: false
     }
@@ -76,22 +116,24 @@ export default Vue.extend({
     draftPickNumber() {
       return 1
     },
-    draftPick() {
-      const selectedPick = this.selectedPick
-      return selectedPick
-        ? {
-            id: selectedPick.id,
-            Name: selectedPick.Name,
-            LineUpPosition: `${selectedPick.Position}1`,
-            TeamId: 1,
-            DraftID: this.draft.id
-          }
-        : null
+    teamsDraftingByRound() {
+      const teamsByRound = []
+      // if (this.draft) {
+      //   for (let i = 0; i < this.draft.Rounds - 1; i++) {
+      //     const team = this.draft.Teams[i]
+
+      //     teamsByRound.push({
+      //       id: team.id,
+      //       pick: team.Picks[i],
+      //       name: team.Name
+      //     })
+      //   }
+      // }
+      return teamsByRound
     },
     userTeam() {
-      debugger
-      return this.draft
-        ? this.draft.Teams.find(team => team.OwnerID === this.user.id)
+      return this.draft.hasOwnProperty('Teams') && this.draft.Teams.length !== 0
+        ? this.draft.Teams.find(team => team.OwnerID === Number(this.user.id))
         : null
     }
   },
@@ -146,38 +188,43 @@ export default Vue.extend({
         // they are reactive
         variables() {
           return {
-            selectedPick: this.draftPick
+            selectedPick: this.selectedPick
           }
         },
         // Mutate the previous result
-        updateQuery(_, { subscriptionData }) {
+        updateQuery(previousResult, { subscriptionData }) {
           try {
             if (!subscriptionData.data) {
-              return null
+              throw 'Subscription not working ??'
             }
 
             const newDraftPick = subscriptionData.data.newUserDraftPick
-            const draft = {
-              ...this.draft,
-              ...{
-                Players: [...this.draft.Players],
-                Teams: [...this.draft.Teams]
-              }
+            if (this.isDuplicateDraftPick(newDraftPick)) {
+              return previousResult
             }
+
+            const draft = cloneDeep(this.draft)
+            const userTeamIndex = draft.Teams.findIndex(
+              team => team.id === newDraftPick.TeamID
+            )
+
+            draft.Teams[userTeamIndex].Players.push({
+              id: newDraftPick.id,
+              TeamID: draft.Teams[userTeamIndex].id,
+              Name: newDraftPick.Name,
+              LineUpPosition: newDraftPick.LineUpPosition,
+              __typename: newDraftPick.__typename
+            })
 
             const index = draft.Players.findIndex(
               player => player.id === newDraftPick.id
             )
+
             draft.Players.splice(index, 1)
-            // draft.Teams[0].Players = []
-            // draft.Teams[0].Players.push(newDraftPick);
 
-            console.log('I"VE GOT AN ACTUALL SUBSCRIPTION')
-            return draft
-            // if (this.isDuplicateDraftPick(newDraftPick)) {
-            // }
-
-            // console.log(previousResult, subscriptionData)
+            return {
+              draft
+            }
           } catch (e) {
             console.log(e)
           }
@@ -189,16 +236,23 @@ export default Vue.extend({
     }
   },
   methods: {
-    isDuplicateDraftPick(newPick, existingDraftPicks) {
-      return (
-        newPick.id !== null &&
-        existingDraftPicks.some(pick => newPick.id === pick.id)
-      )
+    /**
+     * Esnure duplicate draft picks don't get added to teams
+     * during optimistic updates
+     */
+    isDuplicateDraftPick(newPick) {
+      return this.draft.Teams.some(team => {
+        if (team.Players.some(pick => pick.id === newPick.id)) {
+          return true
+        }
+        return false
+      })
     },
     setDefaultLineUpPosition() {
       console.log('Set Deafult Lineup')
     },
     draftPlayer() {
+      this.removeQueuePlayer(this.selectedPick)
       this.$apollo
         .mutate({
           mutation: gql`
@@ -212,24 +266,68 @@ export default Vue.extend({
             }
           `,
           variables: {
-            selectedPick: this.draftPick
+            selectedPick: this.selectedPick
           }
         })
         .then(({ data: { addDraftPickToUserTeam } }) => {
           console.log('User Drafted Pick', addDraftPickToUserTeam)
         })
     },
-    playerSelected(selectedPick) {
-      this.selectedPick = selectedPick
+    playerSelected({ id, Name, Position }) {
+      this.selectedPick = {
+        id,
+        Name,
+        LineUpPosition: `${Position}1`,
+        TeamID: this.userTeam ? this.userTeam.id : null,
+        DraftID: this.draft.id
+      }
+    },
+    toggleQueuedPlayer(player) {
+      if (this.isPlayerQueued(player)) {
+        this.removeQueuePlayer(player)
+      } else {
+        this.addQueuePlayer(player)
+      }
+    },
+    removeQueuePlayer(player) {
+      const index = this.myQueue.findIndex(i => i.id === player.id)
+      this.myQueue.splice(index, 1)
+    },
+    addQueuePlayer(player) {
+      this.myQueue.push(player)
+    },
+    isPlayerQueued(player) {
+      return this.myQueue.find(i => i.id === player.id)
+    },
+    lastPick() {
+      return 'Antonio Brown'
+    },
+    starIcon(player) {
+      return this.isPlayerQueued(player) ? 'star' : 'star_border'
     },
     exitDraft() {
-      confirm('Exiting Draft are you sure?')
+      if (confirm('Exiting Draft are you sure?')) {
+        this.$store.commit('UPDATE_DRAFT_CONFIG', {
+          isUserDrafting: false,
+          isUserDraftLoading: false
+        })
+        this.$router.push('/draft')
+      }
     }
-  }
+  },
+  mounted() {
+    // stickybits('.nfx-draft__sticky', {
+    //   useStickyClasses: true,
+    //   stickyBitStickyOffset: 73
+    // })
+  },
+  beforeDestroy() {}
 })
 </script>
 
 <style lang="scss" scoped>
+@import '../../vars';
+
 .nfx-draft {
   display: grid;
   grid-gap: 20px;
@@ -242,11 +340,14 @@ export default Vue.extend({
 
   &__header {
     grid-area: header;
-    font-weight: bold;
+    grid-column-start: 2;
+    grid-column-end: 2;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding-left: 205px;
-    padding-right: 98px;
+    // padding-left: 205px;
+    // padding-right: 98px;
+    font-weight: bold;
   }
 
   &__content {
@@ -283,23 +384,29 @@ export default Vue.extend({
     font-size: 1rem;
   }
 
+  &__picks {
+    max-height: 180px;
+    overflow: scroll;
+    margin-bottom: 20px;
+  }
+
   &__order {
     margin-top: 20px;
   }
 
   &__queued {
     &-pick {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      border: 1px solid lightgray;
+      border-radius: 5px;
+
       span {
         display: flex;
         align-items: center;
       }
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 623px;
-      border: 1px solid lightgray;
-      border-radius: 5px;
 
       button {
         margin-right: 5px;
@@ -308,7 +415,35 @@ export default Vue.extend({
 
     &-icon {
       font-size: 50px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
+  }
+
+  &__star-icon {
+    &.is-active {
+      color: $orange;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__sticky {
+    &.js-is-sticky {
+      background-color: $orange;
+      width: 100%;
+      height: 100px;
+      // top: 3.25rem;
+    }
+  }
+
+  &__exit {
+    grid-column-start: 3;
+    align-self: center;
   }
 }
 @media (min-width: 700px) {

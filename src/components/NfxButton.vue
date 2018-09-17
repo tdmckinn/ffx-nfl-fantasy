@@ -1,15 +1,16 @@
 <template>
-  <button 
-    type="button" 
+  <button
+    type="button"
     class="nfx-button button"
     :class="{
       className,
       'is-primary': !alt,
       'is-alt': alt
     }"
-    @click="click"
+    @click="onClick"
   >
     {{text}}
+    <slot class="nfx-button__slot"></slot>
   </button>
 </template>
 
@@ -21,6 +22,13 @@ export default {
     text: String,
     click: Function,
     alt: Boolean
+  },
+  methods: {
+    onClick() {
+      if (this.click) {
+        this.click()
+      }
+    }
   }
 }
 </script>
@@ -29,6 +37,10 @@ export default {
 @import '../vars';
 
  .nfx-button {
+   .material-icons {
+     padding-left: 5px;
+   }
+
    &.is-alt {
      background-color: $orange;
     border-color: $orange;

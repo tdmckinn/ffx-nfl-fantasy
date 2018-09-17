@@ -18,13 +18,12 @@
               </p>
               <p class="control">
                 <button class="button">
-                  Search Leauges
+                  Search Leagues
                 </button>
               </p>
             </div>
           </div>
         </div>
-
         <!-- Right side -->
         <div class="level-right">
           <p class="level-item"><a class="button is-success" @click.prevent="showModal = true">Create League</a></p>

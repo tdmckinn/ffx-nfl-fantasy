@@ -32,6 +32,7 @@ import { mapState } from 'vuex'
 import gql from 'graphql-tag'
 
 import { NfxButton, NfxSectionHeader, NfxLeague } from '../components'
+import { setTimeout } from 'timers'
 
 export default Vue.extend({
   components: {
@@ -41,12 +42,12 @@ export default Vue.extend({
   },
   data() {
     return {
-      leagues: [],
-      isUserDrafting: false
+      leagues: []
     }
   },
   computed: {
     ...mapState({
+      isUserDrafting: ({ draftConfig }) => draftConfig.isUserDrafting,
       isUserDraftLoading: ({ draftConfig }) => draftConfig.isUserDraftLoading
     } as any)
   },
@@ -106,18 +107,17 @@ export default Vue.extend({
         })
         .then(({ data: { enteredDraft } }: any) => {
           if (enteredDraft) {
-            this.isUserDrafting = true
-            this.$store.commit('UPDATE_DRAFT_CONFIG', {
-              isUserDrafting: true,
-              isUserDraftLoading: false
-            })
+            setTimeout(() => {
+              this.$store.commit('UPDATE_DRAFT_CONFIG', {
+                isUserDrafting: true,
+                isUserDraftLoading: false
+              })
 
-            this.$nextTick().then(() => {
               this.$router.push({
                 name: 'live',
                 params: { id: leagueId.toString() }
               })
-            })
+            }, 2000)
 
             return true
           }

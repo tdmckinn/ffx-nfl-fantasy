@@ -83,7 +83,11 @@ const router = new Router({
             }
             next()
             return
-          }
+          },
+          // beforeRouteLeave: (_to, _from, next) => {
+          //   console.log('Im leaving...')
+          //   next()
+          // }
         }
       ]
     },

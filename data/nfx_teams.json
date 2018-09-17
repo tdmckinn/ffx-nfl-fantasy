@@ -8,9 +8,16 @@
       "Players": []
     },
     {
+      "id": 3,
+      "Name": "Spartan Players",
+      "LeagueID": 1,
+      "OwnerID": 2,
+      "Players": []
+    },
+    {
       "id": 2,
       "Name": "Beach Boys",
-      "LeagueID": 1,
+      "LeagueID": 2,
       "OwnerID": 2,
       "Players": [
         {

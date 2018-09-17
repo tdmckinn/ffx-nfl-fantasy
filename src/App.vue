@@ -1,11 +1,12 @@
 <template>
-  <div id="app" class="nfx-app app">
+  <div class="nfx-app app">
     <nfx-header :isLoggedInUser="isLoggedInUser"></nfx-header>
     <main v-if="isLoggedInUser" class="nfx-app__main container is-fluid">
       <router-view></router-view>
     </main>
     <main v-if="!isLoggedInUser" class="nfx-app__main--login">
-      <nfx-login></nfx-login>
+      <div data-netlify-identity-button>Login with Netlify Identity</div>
+      <!-- <nfx-login></nfx-login> -->
     </main>
     <nfx-footer>
       <section class="nfx-music">
@@ -83,6 +84,9 @@ export default Vue.extend({
         this.isThemeplaying = !this.isThemeplaying
       }
     }
+  },
+  mounted() {
+    (netlifyIdentity as any).open();
   }
 })
 </script>

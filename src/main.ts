@@ -18,7 +18,7 @@ Vue.config.ignoredElements = ['nfx-counter']
 
 // tslint:disable-next-line:no-unused-expression
 new Vue({
-  el: '#app',
+  el: '#nfx-app',
   router,
   provide: apolloProvider.provide(),
   store,
