@@ -10,10 +10,9 @@ Vue.use(Vuex)
 const state = {
   activePage: '',
   user: {
-    isLoggedIn: false,
     id: '',
-    firstName: '',
-    lastName: '',
+    isLoggedIn: false,
+    fullName: '',
     email: '',
     wins: 0,
     loses: 0,

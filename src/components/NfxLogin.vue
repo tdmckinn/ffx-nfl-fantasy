@@ -1,19 +1,6 @@
 <template>
   <div class="nfx-login">
-    <form>
-      <nfx-fieldset
-        text="Email"
-        help-text="Enter your email"
-        >
-        <nfx-input v-model="email.value" :isFocusOnMount="email.isFocusOnMount"></nfx-input>
-      </nfx-fieldset>
-      <nfx-fieldset
-        text="Password"
-        help-text="Enter your password">
-        <nfx-input v-model="password" type="password"></nfx-input>
-      </nfx-fieldset>
-      <nfx-button text="Login" :click="login"></nfx-button>
-    </form>
+    <div data-netlify-identity-button>Login with Netlify Identity</div>
   </div>
 </template>
 
@@ -39,7 +26,7 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch('AUTHENTICATE_USER', { email: this.email.value, password: this.password })
+      this.$store.dispatch('USER_AUTHENTICATED', { email: this.email.value, password: this.password })
     }
   }
 }

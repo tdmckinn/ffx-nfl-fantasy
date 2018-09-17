@@ -5,7 +5,6 @@
       <router-view></router-view>
     </main>
     <main v-if="!isLoggedInUser" class="nfx-app__main--login">
-      <div data-netlify-identity-button>Login with Netlify Identity</div>
       <!-- <nfx-login></nfx-login> -->
     </main>
     <nfx-footer>
@@ -28,7 +27,6 @@
       <h2 class="nfx-loading__header">NFX FANTASY</h2>
       <div>Loading Draft Please Wait...</div>
       <nfx-svg-loading></nfx-svg-loading>
-      <!-- <div style="height: 100px;" v-html="require('./assets/loading.svg')"></div> -->
     </div>
   </div>
 </template>
@@ -36,12 +34,9 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
+import netlifyIdentity from 'netlify-identity-widget'
 
-import AuthService from './api/AuthService'
 import { NfxHeader, NfxFooter, NfxLogin, NfxSvgLoading } from './components'
-
-const auth = new AuthService()
-const { authenticated, authNotifier } = auth
 
 const nfxThemeMusic = require('./assets/nfx_theme.mp3')
 
@@ -54,15 +49,9 @@ export default Vue.extend({
     NfxSvgLoading
   },
   data() {
-    authNotifier.on('authChange', authState => {
-      (this as any).authenticated = authState.authenticated as any
-    })
-
     return {
       nfxThemeMusic,
-      isThemeplaying: false,
-      auth,
-      authenticated
+      isThemeplaying: false
     }
   },
   computed: {
@@ -86,7 +75,21 @@ export default Vue.extend({
     }
   },
   mounted() {
-    (netlifyIdentity as any).open();
+    netlifyIdentity.init({
+      container: 'body'
+    })
+
+    netlifyIdentity.open('signup')
+
+    netlifyIdentity.on('login', user => {
+      this.$store.dispatch('USER_AUTHENTICATED', {
+        email: user.email,
+        id: user.id,
+        isLoggedIn: true,
+        fullName: user.user_metadata.full_name
+      })
+      netlifyIdentity.close();
+    })
   }
 })
 </script>

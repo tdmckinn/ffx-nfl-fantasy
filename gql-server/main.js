@@ -103,13 +103,13 @@ const resolvers = {
       // TODO: Save league data to database and create owners team by default
       const leagueData = Object.assign({}, league, {
         id: 2,
-        CommissionerID: 2,
+        CommissionerID: 'b74190d4-ac80-4159-93a2-2323asdf',
         IsDraftComplete: false,
         DateCreated: format(new Date(), 'YYYY-MM-DD'),
         LeagueTeams: [
           {
             id: 1,
-            OwnerID: 2,
+            OwnerID: 'b74190d4-ac80-4159-93a2-2323asdf',
             LeagueID: 2,
             Name: `${league.CommissionerName} Team`,
             DateCreated: format(new Date(), 'YYYY-MM-DD')
@@ -134,7 +134,7 @@ const resolvers = {
       return {
         id: 2,
         LeagueID: 1,
-        OwnerID: 2
+        OwnerID: 'b74190d4-ac80-4159-93a2-2323asdf'
       }
     },
     updateLeagueSettings(_, { settings }, context) {
@@ -155,9 +155,7 @@ const resolvers = {
         } else {
           const league = NFX_LEAGUES.find(league => league.id === 1)
           let teams = league.LeagueTeams.map(({ id, LeagueID }) => {
-            const team = NFX_TEAMS.find(
-              team => team.id === id
-            )
+            const team = NFX_TEAMS.find(team => team.id === id)
             return team
           })
 
@@ -175,7 +173,7 @@ const resolvers = {
            */
             teams.push({
               id: Number(teams.length + 1),
-              OwnerID: Number(teams.length + 1),
+              OwnerID: teams.length + 1,
               LeagueID: Number(leagueId),
               Name: faker.commerce.productName(),
               DateCreated: format(new Date(), 'YYYY-MM-DD'),
@@ -227,7 +225,9 @@ const resolvers = {
           LineUpPosition: selectedPick.LineUpPosition
         })
 
-        const index = parsedDraftSession.Players.findIndex(player => player.id === selectedPick.id)
+        const index = parsedDraftSession.Players.findIndex(
+          player => player.id === selectedPick.id
+        )
         parsedDraftSession.Players.splice(index, 1)
 
         redis.set(selectedPick.DraftID, JSON.stringify(parsedDraftSession))

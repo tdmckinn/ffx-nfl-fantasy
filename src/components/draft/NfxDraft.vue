@@ -133,7 +133,7 @@ export default Vue.extend({
     },
     userTeam() {
       return this.draft.hasOwnProperty('Teams') && this.draft.Teams.length !== 0
-        ? this.draft.Teams.find(team => team.OwnerID === Number(this.user.id))
+        ? this.draft.Teams.find(team => team.OwnerID === this.user.id)
         : null
     }
   },
@@ -195,7 +195,7 @@ export default Vue.extend({
         updateQuery(previousResult, { subscriptionData }) {
           try {
             if (!subscriptionData.data) {
-              throw 'Subscription not working ??'
+              throw new Error('Subscription not working ??')
             }
 
             const newDraftPick = subscriptionData.data.newUserDraftPick
@@ -316,12 +316,15 @@ export default Vue.extend({
     }
   },
   mounted() {
+    console.log('add sticky to selected draft player')
     // stickybits('.nfx-draft__sticky', {
     //   useStickyClasses: true,
     //   stickyBitStickyOffset: 73
     // })
   },
-  beforeDestroy() {}
+  beforeDestroy() {
+    console.log('clean up draft session')
+  }
 })
 </script>
 

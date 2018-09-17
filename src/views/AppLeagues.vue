@@ -109,7 +109,7 @@ export default Vue.extend({
           variables: {
             input: {
               id: leagueId,
-              name: user.firstName
+              name: user.fullName
             }
           }
         })

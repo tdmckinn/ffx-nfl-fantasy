@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import netlifyIdentity from 'netlify-identity-widget'
+
 import store from '../store'
 
 Vue.use(Router)
@@ -40,8 +42,8 @@ const router = new Router({
       path: '/logout',
       beforeEnter: () => {
         router.push('/');
-        localStorage.clear();
         location.reload();
+        netlifyIdentity.logout();
       }
     },
     {

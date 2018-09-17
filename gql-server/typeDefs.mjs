@@ -75,7 +75,7 @@ export const typeDefs = `
     DraftID: Int
     DraftDateTime: String
     CommissionerName: String
-    CommissionerID: Int
+    CommissionerID: String
     LeagueName: String
     LeagueTeams: [UserTeam]
     LeagueSettings: LeagueSettings
@@ -85,7 +85,7 @@ export const typeDefs = `
   }
 
   type User {
-    id: Int
+    id: String
     Name: String
     Email: String
     Avatar: String
@@ -98,7 +98,7 @@ export const typeDefs = `
     id: Int
     LeagueID: Int
     Name: String
-    OwnerID: Int
+    OwnerID: String
     Players: [UserPlayer]
     DateCreated: String
     Picks: [Int]

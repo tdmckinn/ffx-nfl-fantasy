@@ -3,16 +3,16 @@
     {
       "id": 1,
       "CommissionerName": "John Doe",
-      "CommissionerId": 1,
+      "CommissionerId": "a74190d4-ac80-4159-93a2-57341628cd09",
       "LeagueName": "Vue Ballers",
       "LeagueTeams": [
         {
           "id": 1,
-          "OwnerID": 1
+          "OwnerID": "a74190d4-ac80-4159-93a2-57341628cd09"
         },
         {
           "id": 3,
-          "OwnerID": 2
+          "OwnerID": "b74190d4-ac80-4159-93a2-2323asdf"
         }
       ],
       "DraftDateTime": "2018-09-21 00:08:00",

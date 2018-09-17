@@ -39,6 +39,7 @@
     "knex": "^0.15.2",
     "lodash.clonedeep": "^4.5.0",
     "lodash.shuffle": "^4.2.0",
+    "netlify-identity-widget": "^1.4.14",
     "pg": "^7.4.3",
     "siema": "^1.5.1",
     "stickybits": "^3.5.5",

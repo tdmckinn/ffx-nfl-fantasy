@@ -1,16 +1,15 @@
 import { FantasyService } from '../api'
 
 export default {
-  AUTHENTICATE_USER: ({ commit }, { email }) => {
+  USER_AUTHENTICATED: ({ commit }, { id, email, isLoggedIn, fullName }) => {
     // fake ajax
     commit('SET_USER', {
-      id: 2,
-      firstName: 'Tim',
-      lastName: 'Banks',
+      id,
       email,
       wins: 5,
       loses: 500,
-      isLoggedIn: true
+      fullName,
+      isLoggedIn
     })
   },
   GET_WEATHER: ({ commit }) => {
