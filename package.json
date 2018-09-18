@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build && node scripts/nfx-cache-update.js",
+    "build": "vue-cli-service build && node scripts/nfx-cache-update.js && cp _redirects dist/",
     "lint": "vue-cli-service lint",
     "server": "node server/index.js",
     "dev": "concurrently \"cd gql-server && yarn dev \" \"nodemon --inspect ./server/index.js\"  \"yarn serve\"",
