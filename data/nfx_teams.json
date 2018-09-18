@@ -4,21 +4,21 @@
       "id": 1,
       "Name": "Carolina PanthersX2",
       "LeagueID": 1,
-      "OwnerID": "a74190d4-ac80-4159-93a2-57341628cd09",
+      "OwnerID": "cb1508cd-bb0d-409a-b349-b2a18f54f848",
       "Players": []
     },
     {
       "id": 3,
       "Name": "Spartan Players",
       "LeagueID": 1,
-      "OwnerID": "b74190d4-ac80-4159-93a2-2323asdf",
+      "OwnerID": "71071c6f-1d2b-4657-a617-4a3c8eca00a4",
       "Players": []
     },
     {
       "id": 2,
       "Name": "Beach Boys",
       "LeagueID": 2,
-      "OwnerID": "b74190d4-ac80-4159-93a2-2323asdf",
+      "OwnerID": "71071c6f-1d2b-4657-a617-4a3c8eca00a4",
       "Players": [
         {
           "Rank": 1,

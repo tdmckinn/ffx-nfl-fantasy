@@ -75,21 +75,23 @@ export default Vue.extend({
     }
   },
   mounted() {
-    netlifyIdentity.init({
-      container: 'body'
-    })
-
-    netlifyIdentity.open('signup')
-
-    netlifyIdentity.on('login', user => {
-      this.$store.dispatch('USER_AUTHENTICATED', {
-        email: user.email,
-        id: user.id,
-        isLoggedIn: true,
-        fullName: user.user_metadata.full_name
+    if (!this.isLoggedInUser) {
+      netlifyIdentity.init({
+        container: 'body'
       })
-      netlifyIdentity.close();
-    })
+
+      netlifyIdentity.open('signup')
+
+      netlifyIdentity.on('login', user => {
+        this.$store.dispatch('USER_AUTHENTICATED', {
+          email: user.email,
+          id: user.id,
+          isLoggedIn: true,
+          fullName: user.user_metadata.full_name
+        })
+        netlifyIdentity.close()
+      })
+    }
   }
 })
 </script>

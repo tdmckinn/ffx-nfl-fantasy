@@ -103,13 +103,13 @@ const resolvers = {
       // TODO: Save league data to database and create owners team by default
       const leagueData = Object.assign({}, league, {
         id: 2,
-        CommissionerID: 'b74190d4-ac80-4159-93a2-2323asdf',
+        CommissionerID: '71071c6f-1d2b-4657-a617-4a3c8eca00a4',
         IsDraftComplete: false,
         DateCreated: format(new Date(), 'YYYY-MM-DD'),
         LeagueTeams: [
           {
             id: 1,
-            OwnerID: 'b74190d4-ac80-4159-93a2-2323asdf',
+            OwnerID: '71071c6f-1d2b-4657-a617-4a3c8eca00a4',
             LeagueID: 2,
             Name: `${league.CommissionerName} Team`,
             DateCreated: format(new Date(), 'YYYY-MM-DD')
@@ -134,7 +134,7 @@ const resolvers = {
       return {
         id: 2,
         LeagueID: 1,
-        OwnerID: 'b74190d4-ac80-4159-93a2-2323asdf'
+        OwnerID: '71071c6f-1d2b-4657-a617-4a3c8eca00a4'
       }
     },
     updateLeagueSettings(_, { settings }, context) {

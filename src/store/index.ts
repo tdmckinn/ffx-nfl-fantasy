@@ -18,9 +18,6 @@ const state = {
     loses: 0,
     favoriteTeam: ''
   },
-  players: [],
-  myTeam: [],
-  rankings: [],
   gameInfo: [],
   isSidebarOpen: false,
   draftConfig: {
@@ -29,8 +26,17 @@ const state = {
   }
 }
 
-if (localStorage.getItem('NFX_USER')) {
-  state.user = JSON.parse(localStorage.getItem('NFX_USER') || '')
+if (localStorage.getItem('gotrue.user')) {
+  const { id, email, user_metadata } = JSON.parse(localStorage.getItem('gotrue.user') || '{}')
+  state.user = {
+      ...state.user,
+      ...{
+      id,
+      email,
+      isLoggedIn: true, // check expiration token
+      fullName: user_metadata.fullName
+    }
+  }
 }
 
 export default new Vuex.Store({
