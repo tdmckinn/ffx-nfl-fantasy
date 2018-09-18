@@ -37,8 +37,8 @@ export default {
   },
   computed: {
     isPlayerOnMyTeam() {
-      if (this.$store.state.myTeam.length !== 0 && this.player) {
-        return typeof this.$store.state.myTeam.find(item => item.playerId === this.player.playerId) !== 'undefined'
+      if (this.player) {
+        return true
       }
       return false
     }

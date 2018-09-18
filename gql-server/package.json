@@ -4,8 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "build": "tsc",
+    "start:dev": "nodemon",
+    "start": "ts-node -r tsconfig-paths/register ./main.ts",
+    "start:prod": "yarn build && node dist/main.js"
   },
   "esm": {
     "mode": "auto",
@@ -21,6 +23,20 @@
     "graphql": "^0.13.2",
     "graphql-redis-subscriptions": "^1.5.0",
     "graphql-tag": "^2.9.2",
-    "ioredis": "^4.0.0"
+    "ioredis": "^4.0.0",
+    "lodash.shuffle": "^4.2.0",
+    "pg": "^7.4.3",
+    "typeorm": "^0.2.7"
+  },
+  "devDependencies": {
+    "@types/faker": "^4.1.4",
+    "@types/ioredis": "^4.0.1",
+    "@types/lodash.shuffle": "^4.2.4",
+    "@types/node": "^10.10.1",
+    "nodemon": "^1.18.4",
+    "rimraf": "^2.6.2",
+    "ts-node": "^7.0.1",
+    "tsconfig-paths": "^3.6.0",
+    "typescript": "^3.0.3"
   }
 }

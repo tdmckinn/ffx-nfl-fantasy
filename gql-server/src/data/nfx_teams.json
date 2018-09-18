@@ -5,14 +5,18 @@
       "Name": "Carolina PanthersX2",
       "LeagueID": 1,
       "OwnerID": "cb1508cd-bb0d-409a-b349-b2a18f54f848",
-      "Players": []
+      "Players": [],
+      "Picks": [],
+      "DateCreated": ""
     },
     {
       "id": 3,
       "Name": "Spartan Players",
       "LeagueID": 1,
       "OwnerID": "71071c6f-1d2b-4657-a617-4a3c8eca00a4",
-      "Players": []
+      "Players": [],
+      "Picks": [],
+      "DateCreated": ""
     },
     {
       "id": 2,
@@ -240,7 +244,9 @@
           "LineUpPosition": "K",
           "id": 151
         }
-      ]
+      ],
+      "Picks": [],
+      "DateCreated": ""
     }
   ]
 }

@@ -28,7 +28,7 @@ app.use('/public', serve('../public'))
 // handle fallback for HTML5 history API
 app.use(history({ verbose: true }))
 
-app.use('/api', router)
+// app.use('/api', router)
 
 app.get('/', (req, res) => {
   res.sendFile(resolve('../dist/index.html'))

@@ -1,5 +1,5 @@
 import BaseService from './BaseService'
-import Weather from '../../data/weather.json'
+import Weather from '../../gql-server/src/data/weather.json'
 
 class FantasyService extends BaseService {
   async getDraftRankings() {

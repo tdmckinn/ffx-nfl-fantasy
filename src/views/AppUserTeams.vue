@@ -75,7 +75,7 @@ export default Vue.extend({
   },
   computed: {
     userHasTeams() {
-      return this.userTeams.length !== 0
+      return this.userTeams && this.userTeams.length !== 0
     },
     userCurrentTeam() {
       if (this.selectedTeam.length === 0) {
@@ -107,10 +107,8 @@ export default Vue.extend({
             LeagueID
             Players {
               id
-              Rank
               Name
-              Position
-              Team
+              TeamID
               LineUpPosition
             }
           }

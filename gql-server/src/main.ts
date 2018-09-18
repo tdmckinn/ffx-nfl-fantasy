@@ -1,30 +1,28 @@
 import { ApolloServer, gql } from 'apollo-server'
 import { RedisPubSub } from 'graphql-redis-subscriptions'
 import { format } from 'date-fns'
-import fs from 'fs'
 import shuffle from 'lodash.shuffle'
 import Redis from 'ioredis'
-import faker from 'faker'
+import * as faker from 'faker'
 
-import { NFL_DATA } from '../data/nfl_data_complete.json'
-import { NFL_ADP } from '../data/nfl_adp.json'
-import { NFL_TEAMS } from '../data/nfl_teams.json'
-import { NFL_POSITONS } from '../data/nfl_positions.json'
+import { NFL_DATA } from './data/nfl_data_complete.json'
+import { NFL_ADP } from './data/nfl_adp.json'
+import { NFL_TEAMS } from './data/nfl_teams.json'
+import { NFL_POSITONS } from './data/nfl_positions.json'
 
-import { NFX_USERS } from '../data/nfx_users.json'
-import { NFX_LEAGUES } from '../data/nfx_leagues.json'
-import { NFX_TEAMS } from '../data/nfx_teams.json'
-import { NFX_SETTINGS } from '../data/nfx_settings.json'
-import { NFX_LEAGUE_SETTINGS } from '../data/nfx_league_settings.json'
+import { NFX_USERS } from './data/nfx_users.json'
+import { NFX_LEAGUES } from './data/nfx_leagues.json'
+import { NFX_TEAMS } from './data/nfx_teams.json'
+import { NFX_SETTINGS } from './data/nfx_settings.json'
+import { NFX_LEAGUE_SETTINGS } from './data/nfx_league_settings.json'
 
 import { typeDefs } from './typeDefs'
 
-const options = {
+const options: any = {
   host: 'localhost',
-  port: '6379',
-  retry_strategy: options => {
-    // reconnect after
-    return Math.max(options.attempt * 100, 3000)
+  port: 6379,
+  retry_strategy: opts => {
+    return Math.max(opts.attempt * 100, 3000)
   }
 }
 
@@ -43,14 +41,15 @@ const getShuffledUserDraftPositions = () =>
 const draftPicksByRound = (numberOfTeams = 10, numOfRosterPositions = 15) => {
   const allDraftPicks = {}
   for (let draftPosition = 1; draftPosition <= numberOfTeams; draftPosition++) {
-    const picks = []
+    const picks: number[] = []
     for (let round = 1; round <= numOfRosterPositions; round++) {
       let draftPick
-      if (round % 2 === 0) {
-        draftPick = round * numberOfTeams - draftPosition + 1
-      } else {
-        draftPick = (round - 1) * numberOfTeams + draftPosition
-      }
+
+      draftPick =
+        round % 2 === 0
+          ? round * numberOfTeams - draftPosition + 1
+          : (draftPick = (round - 1) * numberOfTeams + draftPosition)
+
       picks.push(draftPick)
     }
     allDraftPicks[draftPosition] = picks
@@ -68,7 +67,7 @@ const NEW_USER_DRAFT_PICK = 'new_user_draft_pick'
 const resolvers = {
   Query: {
     // draft - NFX player info used for live draft
-    draft: async (root, { draftId }) => {
+    draft: async (_root, { draftId }) => {
       const userDraft = await redis.get(draftId)
       if (draftId && userDraft) {
         return JSON.parse(userDraft)
@@ -87,7 +86,7 @@ const resolvers = {
     settings: () => NFX_SETTINGS
   },
   Mutation: {
-    createTeam(team) {
+    createTeam(_team) {
       return {
         id: 1,
         LeagueID: 1,
@@ -99,24 +98,33 @@ const resolvers = {
     },
     // editTeam() {},
     // deleteTeam() {},
-    createLeague(root, { league }, context) {
+    createLeague(_roo, { league }, _context) {
       // TODO: Save league data to database and create owners team by default
-      const leagueData = Object.assign({}, league, {
-        id: 2,
-        CommissionerID: '71071c6f-1d2b-4657-a617-4a3c8eca00a4',
-        IsDraftComplete: false,
-        DateCreated: format(new Date(), 'YYYY-MM-DD'),
-        LeagueTeams: [
-          {
-            id: 1,
-            OwnerID: '71071c6f-1d2b-4657-a617-4a3c8eca00a4',
-            LeagueID: 2,
-            Name: `${league.CommissionerName} Team`,
-            DateCreated: format(new Date(), 'YYYY-MM-DD')
+      const leagueData = {
+        ...league,
+        ...{
+          id: 2,
+          CommissionerID: '71071c6f-1d2b-4657-a617-4a3c8eca00a4',
+          IsDraftComplete: false,
+          DateCreated: format(new Date(), 'YYYY-MM-DD'),
+          LeagueTeams: [
+            {
+              id: 1,
+              OwnerID: '71071c6f-1d2b-4657-a617-4a3c8eca00a4',
+              LeagueID: 2,
+              Name: `${league.CommissionerName} Team`,
+              DateCreated: format(new Date(), 'YYYY-MM-DD')
+            }
+          ],
+          Settings: {
+            ...NFX_LEAGUE_SETTINGS,
+            ...{
+              id: 2,
+              LeagueID: 2
+            }
           }
-        ],
-        Settings: Object.assign({}, NFX_LEAGUE_SETTINGS, { id: 2, LeagueID: 2 })
-      })
+        }
+      }
 
       // NFX_LEAGUES.push(leagueData)
 
@@ -125,11 +133,9 @@ const resolvers = {
       // }
 
       console.log(NFX_LEAGUES)
-
-      // fs.writeFileSync('../data/nfx_leagues.json', JSON.stringify(newLeagues, null, 2))
       return leagueData
     },
-    joinLeague(_, { input }, context) {
+    joinLeague(_root, { input }, _context) {
       console.log(input)
       return {
         id: 2,
@@ -137,25 +143,27 @@ const resolvers = {
         OwnerID: '71071c6f-1d2b-4657-a617-4a3c8eca00a4'
       }
     },
-    updateLeagueSettings(_, { settings }, context) {
+    updateLeagueSettings(_root, { settings }, _context) {
       console.log('User Settings', settings)
     },
-    enteredDraft: async (_, { leagueId }) => {
+    enteredDraft: async (_root, { leagueId }) => {
       try {
         if (!leagueId) {
-          throw 'League Id Required to Enter Draft'
+          throw new Error('League Id Required to Enter Draft')
         }
 
         const draftId = `draft_${leagueId}`
         const currentDraft = await redis.get(draftId)
 
+        pubsub.publish(DRAFT_STATUS_CHANGED, { draftStatusChanged: true })
+
         if (currentDraft) {
           const draftData = JSON.parse(currentDraft)
           return draftData
         } else {
-          const league = NFX_LEAGUES.find(league => league.id === 1)
-          let teams = league.LeagueTeams.map(({ id, LeagueID }) => {
-            const team = NFX_TEAMS.find(team => team.id === id)
+          const league = NFX_LEAGUES.find(_league => _league.id === 1)
+          let teams = league!.LeagueTeams.map(({ id }) => {
+            const team = NFX_TEAMS.find(_team => _team.id === id)
             return team
           })
 
@@ -163,20 +171,21 @@ const resolvers = {
 
           while (teams.length < 10) {
             /**
-           *
-           * User Creation Info
-            OwnerID: teams.length + 1,
-            Name: faker.name.findName(),
-            Email: faker.internet.email(),
-            DateCreated: format(new Date(), 'YYYY-MM-DD'),
-            TimeZone: "America/Charlotte",
-           */
+             *
+             * User Creation Info
+             * OwnerID: teams.length + 1,
+             * Name: faker.name.findName(),
+             * Email: faker.internet.email(),
+             * DateCreated: format(new Date(), 'YYYY-MM-DD'),
+             * TimeZone: "America/Charlotte",
+             */
             teams.push({
               id: Number(teams.length + 1),
-              OwnerID: teams.length + 1,
+              OwnerID: (teams.length + 1).toString(),
               LeagueID: Number(leagueId),
               Name: faker.commerce.productName(),
               DateCreated: format(new Date(), 'YYYY-MM-DD'),
+              Picks: [],
               Players: []
             })
           }
@@ -185,7 +194,7 @@ const resolvers = {
 
           teams = teams.map((team, index) => {
             const draftingPosition = teamPickOrder[index]
-            team.Picks = picks[draftingPosition]
+            team!.Picks = picks[draftingPosition]
             return team
           })
 
@@ -194,8 +203,8 @@ const resolvers = {
             LeagueID: 1,
             CurrentRound: 1,
             CurrentUserDrafting: 'John Doe',
-            DraftDateTime: league.DraftDateTime,
-            IsDraftComplete: league.IsDraftComplete,
+            DraftDateTime: league!.DraftDateTime,
+            IsDraftComplete: league!.IsDraftComplete,
             Players: NFL_ADP,
             Rounds: 15,
             Teams: teams
@@ -216,7 +225,7 @@ const resolvers = {
       const userDraft = await redis.get(selectedPick.DraftID)
 
       if (userDraft) {
-        let parsedDraftSession = JSON.parse(userDraft)
+        const parsedDraftSession = JSON.parse(userDraft)
         parsedDraftSession.Teams.find(
           team => team.id === selectedPick.TeamID
         ).Players.push({
@@ -238,7 +247,7 @@ const resolvers = {
   Subscription: {
     draftStatusChanged: {
       resolve: payload => {
-        console.log('Apollo Subscription')
+        console.log('Apollo Subscription - Draft Status Changed')
         return payload.draftStatusChanged
       },
       subscribe: () => pubsub.asyncIterator(DRAFT_STATUS_CHANGED)
@@ -256,12 +265,14 @@ const resolvers = {
 
 // TODO: On Completion of draft save results from redis to DB
 
-const server = new ApolloServer({
+const apolloOptions: any = {
   typeDefs: gql(typeDefs),
   resolvers,
   subscriptions: true,
   cors: true
-})
+}
+
+const server = new ApolloServer(apolloOptions)
 
 server.listen().then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`)
