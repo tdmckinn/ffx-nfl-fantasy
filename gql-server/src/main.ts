@@ -17,6 +17,9 @@ import { NFX_SETTINGS } from './data/nfx_settings.json'
 import { NFX_LEAGUE_SETTINGS } from './data/nfx_league_settings.json'
 
 import { typeDefs } from './typeDefs'
+import { setupTypeORMConnections } from './db'
+
+setupTypeORMConnections()
 
 const options: any = {
   host: 'localhost',

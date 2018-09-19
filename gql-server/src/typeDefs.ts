@@ -108,6 +108,7 @@ export const typeDefs = `
     id: Int
     TeamID: Int
     Name: String
+    Position: String
     LineUpPosition: String
   }
 
