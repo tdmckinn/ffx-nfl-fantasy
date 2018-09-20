@@ -16,7 +16,7 @@
           <div class="level-left">
               <span class="icon is-small" @mouseover="isHovered = true" @mouseout="isHovered = false">
                 <i
-                  :class="[isHovered || isPlayerOnMyTeam ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"
+                  :class="[isHovered || isPlayerOnMyWatchList ? 'fa-thumbs-up' : 'fa-thumbs-o-up']"
                   class="fa"
                   ></i>
               </span>
@@ -47,10 +47,9 @@ export default {
     }
   },
   computed: {
-    isPlayerOnMyTeam() {
+    isPlayerOnMyWatchList() {
       if (this.player) {
         return true
-        // return typeof this.$store.state.myTeam.find(item => item.playerId === this.player.playerId) !== 'undefined'
       }
       return false
     }

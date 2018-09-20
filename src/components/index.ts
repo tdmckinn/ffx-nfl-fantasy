@@ -10,6 +10,7 @@ export { default as NfxSlide } from './NfxSlide.vue'
 export { default as NfxSectionHeader } from './NfxSectionHeader.vue'
 export { default as NfxSvgLoading } from './svgs/NfxSvgLoading.vue'
 export { default as NfxRadioControl } from './NfxRadioControl.vue'
+export { default as NfxNotification } from './NfxNotification.vue'
 
 export { default as EmptyState } from './EmptyState.vue'
 

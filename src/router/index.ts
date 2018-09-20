@@ -41,8 +41,7 @@ const router = new Router({
     {
       path: '/logout',
       beforeEnter: () => {
-        router.push('/');
-        location.reload();
+        location.href = '/'
         netlifyIdentity.logout();
       }
     },

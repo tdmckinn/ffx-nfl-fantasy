@@ -25,22 +25,20 @@
               <nfx-input ref="dateTimerPicker" id="leagueModiferDraftDateTimer" v-model="draftDateTime" type="text" placeholder="Date Here"></nfx-input>
             </nfx-fieldset>
             <div class="nfx__divider"></div>
-          </div>
-          <div v-if="isSettingsEditMode">
-            <h5 class="title is-5">Team <span v-if="teamID">{{teamID}}</span></h5>
-            <nfx-fieldset
-              text="Team Name"
-            >
+            <h5 class="title is-5">Team: <span>{{teamName}}</span></h5>
+            <nfx-fieldset text="Team Name">
               <nfx-input v-model="teamName" placeholder="Team Name Here"></nfx-input>
             </nfx-fieldset>
             <div class="nfx__divider"></div>
+          </div>
+          <div v-if="isSettingsEditMode">
             <league-settings :defaultSettingsConfig="settings" :leagueSettings="leagueSettings"></league-settings>
           </div>
         </form>
       </section>
       <footer class="modal-card-foot">
         <a class="button" @click.prevent="close">Cancel</a>
-        <nfx-button v-if="isSettingsEditMode" text="Save" :click="updateLeague" alt></nfx-button>
+        <nfx-button v-if="isSettingsEditMode" text="Save Settings" :click="saveLeagueSettings" alt></nfx-button>
         <nfx-button v-if="!isSettingsEditMode" text="Submit" :click="createLeague" alt></nfx-button>
       </footer>
     </div>
@@ -70,6 +68,7 @@ export default Vue.extend({
   data() {
     const { user } = (this.$store as any).state
     return {
+      leagueId: null,
       isSettingsEditMode: false,
       leagueSettings: {},
       settings: [],
@@ -77,10 +76,9 @@ export default Vue.extend({
         value: '',
         isFocusOnMount: true
       },
-      teamID: '',
       draftDateTime: '',
       teamName: '',
-      commissionerName: user.firstName,
+      commissionerName: user.fullName,
       isValidForm: true
     }
   },
@@ -128,25 +126,32 @@ export default Vue.extend({
   },
   methods: {
     close() {
-      // Object.assign(this.$data, this.$options.data())
-      setTimeout(() => {
-        this.$emit('closing')
-      }, 100)
+      this.resetData()
+      this.$emit('closing')
     },
-    saveLeagueSettings() {
-      if (Object.keys(this.leagueSettings).length === 0) {
-        alert('Must set league settings')
-        return false
-      }
+    resetData() {
+      this.leagueId = null
+      this.isSettingsEditMode = false
+      this.leagueSettings = {}
+      this.settings = []
+      this.leagueName = Object.assign({
+        value: '',
+        isFocusOnMount: true
+      })
+      this.draftDateTime = ''
+      this.commissionerName = ''
+      this.isValidForm = true
     },
     createLeague() {
       /**
        * TODO: Validations
        */
       const newLeague = {
+        CommissionerID: (this as any).user.id,
         LeagueName: this.leagueName.value,
         CommissionerName: this.commissionerName,
-        DraftDateTime: format(new Date(this.draftDateTime), 'YYYY-MM-dd HH:mm')
+        DraftDateTime: format(new Date(this.draftDateTime), 'YYYY-MM-dd HH:mm'),
+        TeamName: this.teamName
       }
 
       this.$apollo
@@ -156,17 +161,7 @@ export default Vue.extend({
               createLeague(league: $league) {
                 id
                 CommissionerID
-                LeagueTeams {
-                  id
-                  OwnerID
-                  Name
-                }
-                CommissionerID
                 LeagueName
-                LeagueSettings {
-                  id
-                  LeagueID
-                }
               }
             }
           `,
@@ -176,16 +171,14 @@ export default Vue.extend({
           }
         })
         .then(({ data: { createLeague } }: any) => {
+          console.log(createLeague)
           alert('League saved continue editing...')
-          this.teamID = createLeague.LeagueTeams.find(
-            team => {
-              return team.OwnerID === createLeague.CommissionerID
-            }
-          ).id
+          debugger
+          this.leagueId = createLeague.id
           this.isSettingsEditMode = true
         })
     },
-    updateLeague() {
+    saveLeagueSettings() {
       const readonlySettings = this.settings
         .filter(({ readOnly }: any) => readOnly)
         .map(({ id, value, values, singleValues }: any) => {
@@ -198,6 +191,7 @@ export default Vue.extend({
         }, {})
 
       const updatedSettings = {
+        LeagueID: this.leagueId,
         ...this.leagueSettings,
         ...readonlySettings
       }
@@ -215,8 +209,9 @@ export default Vue.extend({
             settings: updatedSettings
           }
         })
-        .then(data => {
-          console.log(data)
+        .then(() => {
+          alert('Updating League Settings Successful')
+          this.close()
         })
     }
   }

@@ -9,8 +9,9 @@
         <nfx-player :player="player"></nfx-player>
       </section>
       <footer class="modal-card-foot">
-        <a v-if="!isPlayerOnMyTeam" class="button is-success" :class="{ 'is-loading': isLoading }" @click="addPlayer">Add Player</a>
-        <a v-else class="button is-danger" :class="{ 'is-loading': isLoading }" @click="removePlayer">Remove Player</a>
+        <a v-if="!isPlayerOnMyWatchList" class="button is-success" :class="{ 'is-loading': isLoading }" @click="addPlayer">Add Player</a>
+        <a v-else class="button is-danger" :class="{ 'is-loading': isLoading }" @click="removePlayer">
+          <i class="material-icons">star</i>Watch List</a>
         <a class="button" @click="close">Cancel</a>
       </footer>
     </div>
@@ -36,7 +37,7 @@ export default {
     }
   },
   computed: {
-    isPlayerOnMyTeam() {
+    isPlayerOnMyWatchList() {
       if (this.player) {
         return true
       }
@@ -52,12 +53,10 @@ export default {
     },
     removePlayer() {
       this.isLoading = true
-      this.$store.dispatch('REMOVE_PLAYER', this.player)
       this.close()
     },
     addPlayer() {
       this.isLoading = true
-      this.$store.dispatch('ADD_PLAYER', this.player)
       this.close()
     }
   }

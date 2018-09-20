@@ -8,27 +8,7 @@
 import { NfxFieldset, NfxInput, NfxButton } from './'
 
 export default {
-  name: 'nfx-login',
-  components: {
-    NfxFieldset,
-    NfxInput,
-    NfxButton
-  },
-  data() {
-    return {
-      email: {
-        value: '',
-        isFocusOnMount: true
-      },
-      password: '',
-      isValidForm: true
-    }
-  },
-  methods: {
-    login() {
-      this.$store.dispatch('USER_AUTHENTICATED', { email: this.email.value, password: this.password })
-    }
-  }
+  name: 'nfx-login'
 }
 </script>
 

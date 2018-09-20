@@ -24,7 +24,7 @@
           <div class="nfx-team__party">Offense</div>
           <div class="nfx-team__player"><span class="nfx-team__position">QB</span>{{userCurrentTeam.QB1.Name}}</div>
           <div class="nfx-team__player"><span class="nfx-team__position">WR</span>{{userCurrentTeam.WR1.Name}}</div>
-          <div class="nfx-team__player"v><span class="nfx-team__position">RB</span>{{userCurrentTeam.WR2.Name}}</div>
+          <div class="nfx-team__player"><span class="nfx-team__position">RB</span>{{userCurrentTeam.WR2.Name}}</div>
           <div class="nfx-team__player"><span class="nfx-team__position">RB</span>{{userCurrentTeam.RB1.Name}}</div>
           <div class="nfx-team__player"><span class="nfx-team__position">RB</span>{{userCurrentTeam.RB2.Name}}</div>
           <div class="nfx-team__player"><span class="nfx-team__position">TE</span>{{userCurrentTeam.TE.Name}}</div>
@@ -67,18 +67,21 @@ export default Vue.extend({
   },
   data() {
     return {
-      selectedTeam: [],
+      selectedTeam: null,
       showModal: false,
       userTeams: [],
       condition: false
     }
   },
   computed: {
+    ...mapState({
+      user: ({ user }) => user
+    }),
     userHasTeams() {
       return this.userTeams && this.userTeams.length !== 0
     },
     userCurrentTeam() {
-      if (this.selectedTeam.length === 0) {
+      if (!this.selectedTeam) {
         return []
       }
 
@@ -100,7 +103,7 @@ export default Vue.extend({
   apollo: {
     userTeams: {
       query: gql`
-        query($userId: Int!) {
+        query($userId: String!) {
           userTeams(userId: $userId) {
             id
             Name
@@ -114,8 +117,10 @@ export default Vue.extend({
           }
         }
       `,
-      variables: {
-        userId: 2
+      variables() {
+        return {
+          userId: this.user.id
+        }
       }
     }
   },
@@ -124,8 +129,6 @@ export default Vue.extend({
       this.showModal = false
     },
     viewTeamClick(team) {
-      const orderedTeam = []
-
       this.selectedTeam = team
       this.showModal = true
     },
@@ -168,7 +171,6 @@ export default Vue.extend({
   &__item {
     display: flex;
     border-top: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
     padding: 10px 0;
 
     p {

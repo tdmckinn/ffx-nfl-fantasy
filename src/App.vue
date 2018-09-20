@@ -23,6 +23,7 @@
       </section>
       <nfx-counter></nfx-counter>
     </nfx-footer>
+    <!-- <nfx-notification></nfx-notification> -->
     <div v-if="isUserDraftLoading" class="nfx-loading--fullscreen">
       <h2 class="nfx-loading__header">NFX FANTASY</h2>
       <div>Loading Draft Please Wait...</div>
@@ -34,9 +35,10 @@
 <script lang="ts">
 import Vue from 'vue'
 import { mapState } from 'vuex'
+import gql from 'graphql-tag'
 import netlifyIdentity from 'netlify-identity-widget'
 
-import { NfxHeader, NfxFooter, NfxLogin, NfxSvgLoading } from './components'
+import { NfxHeader, NfxFooter, NfxLogin, NfxSvgLoading, NfxNotification } from './components'
 
 const nfxThemeMusic = require('./assets/nfx_theme.mp3')
 
@@ -46,7 +48,8 @@ export default Vue.extend({
     NfxHeader,
     NfxFooter,
     NfxLogin,
-    NfxSvgLoading
+    NfxSvgLoading,
+    NfxNotification
   },
   data() {
     return {
@@ -56,6 +59,7 @@ export default Vue.extend({
   },
   computed: {
     ...mapState({
+      user: ({ user }) => user,
       isLoggedInUser: ({ user }) => user.isLoggedIn,
       isUserDraftLoading: ({ draftConfig }) => draftConfig.isUserDraftLoading
     } as any)
@@ -75,11 +79,11 @@ export default Vue.extend({
     }
   },
   mounted() {
-    if (!this.isLoggedInUser) {
-      netlifyIdentity.init({
-        container: 'body'
-      })
+    netlifyIdentity.init({
+      container: 'body'
+    })
 
+    if (!this.isLoggedInUser) {
       netlifyIdentity.open('signup')
 
       netlifyIdentity.on('login', user => {
@@ -89,6 +93,25 @@ export default Vue.extend({
           isLoggedIn: true,
           fullName: user.user_metadata.full_name
         })
+
+        this.$apollo.mutate({
+          mutation: gql`
+            mutation($user: CreateUserInput!) {
+              createUser(user: $user) {
+                id
+                Name
+              }
+            }
+          `,
+          variables: {
+            user: {
+              id: user.id,
+              Name: user.user_metadata.full_name,
+              Email: user.email,
+            }
+          }
+        })
+
         netlifyIdentity.close()
       })
     }

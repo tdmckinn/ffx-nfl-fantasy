@@ -26,7 +26,9 @@
         </div>
         <!-- Right side -->
         <div class="level-right">
-          <p class="level-item"><a class="button is-success" @click.prevent="showModal = true">Create League</a></p>
+          <p class="level-item">
+            <nfx-button text="Create League" class="is-success" :click="() => { showModal = true } "></nfx-button>
+          </p>
         </div>
       </nav>
       <nfx-league type="appLeagues" :leagues="leagues">
@@ -34,7 +36,7 @@
           <nfx-button text="Join League" :click="() => { joinLeague(league.id) }" alt></nfx-button>
           <nfx-button text="Edit League" :click="editLeague" alt disabled></nfx-button>
         </div>
-        <div slot="settings" class="nfx-league__settings">
+        <div slot="settings" slot-scope="{ league }" class="nfx-league__settings">
           <div class="nfx__divider"></div>
           <span><i class="material-icons">perm_data_setting</i></span> Settings
         </div>

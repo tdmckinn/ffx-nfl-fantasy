@@ -26,26 +26,27 @@ export default Vue.extend({
 @import '../../vars';
 
 .nfx-league {
-  border-radius: 6px;
-  border: 1px solid lightgray;
-  padding: 12px;
   margin-top: 50px;
 
   &__item {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    border-radius: 6px;
+    border: 1px solid lightgray;
+    padding: 12px;
+    margin-top: 25px;
+
+    &:hover {
+      border-color: $orange;
+      cursor: pointer;
+    }
   }
-  
+
   &__content {
     // display: flex;
     // justify-content: space-between;
     // flex-wrap: wrap;
-  }
-
-  &:hover {
-    border-color: $orange;
-    cursor: pointer;
   }
 
   &__name {

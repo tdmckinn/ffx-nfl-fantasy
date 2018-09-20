@@ -31,6 +31,7 @@
             <router-link class="navbar-item" to="/logout">
               Logout
             </router-link>
+            <a class="navbar-item">User: {{user.fullName}}</a>
           </div>
         </div>
       </div>
@@ -75,7 +76,7 @@ export default Vue.extend({
       ]
     }
   },
-  computed: mapState(['isSidebarOpen']),
+  computed: mapState(['isSidebarOpen', 'user']),
   methods: {
     ...mapMutations(['SIDEBAR_TOGGLE'])
   }

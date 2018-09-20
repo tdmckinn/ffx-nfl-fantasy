@@ -34,7 +34,7 @@ if (localStorage.getItem('gotrue.user')) {
       id,
       email,
       isLoggedIn: true, // check expiration token
-      fullName: user_metadata.fullName
+      fullName: user_metadata.full_name
     }
   }
 }
