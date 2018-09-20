@@ -9,8 +9,8 @@ import {
   ManyToOne
 } from 'typeorm'
 
-import { Settings } from './settings'
 import { Team } from './team'
+import { Settings } from './settings'
 import { User } from './user'
 
 @Entity()
@@ -30,16 +30,16 @@ export class League {
   @Column()
   draft_date_time: Date
 
-  @OneToMany(_type => Team, team => team.id)
+  @OneToMany(_type => Team, team => team.league, { cascade: true })
   teams: Team[]
 
   @ManyToOne(_type => User, user => user.leagues)
   @JoinColumn({ name: 'commissioner_id' })
-  commissioner: User
+  commissioner_id: User
 
-  @OneToOne(_type => Settings)
+  @OneToOne(_type => Settings, { nullable: true, cascade: true })
   @JoinColumn({ name: 'league_settings_id' })
-  league_settings: Settings
+  settings: Settings | null
 
   @CreateDateColumn()
   date_created: Date

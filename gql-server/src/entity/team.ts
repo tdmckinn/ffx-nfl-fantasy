@@ -4,14 +4,13 @@ import {
   CreateDateColumn,
   PrimaryGeneratedColumn,
   ManyToOne,
-  OneToOne,
   OneToMany,
   JoinColumn
 } from 'typeorm'
 
 import { League } from './league'
 import { User } from './user'
-import { Player } from './player';
+import { Player } from './player'
 
 @Entity()
 export class Team {
@@ -24,21 +23,16 @@ export class Team {
   @Column('simple-array')
   picks: number[]
 
-  @Column()
-  draft_date_time: Date
-
-  @OneToOne(_type => User)
-  @JoinColumn({ name: 'owner_id' })
-  owner: User
-
   @ManyToOne(_type => User, user => user.teams)
-  user: User
+  @JoinColumn({ name: 'user_id' })
+  user_id: User
 
   @ManyToOne(_type => League, league => league.teams)
+  @JoinColumn({ name: 'league_id' })
   league: League
 
   // has many players
-  @OneToMany(_type => Player, player => player.team)
+  @OneToMany(_type => Player, player => player.team, { cascade: true })
   players: Player[]
 
   @CreateDateColumn()

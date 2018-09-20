@@ -23,7 +23,7 @@ Dev
 * BEM for SCSS naming convention
 * Graphql
 * Nodejs
-* Cockroachdb (FTTB)
+* Good Ol' Postgres (FTTB) / Cockroachdb (TBD)
 * JSON Data files
 
 > ```This project prototypes different features & technologies. Examples provided are for those demo purposes only.```

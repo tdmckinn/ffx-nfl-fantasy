@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "start:dev": "nodemon",
+    "dev": "nodemon",
+    "dev:debug": "nodemon --config nodemon-debug.json",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
     "start:prod": "yarn build && node dist/main.js"
   },

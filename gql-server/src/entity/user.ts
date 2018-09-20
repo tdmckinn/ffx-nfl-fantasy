@@ -5,8 +5,9 @@ import {
   CreateDateColumn,
   OneToMany
 } from 'typeorm'
-import { League } from './league';
-import { Team } from './team';
+
+import { League } from './league'
+import { Team } from './team'
 
 @Entity()
 export class User {
@@ -26,11 +27,11 @@ export class User {
   time_zone: string
 
   // has many teams
-  @OneToMany(_type => League, league => league.commissioner)
+  @OneToMany(_type => League, league => league.commissioner_id, { cascade: true })
   leagues: League[]
 
   // has many leagues
-  @OneToMany(_type => Team, team => team.user)
+  @OneToMany(_type => Team, team => team.user_id, { cascade: true })
   teams: Team[]
 
   @CreateDateColumn()

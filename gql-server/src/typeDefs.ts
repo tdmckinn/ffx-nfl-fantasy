@@ -129,7 +129,7 @@ export const typeDefs = `
     players: [Player]
     draft(draftId: String): Draft
     users: [User]
-    userTeams(userId: Int): [UserTeam]
+    userTeams(userId: String): [UserTeam]
     leagues: [League]
     settings: [LeagueConfigSetting]
     teams: [NFL_Team]
@@ -137,15 +137,23 @@ export const typeDefs = `
   }
 
   # INPUTS
+  input CreateUserInput {
+    id: String
+    Name: String
+    Email: String
+  }
+
   input CreateTeamInput {
     name: String
     owner: String
   }
 
   input CreateLeagueInput {
-    LeagueName: String
+    CommissionerID: String
     CommissionerName: String
+    LeagueName: String
     DraftDateTime: String
+    TeamName: String
   }
 
   input JoinLeagueInput {
@@ -174,6 +182,7 @@ export const typeDefs = `
 
   # The mutation root type, used to define all mutations.
   type Mutation {
+    createUser(user: CreateUserInput!): User
     createTeam(team: CreateTeamInput!): UserTeam
     createLeague(league: CreateLeagueInput!): League
     updateLeagueSettings(settings: UpdateLeagueSettingsInput!): LeagueSettings
