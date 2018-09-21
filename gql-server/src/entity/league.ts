@@ -25,6 +25,9 @@ export class League {
   commissioner_name: string
 
   @Column()
+  commissioner_id: string
+
+  @Column()
   league_name: string
 
   @Column()
@@ -35,7 +38,7 @@ export class League {
 
   @ManyToOne(_type => User, user => user.leagues)
   @JoinColumn({ name: 'commissioner_id' })
-  commissioner_id: User
+  commissioner: User
 
   @OneToOne(_type => Settings, { nullable: true, cascade: true })
   @JoinColumn({ name: 'league_settings_id' })

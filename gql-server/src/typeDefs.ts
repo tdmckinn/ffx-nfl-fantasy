@@ -157,7 +157,8 @@ export const typeDefs = `
   }
 
   input JoinLeagueInput {
-    id: String
+    id: Int
+    ownerId: String
     name: String
   }
 

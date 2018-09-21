@@ -26,12 +26,10 @@ export class User {
   @Column()
   time_zone: string
 
-  // has many teams
-  @OneToMany(_type => League, league => league.commissioner_id, { cascade: true })
+  @OneToMany(_type => League, league => league.commissioner, { cascade: true })
   leagues: League[]
 
-  // has many leagues
-  @OneToMany(_type => Team, team => team.user_id, { cascade: true })
+  @OneToMany(_type => Team, team => team.user, { cascade: true })
   teams: Team[]
 
   @CreateDateColumn()

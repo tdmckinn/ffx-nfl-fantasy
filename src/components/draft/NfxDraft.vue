@@ -12,10 +12,10 @@
       <div class="nfx-draft__queued-pick">
         <span>
           <i class="nfx-draft__queued-icon material-icons">person</i>
-          <span v-if="!selectedPick">No Player Selected</span>
+          <span v-if="!selectedPick.hasOwnProperty('id')">No Player Selected</span>
           {{selectedPick && selectedPick.Name}}
         </span>
-        <nfx-button text="Draft Player" :click="draftPlayer" alt :disabled="!selectedPick"></nfx-button>
+        <nfx-button text="Draft Player" :click="draftPlayer" alt :disabled="!selectedPick.hasOwnProperty('id')"></nfx-button>
       </div>
     </div>
     <section class="nfx-draft__content">
@@ -55,7 +55,7 @@
     </section>
     <div class="nfx-draft__sidebar-left">
       <div class="nfx-draft__timer">Draft Start / Timer</div>
-      <div class="nfx-draft__pick">You have the {{draftPickNumber}}th Pick</div>
+      <div class="nfx-draft__pick">You have the {{draftPickNumber}}st Pick</div>
       <nfx-draft-order :teams="teamsDraftingByRound"></nfx-draft-order>
     </div>
     <div class="nfx-draft__sidebar-right">
@@ -102,9 +102,11 @@ export default Vue.extend({
   },
   data() {
     return {
-      draft: {},
+      draft: {
+        Teams: []
+      },
       myQueue: [],
-      selectedPick: null,
+      selectedPick: {},
       leagueId: this.$route.params.id,
       isUserDrafting: false
     }
@@ -132,7 +134,7 @@ export default Vue.extend({
       return teamsByRound
     },
     userTeam() {
-      return this.draft.hasOwnProperty('Teams') && this.draft.Teams.length !== 0
+      return this.draft.Teams.length !== 0
         ? this.draft.Teams.find(team => team.OwnerID === this.user.id)
         : null
     }
@@ -221,6 +223,7 @@ export default Vue.extend({
             )
 
             draft.Players.splice(index, 1)
+            this.selectedPick = {}
 
             return {
               draft
@@ -252,7 +255,6 @@ export default Vue.extend({
       console.log('Set Deafult Lineup')
     },
     draftPlayer() {
-      this.removeQueuePlayer(this.selectedPick)
       this.$apollo
         .mutate({
           mutation: gql`
@@ -266,11 +268,12 @@ export default Vue.extend({
             }
           `,
           variables: {
-            selectedPick: this.selectedPick
+            selectedPick: {...this.selectedPick}
           }
         })
         .then(({ data: { addDraftPickToUserTeam } }) => {
           console.log('User Drafted Pick', addDraftPickToUserTeam)
+          this.removeQueuePlayer(this.selectedPick)
         })
     },
     playerSelected({ id, Name, Position }) {

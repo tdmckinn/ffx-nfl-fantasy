@@ -22,58 +22,63 @@ import { User } from './entity/user'
 import { League } from './entity/league'
 import { Team } from './entity/team'
 import { Settings } from './entity/settings'
-import { Player } from './entity/player'
+// import { Player } from './entity/player'
 
 import { typeDefs } from './typeDefs'
 
 const redisOptions: any = {
-  host: 'localhost',
-  port: 6379,
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
   retry_strategy: opts => {
     return Math.max(opts.attempt * 100, 3000)
   }
 }
+const redis = new Redis(redisOptions)
+const pubsub = new RedisPubSub({
+  publisher: new Redis(redisOptions),
+  subscriber: new Redis(redisOptions)
+})
+
+const getShuffledUserDraftPositions = () =>
+  shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+
+/**
+ * TODO: Use Leagues Settings
+ */
+const draftPicksByRound = (numberOfTeams = 10, numOfRosterPositions = 15) => {
+  const allDraftPicks = {}
+  for (let draftPosition = 1; draftPosition <= numberOfTeams; draftPosition++) {
+    const picks: number[] = []
+    for (let round = 1; round <= numOfRosterPositions; round++) {
+      let draftPick
+
+      draftPick =
+        round % 2 === 0
+          ? round * numberOfTeams - draftPosition + 1
+          : (draftPick = (round - 1) * numberOfTeams + draftPosition)
+
+      picks.push(draftPick)
+    }
+    allDraftPicks[draftPosition] = picks
+  }
+  return allDraftPicks
+}
+
+const getLeagueTeams = (teams: Team[]) => {
+  return teams.map(team => {
+    return {
+      id: team.id,
+      Name: team.name,
+      LeagueID: team.league_id,
+      OwnerID: team.user_id,
+      Players: team.players,
+      Picks: team.picks
+    }
+  })
+}
 
 createConnection()
   .then(async connection => {
-    const redis = new Redis(redisOptions)
-    const pubsub = new RedisPubSub({
-      publisher: new Redis(redisOptions),
-      subscriber: new Redis(redisOptions)
-    })
-
-    const getShuffledUserDraftPositions = () =>
-      shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-
-    /**
-     * TODO: Use Leagues Settings
-     */
-    const draftPicksByRound = (
-      numberOfTeams = 10,
-      numOfRosterPositions = 15
-    ) => {
-      const allDraftPicks = {}
-      for (
-        let draftPosition = 1;
-        draftPosition <= numberOfTeams;
-        draftPosition++
-      ) {
-        const picks: number[] = []
-        for (let round = 1; round <= numOfRosterPositions; round++) {
-          let draftPick
-
-          draftPick =
-            round % 2 === 0
-              ? round * numberOfTeams - draftPosition + 1
-              : (draftPick = (round - 1) * numberOfTeams + draftPosition)
-
-          picks.push(draftPick)
-        }
-        allDraftPicks[draftPosition] = picks
-      }
-      return allDraftPicks
-    }
-
     /**
      * Subscription Events
      */
@@ -101,35 +106,36 @@ createConnection()
         players: () => NFL_DATA,
         teams: () => NFL_TEAMS,
         userTeams: async (_, { userId }: { userId: string }) => {
-          const user = await entityManager.findOne(User, {
-            where: { id: userId },
-            relations: ['teams']
-          })
+          const user = await entityManager
+            .createQueryBuilder(User, 'user')
+            .leftJoinAndSelect('user.teams', 'team')
+            .where('user.id = :id', { id: userId })
+            .getOne()
 
           if (user) {
-            console.log(user.teams)
-
-            return user.teams
+            return getLeagueTeams(user.teams)
           }
           return []
-          // return NFX_TEAMS.filter(team => team.OwnerID === userId)
         },
         async leagues() {
-          const leagues = await entityManager.find(League, {
-            relations: ['settings', 'teams']
-          })
+          const leagues = await entityManager
+            .createQueryBuilder(League, 'league')
+            .leftJoinAndSelect('league.teams', 'team')
+            .leftJoinAndSelect('league.settings', 'settings')
+            .getMany()
 
           const _leagues = leagues
             ? leagues.map(league => {
                 return {
                   id: league.id,
+                  CommissionerID: league.commissioner_id,
                   DraftDateTime: league.draft_date_time,
                   LeagueName: league.league_name,
                   LeagueSettings: {
                     id: league.settings!.id,
                     ...league.settings!.settings_json
                   },
-                  LeagueTeams: league.teams
+                  LeagueTeams: getLeagueTeams(league.teams)
                 }
               })
             : []
@@ -181,10 +187,11 @@ createConnection()
             TeamName
           } = league
 
-          const user = await entityManager.findOne(User, {
-            where: { id: CommissionerID },
-            relations: ['leagues']
-          })
+          const user = await entityManager
+            .createQueryBuilder(User, 'user')
+            .leftJoinAndSelect('user.leagues', 'league')
+            .where('user.id = :id', { id: CommissionerID })
+            .getOne()
 
           if (!user || !CommissionerID) {
             throw new Error(`You must be a registered user to create a league`)
@@ -231,13 +238,24 @@ createConnection()
             })
           }
         },
-        joinLeague(_root, { input }, _context) {
-          console.log(input)
-          return {
-            id: 2,
-            LeagueID: 1,
-            OwnerID: '71071c6f-1d2b-4657-a617-4a3c8eca00a4'
-          }
+        async joinLeague(_root, { input }, _context) {
+          const league = await entityManager
+          .createQueryBuilder(League, 'league')
+          .leftJoinAndSelect('league.teams', 'team')
+          .where('league.id = :id', { id: input.id })
+          .getOne()
+
+          const newTeam = new Team()
+          newTeam.name = input.name
+          newTeam.league_id = input.id
+          newTeam.user_id = input.ownerId
+          newTeam.picks = []
+          newTeam.players = []
+
+          league!.teams.push(newTeam)
+          await entityManager.save(League, league!)
+
+          return ''
         },
         async updateLeagueSettings(_root, { settings }, _context) {
           const league = await entityManager.findOne(League, {
@@ -268,15 +286,16 @@ createConnection()
             if (currentDraft) {
               return JSON.parse(currentDraft)
             } else {
-              const league = NFX_LEAGUES.find(_league => _league.id === 1)
-              let teams = league!.LeagueTeams.map(({ id }) => {
-                const team = NFX_TEAMS.find(_team => _team.id === id)
-                return team
-              })
+              const league = await entityManager
+                .createQueryBuilder(League, 'league')
+                .leftJoinAndSelect('league.teams', 'team')
+                .leftJoinAndSelect('league.settings', 'settings')
+                .where('league.id = :id', { id: leagueId })
+                .getOne()
 
               const teamPickOrder = getShuffledUserDraftPositions()
-
-              while (teams.length < 10) {
+              const teams = league!.teams
+              while (league!.teams.length < 10) {
                 /**
                  *
                  * User Creation Info
@@ -287,34 +306,43 @@ createConnection()
                  * TimeZone: "America/Charlotte",
                  */
                 teams.push({
-                  id: Number(teams.length + 1),
-                  OwnerID: (teams.length + 1).toString(),
-                  LeagueID: Number(leagueId),
-                  Name: faker.commerce.productName(),
-                  DateCreated: format(new Date(), 'YYYY-MM-DD'),
-                  Picks: [],
-                  Players: []
+                  id: Math.floor(Math.random() * Math.floor(12000)),
+                  user_id: (teams.length + 1).toString(),
+                  user: new User(),
+                  league: new League(),
+                  league_id: Number(leagueId),
+                  name: faker.commerce.productName(),
+                  date_created: format(new Date(), 'YYYY-MM-DD'),
+                  picks: [],
+                  players: []
                 })
               }
 
               const picks = draftPicksByRound()
 
-              teams = teams.map((team, index) => {
+              const draftTeams: any = teams.map((team, index) => {
                 const draftingPosition = teamPickOrder[index]
-                team!.Picks = picks[draftingPosition]
-                return team
+                return  {
+                  id: team.id,
+                  LeagueID: team.league_id,
+                  Name: team.name,
+                  OwnerID: team.user_id,
+                  DateCreated: team.date_created,
+                  Picks: picks[draftingPosition],
+                  Players: [],
+                }
               })
 
               const draftSetup = {
                 id: draftId,
-                LeagueID: 1,
+                LeagueID: league!.id,
                 CurrentRound: 1,
                 CurrentUserDrafting: 'John Doe',
-                DraftDateTime: league!.DraftDateTime,
-                IsDraftComplete: league!.IsDraftComplete,
+                DraftDateTime: league!.draft_date_time,
+                IsDraftComplete: false,
                 Players: NFL_ADP,
                 Rounds: 15,
-                Teams: teams
+                Teams: draftTeams
               }
 
               redis.set(draftId, JSON.stringify(draftSetup))
@@ -361,7 +389,7 @@ createConnection()
         },
         newUserDraftPick: {
           resolve: payload => {
-            console.log('Apollo Subscription - New User', payload.selectedPick)
+            console.log('Apollo Subscription - Draft Status Changed')
             return payload.selectedPick
           },
           subscribe: () => pubsub.asyncIterator(NEW_USER_DRAFT_PICK)
@@ -371,7 +399,6 @@ createConnection()
     //#endregion
 
     // TODO: On Completion of draft save results from redis to DB
-
     const apolloOptions: any = {
       typeDefs: gql(typeDefs),
       resolvers,

@@ -19,5 +19,6 @@ private/*
 *.sln
 
 .env.local
+.env.production
 
 gql-server/dist

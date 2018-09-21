@@ -4,7 +4,7 @@
       <div class="nfx-league__content">
         <span class="nfx-league__name">{{league.LeagueName}}</span>
         <span class="nfx-league__tag tag is-light">{{league.LeagueTeams.length}} of {{league.LeagueSettings.MaxTeams}} Members</span>
-        <span class="nfx-league__tag tag is-light">Draft Start: {{league.DraftDateTime}}</span>
+        <span class="nfx-league__tag tag is-light">Draft Start: {{league.DraftDateTime | draftDate }}</span>
       </div>
         <slot name="actions" :league="league"></slot>
         <slot v-if="type === 'appLeagues'" name="settings" :league="league"></slot>
@@ -14,10 +14,18 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { format } from 'date-fns'
+
 export default Vue.extend({
   props: {
     leagues: Array,
     type: String
+  },
+  filters: {
+    draftDate: (date: string) => {
+      if (!date) { return '' }
+      return format(new Date(date),  'MMM dd, YYYY HH:mm')
+    }
   }
 })
 </script>
@@ -54,7 +62,7 @@ export default Vue.extend({
   }
 
   &__actions {
-    .button:first-child {
+    .button {
       margin-right: 15px;
     }
   }

@@ -27,13 +27,16 @@
         <!-- Right side -->
         <div class="level-right">
           <p class="level-item">
-            <nfx-button text="Create League" class="is-success" :click="() => { showModal = true } "></nfx-button>
+            <nfx-button text="Create League" :disabled="hasMaxLeaguesCreated" :title="createLeagueTitleText" class="is-success" :click="() => { showModal = true } "></nfx-button>
           </p>
         </div>
       </nav>
       <nfx-league type="appLeagues" :leagues="leagues">
         <div slot="actions" slot-scope="{ league }" class="nfx-league__actions">
-          <nfx-button text="Join League" :click="() => { joinLeague(league.id) }" alt></nfx-button>
+          <router-link class="button is-success" :to="{path: `/leagues/${league.id}` }">
+            League Lobby
+          </router-link>
+          <nfx-button :disabled="isUserJoinedLeague(league)" text="Join League" :click="() => { displayJoinLeagueModal(league.id) }" alt></nfx-button>
           <nfx-button text="Edit League" :click="editLeague" alt disabled></nfx-button>
         </div>
         <div slot="settings" slot-scope="{ league }" class="nfx-league__settings">
@@ -43,19 +46,39 @@
       </nfx-league>
     </section>
     <league-modifer-modal :show="showModal" v-on:closing="showModal = false"></league-modifer-modal>
+    <nfx-modal :show="showJoinLeagueModal" v-on:closing="showModal = false" :onClose="close">
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Enter Team Details</p>
+          <button class="delete" @click="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <nfx-fieldset
+            text="Team Name"
+          >
+            <nfx-input v-model="newTeam.name" placeholder="Team Name Here"></nfx-input>
+          </nfx-fieldset>
+        </section>
+        <footer class="modal-card-foot">
+          <a class="button" @click="close">Close</a>
+          <nfx-button text="Save" :click="joinLeague" alt></nfx-button>
+        </footer>
+      </div>
+    </nfx-modal>
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 import { mapState } from 'vuex'
-
 import gql from 'graphql-tag'
 
-import { NfxSectionHeader, NfxButton, NfxLeague } from '../components'
+import { NfxFieldset, NfxInput, NfxSectionHeader, NfxButton, NfxLeague } from '../components'
 
 export default Vue.extend({
   components: {
+    NfxInput,
+    NfxFieldset,
     NfxButton,
     NfxSectionHeader,
     NfxLeague
@@ -63,13 +86,30 @@ export default Vue.extend({
   data() {
     return {
       showModal: false,
-      leagues: []
+      showJoinLeagueModal: false,
+      leagueToJoinId: '',
+      leagues: [],
+      newTeam: {
+        name: '',
+      }
     }
   },
   computed: {
     ...mapState({
       user: ({ user }) => user
-    })
+    }),
+    createLeagueTitleText() {
+      return this.hasMaxLeaguesCreated
+        ? 'Max Leagues Per User: 5'
+        : 'Create A League'
+    },
+    hasMaxLeaguesCreated() {
+      return (
+        this.leagues &&
+        this.leagues.filter(league => league.CommissionerID === this.user.id)
+          .length === 5
+      )
+    }
   },
   apollo: {
     leagues: gql`
@@ -78,6 +118,7 @@ export default Vue.extend({
           id
           DraftDateTime
           LeagueName
+          CommissionerID
           LeagueSettings {
             DraftType
             Scoring
@@ -88,15 +129,28 @@ export default Vue.extend({
           }
           LeagueTeams {
             id
+            OwnerID
           }
         }
       }
     `
   },
   methods: {
-    joinLeague(leagueId) {
-      const { user } = (this.$store as any).state
-
+    displayJoinLeagueModal(id) {
+      this.showJoinLeagueModal = true
+      this.leagueToJoinId = id
+    },
+    isUserJoinedLeague(league) {
+      return (
+        league.CommissionerID === this.user.id ||
+        league.LeagueTeams.some(team => team.OwnerID === this.user.id)
+      )
+    },
+    joinLeague() {
+      if (!this.newTeam.name) {
+        console.log('Must enter team name')
+        return false;
+      }
       this.$apollo
         .mutate({
           mutation: gql`
@@ -110,8 +164,9 @@ export default Vue.extend({
           `,
           variables: {
             input: {
-              id: leagueId,
-              name: user.fullName
+              id: this.leagueToJoinId,
+              ownerId: this.user.id,
+              name: this.newTeam.name
             }
           }
         })
@@ -127,11 +182,17 @@ export default Vue.extend({
     },
     editLeague() {
       // TODO: Implement me!
+    },
+    close() {
+      this.leagueToJoinId = ''
+      this.newTeam = {
+        name: '',
+      }
+      this.$emit('closing')
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
-
 </style>

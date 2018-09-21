@@ -3,7 +3,7 @@
     <div v-if="userHasTeams">
       <nfx-section-header title="My Teams"></nfx-section-header>
       <div class="nfx-team__item" v-for="team in userTeams" :key="team.id">
-        <p>{{team.Name}}</p>
+        <p class="nfx-team__item-text">{{team.Name}}</p>
         <nfx-button text="View Team" :click="() => { viewTeamClick(team) }" alt></nfx-button>
       </div>
     </div>
@@ -15,7 +15,10 @@
       </div>
     </div>
     <nfx-modal :show="showModal" v-on:closing="showModal = false" :onClose="close">
-      <div v-if="userCurrentTeam.length !== 0" class="modal-card">
+      <div v-if="userCurrentTeam.length === 0" class="modal-card">
+        <empty-state></empty-state>
+      </div>
+      <div v-else class="modal-card">
         <header class="modal-card-head">
           <p class="modal-card-title">Team: {{selectedTeam.Name}}</p>
           <button class="delete" @click="close"></button>
@@ -81,7 +84,7 @@ export default Vue.extend({
       return this.userTeams && this.userTeams.length !== 0
     },
     userCurrentTeam() {
-      if (!this.selectedTeam) {
+      if (!this.selectedTeam || !this.selectedTeam.Players) {
         return []
       }
 
@@ -174,6 +177,7 @@ export default Vue.extend({
     padding: 10px 0;
 
     p {
+      width: 250px;
       margin-right: 15px;
     }
   }

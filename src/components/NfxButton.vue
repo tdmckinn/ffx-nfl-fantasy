@@ -2,6 +2,8 @@
   <button
     type="button"
     class="nfx-button button"
+    :title="title"
+    :disabled="disabled"
     :class="{
       className,
       'is-primary': !alt,
@@ -21,7 +23,9 @@ export default {
     className: String,
     text: String,
     click: Function,
-    alt: Boolean
+    alt: Boolean,
+    disabled: Boolean,
+    title: String
   },
   methods: {
     onClick() {

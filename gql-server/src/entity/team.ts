@@ -20,12 +20,18 @@ export class Team {
   @Column()
   name: string
 
+  @Column()
+  league_id: number
+
+  @Column()
+  user_id: string
+
   @Column('simple-array')
   picks: number[]
 
   @ManyToOne(_type => User, user => user.teams)
   @JoinColumn({ name: 'user_id' })
-  user_id: User
+  user: User
 
   @ManyToOne(_type => League, league => league.teams)
   @JoinColumn({ name: 'league_id' })

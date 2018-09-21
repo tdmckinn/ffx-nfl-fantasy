@@ -22,27 +22,35 @@ const NotFoundComponent = {
   </section>`
 }
 
-const AppUserTeams = () => import('../views/AppUserTeams.vue' /* webpackChunkName: "my-team" */)
-const Dashboard = () => import('../views/AppDashboard.vue' /* webpackChunkName: "dashboard" */)
-const Players = () => import('../views/AppPlayers.vue' /* webpackChunkName: "players" */)
-const Research = () => import('../views/AppResearch.vue' /* webpackChunkName: "research" */)
-const TopDrafts = () => import('../views/AppTopDrafts.vue' /* webpackChunkName: "top-drafts" */)
-const AppDraft = () => import('../views/AppDraft.vue' /* webpackChunkName: "draft" */)
-const Leagues = () => import('../views/AppLeagues.vue' /* webpackChunkName: "leagues" */)
-const NfxDraft = () => import('../components/draft/NfxDraft.vue' /* webpackChunkName: "nfx-draft-live" */)
+const AppUserTeams = () =>
+  import('../views/AppUserTeams.vue' /* webpackChunkName: "my-team" */)
+const Dashboard = () =>
+  import('../views/AppDashboard.vue' /* webpackChunkName: "dashboard" */)
+const Players = () =>
+  import('../views/AppPlayers.vue' /* webpackChunkName: "players" */)
+const Research = () =>
+  import('../views/AppResearch.vue' /* webpackChunkName: "research" */)
+const TopDrafts = () =>
+  import('../views/AppTopDrafts.vue' /* webpackChunkName: "top-drafts" */)
+const AppDraft = () =>
+  import('../views/AppDraft.vue' /* webpackChunkName: "draft" */)
+const Leagues = () =>
+  import('../views/AppLeagues.vue' /* webpackChunkName: "leagues" */)
+const NfxDraft = () =>
+  import('../components/draft/NfxDraft.vue' /* webpackChunkName: "nfx-draft-live" */)
 
 const router = new Router({
   mode: 'history',
   routes: [
     {
       path: '/',
-      component: Dashboard,
+      component: Dashboard
     },
     {
       path: '/logout',
       beforeEnter: () => {
+        netlifyIdentity.logout()
         location.href = '/'
-        netlifyIdentity.logout();
       }
     },
     {
@@ -51,19 +59,19 @@ const router = new Router({
     },
     {
       path: '/leagues',
-      component: Leagues,
+      component: Leagues
     },
     {
       path: '/draft-rankings',
-      component: TopDrafts,
+      component: TopDrafts
     },
     {
       path: '/players',
-      component: Players,
+      component: Players
     },
     {
       path: '/highlights',
-      component: Research,
+      component: Research
     },
     {
       path: '/draft',
@@ -74,7 +82,9 @@ const router = new Router({
           name: 'live',
           component: NfxDraft,
           beforeEnter: (_to, _from, next) => {
-            const { draftConfig: { isUserDrafting } } = store.state
+            const {
+              draftConfig: { isUserDrafting }
+            } = store.state
             if (!isUserDrafting) {
               if (location.pathname.includes('/draft/live')) {
                 router.push('/draft')
@@ -84,7 +94,7 @@ const router = new Router({
             }
             next()
             return
-          },
+          }
           // beforeRouteLeave: (_to, _from, next) => {
           //   console.log('Im leaving...')
           //   next()

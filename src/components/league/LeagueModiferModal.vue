@@ -134,10 +134,12 @@ export default Vue.extend({
       this.isSettingsEditMode = false
       this.leagueSettings = {}
       this.settings = []
-      this.leagueName = Object.assign({
-        value: '',
-        isFocusOnMount: true
-      })
+      this.leagueName = {
+        ...{
+          value: '',
+          isFocusOnMount: true
+        }
+      }
       this.draftDateTime = ''
       this.commissionerName = ''
       this.isValidForm = true
@@ -173,7 +175,6 @@ export default Vue.extend({
         .then(({ data: { createLeague } }: any) => {
           console.log(createLeague)
           alert('League saved continue editing...')
-          debugger
           this.leagueId = createLeague.id
           this.isSettingsEditMode = true
         })
