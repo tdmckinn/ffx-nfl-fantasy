@@ -18,4 +18,7 @@ private/*
 *.njsproj
 *.sln
 
-.env
+.env.local
+.env.production
+
+gql-server/dist

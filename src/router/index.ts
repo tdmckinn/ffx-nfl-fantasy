@@ -1,16 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import netlifyIdentity from 'netlify-identity-widget'
 
-import Dashboard from '../views/Dashboard.vue'
-import Players from '../views/Players.vue'
-import Research from '../views/Research.vue'
-import TopDrafts from '../views/TopDrafts.vue'
-import Modal from '../components/globals/Modal.vue'
+import store from '../store'
 
 Vue.use(Router)
-
-// register global components
-Vue.component('modal', Modal)
 
 const NotFoundComponent = {
   template: `
@@ -28,33 +22,85 @@ const NotFoundComponent = {
   </section>`
 }
 
-const MyTeam = () => import('../views/MyTeam.vue')
+const AppUserTeams = () =>
+  import('../views/AppUserTeams.vue' /* webpackChunkName: "my-team" */)
+const Dashboard = () =>
+  import('../views/AppDashboard.vue' /* webpackChunkName: "dashboard" */)
+const Players = () =>
+  import('../views/AppPlayers.vue' /* webpackChunkName: "players" */)
+const Research = () =>
+  import('../views/AppResearch.vue' /* webpackChunkName: "research" */)
+const TopDrafts = () =>
+  import('../views/AppTopDrafts.vue' /* webpackChunkName: "top-drafts" */)
+const AppDraft = () =>
+  import('../views/AppDraft.vue' /* webpackChunkName: "draft" */)
+const Leagues = () =>
+  import('../views/AppLeagues.vue' /* webpackChunkName: "leagues" */)
+const NfxDraft = () =>
+  import('../components/draft/NfxDraft.vue' /* webpackChunkName: "nfx-draft-live" */)
 
 const router = new Router({
   mode: 'history',
   routes: [
     {
       path: '/',
-      component: Dashboard,
+      component: Dashboard
     },
     {
-      path: '/team',
-      component: MyTeam
-      // beforeEnter: (to, from, next) => {
-      //   // ... isLogged In User
-      // }
+      path: '/logout',
+      beforeEnter: () => {
+        netlifyIdentity.logout()
+        location.href = '/'
+      }
     },
     {
-      path: '/highlights',
-      component: Research,
+      path: '/teams',
+      component: AppUserTeams
+    },
+    {
+      path: '/leagues',
+      component: Leagues
     },
     {
       path: '/draft-rankings',
-      component: TopDrafts,
+      component: TopDrafts
     },
     {
       path: '/players',
-      component: Players,
+      component: Players
+    },
+    {
+      path: '/highlights',
+      component: Research
+    },
+    {
+      path: '/draft',
+      component: AppDraft,
+      children: [
+        {
+          path: 'live/:id',
+          name: 'live',
+          component: NfxDraft,
+          beforeEnter: (_to, _from, next) => {
+            const {
+              draftConfig: { isUserDrafting }
+            } = store.state
+            if (!isUserDrafting) {
+              if (location.pathname.includes('/draft/live')) {
+                router.push('/draft')
+              } else {
+                router.push('/')
+              }
+            }
+            next()
+            return
+          }
+          // beforeRouteLeave: (_to, _from, next) => {
+          //   console.log('Im leaving...')
+          //   next()
+          // }
+        }
+      ]
     },
     { path: '*', component: NotFoundComponent }
   ]

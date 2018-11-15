@@ -10,32 +10,38 @@ Vue.use(Vuex)
 const state = {
   activePage: '',
   user: {
-    isLoggedIn: false,
     id: '',
-    firstName: '',
-    lastName: '',
+    isLoggedIn: false,
+    fullName: '',
     email: '',
     wins: 0,
     loses: 0,
     favoriteTeam: ''
   },
-  players: [],
-  myTeam: [],
-  rankings: [],
   gameInfo: [],
-  isSidebarOpen: false
+  isSidebarOpen: false,
+  draftConfig: {
+    isUserDrafting: false,
+    isUserDraftLoading: false
+  }
 }
 
-if (localStorage.getItem('FFX_USER')) {
-  state.user = JSON.parse(localStorage.getItem('FFX_USER') || '')
+if (localStorage.getItem('gotrue.user')) {
+  const { id, email, user_metadata } = JSON.parse(localStorage.getItem('gotrue.user') || '{}')
+  state.user = {
+      ...state.user,
+      ...{
+      id,
+      email,
+      isLoggedIn: true, // check expiration token
+      fullName: user_metadata.full_name
+    }
+  }
 }
 
-const core = {
+export default new Vuex.Store({
+  state,
   actions,
   mutations,
   getters
-}
-export default new Vuex.Store({
-  state,
-  ...core
 })

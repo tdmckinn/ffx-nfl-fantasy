@@ -28,7 +28,7 @@ app.use('/public', serve('../public'))
 // handle fallback for HTML5 history API
 app.use(history({ verbose: true }))
 
-app.use('/api', router)
+// app.use('/api', router)
 
 app.get('/', (req, res) => {
   res.sendFile(resolve('../dist/index.html'))
@@ -50,7 +50,7 @@ function startAndListen(app, port) {
 
 if (isProd && process.env.ENV_LOCAL) {
   debug('Attempting to get certificate');
-  return getDevelopmentCertificate('ffx-nfl-fantasy', { installCertutil: true }).then((ssl) => {
+  return getDevelopmentCertificate('nfx-fantasy', { installCertutil: true }).then((ssl) => {
     debug('SSL configuration received. Starting app server');
     return startAndListen(https.createServer(ssl, app), 8080);
   })
