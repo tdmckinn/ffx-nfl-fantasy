@@ -27,8 +27,8 @@ import { Settings } from './entity/settings'
 import { typeDefs } from './typeDefs'
 
 const redisOptions: any = {
-  host: process.env.REDIS_HOST,
-  port: process.env.REDIS_PORT,
+  host: 'localhost',
+  port: 6379,
   retry_strategy: opts => {
     return Math.max(opts.attempt * 100, 3000)
   }
