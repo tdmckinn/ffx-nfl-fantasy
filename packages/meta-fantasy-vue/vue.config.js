@@ -10,6 +10,7 @@ module.exports = {
   assetsDir: 'static',
   devServer: {
     https: false,
+    host: '0.0.0.0',
     port: 8081,
     proxy: {
       '/api':  { target: 'http://localhost:7777', secure: false }

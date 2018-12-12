@@ -10,7 +10,7 @@
     "build": "tsc",
     "dev": "nodemon",
     "dev:debug": "nodemon --config nodemon-debug.json",
-    "start": "ts-node -r tsconfig-paths/register src/main.ts",
+    "start": "yarn dev",
     "start:prod": "yarn build && node dist/main.js"
   },
   "dependencies": {
@@ -27,16 +27,19 @@
     "typeorm": "^0.2.7"
   },
   "engines": {
-    "node": "10.11.0",
-    "npm": ">= 5"
+    "node": "11.4.0",
+    "npm": ">= 6"
   },
   "devDependencies": {
     "@types/faker": "^4.1.4",
     "@types/ioredis": "^4.0.1",
     "@types/lodash.shuffle": "^4.2.4",
     "@types/node": "^10.10.1",
+    "nodemon": "^1.18.8",
     "rimraf": "^2.6.2",
     "ts-node": "^7.0.1",
-    "tsconfig-paths": "^3.6.0"
+    "tsconfig-paths": "^3.6.0",
+    "tslint-config-prettier": "^1.17.0",
+    "typescript": "^3.2.2"
   }
 }

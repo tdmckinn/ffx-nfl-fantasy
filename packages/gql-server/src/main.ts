@@ -13,8 +13,8 @@ import { NFL_TEAMS } from './data/nfl_teams.json'
 import { NFL_POSITONS } from './data/nfl_positions.json'
 
 import { NFX_USERS } from './data/nfx_users.json'
-import { NFX_LEAGUES } from './data/nfx_leagues.json'
-import { NFX_TEAMS } from './data/nfx_teams.json'
+// import { NFX_LEAGUES } from './data/nfx_leagues.json'
+// import { NFX_TEAMS } from './data/nfx_teams.json'
 import { NFX_SETTINGS } from './data/nfx_settings.json'
 import { NFX_LEAGUE_SETTINGS } from './data/nfx_league_settings.json'
 
@@ -27,7 +27,7 @@ import { Settings } from './entity/settings'
 import { typeDefs } from './typeDefs'
 
 const redisOptions: any = {
-  host: 'localhost',
+  host: process.env.REDIS_HOST || '127.0.0.1',
   port: 6379,
   retry_strategy: opts => {
     return Math.max(opts.attempt * 100, 3000)
@@ -77,7 +77,17 @@ const getLeagueTeams = (teams: Team[]) => {
   })
 }
 
-createConnection()
+getConnectionOptions().then(connectionOptions => {
+  return createConnection({
+    ...connectionOptions,
+    ...{
+      host: process.env.POSTGRES_HOST,
+      port: process.env.POSTGRES_PORT,
+      database: process.env.POSTGRES_DB,
+      username: process.env.POSTGRES_USERNAME,
+      password: process.env.POSTGRES_PASSWORD
+    }
+  } as any)
   .then(async connection => {
     /**
      * Subscription Events
@@ -126,18 +136,18 @@ createConnection()
 
           const _leagues = leagues
             ? leagues.map(league => {
-                return {
-                  id: league.id,
-                  CommissionerID: league.commissioner_id,
-                  DraftDateTime: league.draft_date_time,
-                  LeagueName: league.league_name,
-                  LeagueSettings: {
-                    id: league.settings!.id,
-                    ...league.settings!.settings_json
-                  },
-                  LeagueTeams: getLeagueTeams(league.teams)
-                }
-              })
+              return {
+                id: league.id,
+                CommissionerID: league.commissioner_id,
+                DraftDateTime: league.draft_date_time,
+                LeagueName: league.league_name,
+                LeagueSettings: {
+                  id: league.settings!.id,
+                  ...league.settings!.settings_json
+                },
+                LeagueTeams: getLeagueTeams(league.teams)
+              }
+            })
             : []
 
           return _leagues
@@ -240,10 +250,10 @@ createConnection()
         },
         async joinLeague(_root, { input }, _context) {
           const league = await entityManager
-          .createQueryBuilder(League, 'league')
-          .leftJoinAndSelect('league.teams', 'team')
-          .where('league.id = :id', { id: input.id })
-          .getOne()
+            .createQueryBuilder(League, 'league')
+            .leftJoinAndSelect('league.teams', 'team')
+            .where('league.id = :id', { id: input.id })
+            .getOne()
 
           const newTeam = new Team()
           newTeam.name = input.name
@@ -322,7 +332,7 @@ createConnection()
 
               const draftTeams: any = teams.map((team, index) => {
                 const draftingPosition = teamPickOrder[index]
-                return  {
+                return {
                   id: team.id,
                   LeagueID: team.league_id,
                   Name: team.name,
@@ -403,7 +413,8 @@ createConnection()
       typeDefs: gql(typeDefs),
       resolvers,
       subscriptions: true,
-      cors: true
+      cors: true,
+      host: '0.0.0.0'
     }
 
     const server = new ApolloServer(apolloOptions)
@@ -413,3 +424,4 @@ createConnection()
     })
   })
   .catch(error => console.log('TypeORM connection error: ', error))
+})

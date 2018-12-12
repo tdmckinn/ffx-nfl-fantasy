@@ -20,5 +20,9 @@
     "prettier": "^1.15.3",
     "tslint-config-prettier": "^1.17.0",
     "typescript": "^3.2.1"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "license": "MIT"
 }
