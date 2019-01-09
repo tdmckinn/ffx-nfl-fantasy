@@ -22,13 +22,13 @@ import { User } from './entity/user'
 import { League } from './entity/league'
 import { Team } from './entity/team'
 import { Settings } from './entity/settings'
-// import { Player } from './entity/player'
+// import { Player } from './entity/player's
 
 import { typeDefs } from './typeDefs'
 
 const redisOptions: any = {
+  port: process.env.REDIS_PORT,
   host: process.env.REDIS_HOST || '127.0.0.1',
-  port: 6379,
   retry_strategy: opts => {
     return Math.max(opts.attempt * 100, 3000)
   }
@@ -77,6 +77,7 @@ const getLeagueTeams = (teams: Team[]) => {
   })
 }
 
+console.log(process.env.POSTGRES_HOST)
 getConnectionOptions().then(connectionOptions => {
   return createConnection({
     ...connectionOptions,
@@ -84,7 +85,7 @@ getConnectionOptions().then(connectionOptions => {
       host: process.env.POSTGRES_HOST,
       port: process.env.POSTGRES_PORT,
       database: process.env.POSTGRES_DB,
-      username: process.env.POSTGRES_USERNAME,
+      username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD
     }
   } as any)

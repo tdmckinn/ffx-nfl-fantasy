@@ -1,11 +1,10 @@
-FROM node:latest
+FROM node:11.6.0
+
+WORKDIR /usr/app
 
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 
-RUN mkdir -p /gql-server
-WORKDIR /gql-server
-
-COPY . /gql-server
+COPY . /usr/app
 
 RUN yarn
 

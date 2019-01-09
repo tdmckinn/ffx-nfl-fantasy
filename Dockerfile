@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:11.6.0
 
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 
@@ -8,12 +8,13 @@ RUN \
     npm i lerna -g --loglevel notice 
 
 RUN mkdir -p /usr/src/app
+
 WORKDIR /usr/src/app
+
 
 COPY package.json .
 COPY yarn.lock .
 COPY lerna.json .
-COPY wait-for-it.sh .
 
 COPY packages/gql-server ./packages/gql-server
 COPY packages/meta-fantasy-vue ./packages/meta-fantasy-vue

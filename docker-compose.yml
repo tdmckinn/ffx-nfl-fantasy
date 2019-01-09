@@ -4,51 +4,40 @@ services:
     image: postgres:latest
     env_file: 
       ./compose.env
-    environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_USER: ${POSTGRES_USERNAME}
-      POSTGRES_DB: ${POSTGRES_DB}
-    networks: 
-      - webnet
+    ports:
+      - 5432
+
+
+  redis:
+    image: redis:5.0.3-alpine
+    hostname: redis
+    command: redis-server /usr/local/etc/redis/redis.conf
     volumes:
-      - ./pgdata:/var/lib/postgresql/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
     ports:
-      - "5432"
-  in-memory-db:
-    image: redis:latest
-    env_file: 
-      ./compose.env
-    networks: 
-      - webnet
-    ports:
-      - "6379"
+      - 6379:6379
+ 
+ 
   gql-server:
     env_file: 
       ./compose.env
-    networks: 
-      - webnet
     depends_on:
       - db
-      - in-memory-db
+      - redis
     build:
       context: packages/gql-server
       dockerfile: ./Dockerfile
     ports:
-      - "4000"
-    command: yarn start
+      - 4000:4000
+
+
   web-meta-fantasy:
     env_file: 
       ./compose.env
-    networks: 
-      - webnet
     depends_on:
       - gql-server
     build:
       context: packages/meta-fantasy-vue
       dockerfile: ./Dockerfile
     ports:
-      - "8081"
-    command: yarn dev:serve
-
-networks:
-  webnet:
+      - "8081:8081"
