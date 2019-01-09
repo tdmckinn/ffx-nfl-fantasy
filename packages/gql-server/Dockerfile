@@ -1,10 +1,10 @@
 FROM node:11.6.0
 
-WORKDIR /usr/app
-
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 
-COPY . /usr/app
+RUN mkdir -p /usr/app
+WORKDIR /usr/app
+COPY . .
 
 RUN yarn
 
