@@ -1,4 +1,4 @@
-import { FantasyService } from '../api'
+// import { FantasyService } from '../api'
 
 export default {
   USER_AUTHENTICATED: ({ commit }, { id, email, isLoggedIn, fullName }) => {
@@ -12,8 +12,9 @@ export default {
       isLoggedIn
     })
   },
-  GET_WEATHER: ({ commit }) => {
-    const gameWeatherInfo = FantasyService.getWeather()
-    commit('SET_WEATHER_FORECAST', gameWeatherInfo)
+  GET_WEATHER: ({ _commit }: any) => {
+    console.log(_commit)
+    // const gameWeatherInfo = FantasyService.getWeather()
+    // commit('SET_WEATHER_FORECAST', gameWeatherInfo)
   }
 }

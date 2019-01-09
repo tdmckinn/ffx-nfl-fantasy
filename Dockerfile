@@ -1,19 +1,27 @@
-FROM node:latest
+FROM node:11.6.0
 
-# Create app directory
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
+
+RUN \
+    apt-get update && \
+    apt-get install -y git && \
+    npm i lerna -g --loglevel notice 
+
+RUN mkdir -p /usr/src/app
+
 WORKDIR /usr/src/app
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
-COPY package*.json ./
 
-RUN npm install
-# If you are building your code for production
-# RUN npm install --only=production
+COPY package.json .
+COPY yarn.lock .
+COPY lerna.json .
 
-# Bundle app source
-COPY . .
+COPY packages/gql-server ./packages/gql-server
+COPY packages/meta-fantasy-vue ./packages/meta-fantasy-vue
 
-EXPOSE 8080
-CMD [ "npm", "start" ]
+# install and build
+RUN yarn
+
+RUN lerna bootstrap
+   
+CMD [ "yarn", "start" ]

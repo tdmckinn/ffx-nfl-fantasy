@@ -1,0 +1,48 @@
+version: '3'
+services:
+  db:
+    image: postgres:latest
+    env_file: 
+      ./compose.env
+    ports:
+      - 5432
+
+
+  redis:
+    image: redis:5.0.3-alpine
+    hostname: redis
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    ports:
+      - 6379:6379
+ 
+ 
+  gql-server:
+    env_file: 
+      ./compose.env
+    depends_on:
+      - db
+      - redis
+    build:
+      context: packages/gql-server
+      dockerfile: ./Dockerfile
+    ports:
+      - 4000:4000
+
+
+  web-meta-fantasy:
+    environment: 
+      - CHOKIDAR_USEPOLLING=true
+    env_file: 
+      ./compose.env
+    depends_on:
+      - gql-server
+    build:
+      context: packages/meta-fantasy-vue
+      dockerfile: ./Dockerfile
+    volumes:
+      - './packages/meta-fantasy-vue:/app'
+      - '/app/node_modules'
+    ports:
+      - "8081:8081"

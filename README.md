@@ -1,29 +1,52 @@
-# NFX-Fantasy
+# Meta-Fantasy monorepo
 
-> fantasy football sports
+This monorepo will contain all needed resources for development the meta-fantasy app.
+(meta fantasy) name is subject to change.
 
-For more information on VueJS please checkout out the documentation directly at https://vuejs.org/.
+meta-fantasy 
+  |--meta-fantasy (Vue front-end web SPA)
+  |--gql-server (GraphQL back-end for data resources)
+  - package.json 
+  - prettierrc
+  - lerna.json
+  - README.md
 
-## Build Setup
+## Projects include:
 
-Build based off vue-cli 3
+* Meta-Fantasy: Fantasy sports application 
+* GQL-Server - Node server built with GraphQL supports all queries from the meta-fantasy SPA
 
-Dev
+### Getting Started
+1. git clone https://github.com/tdmckinn/nfx-fantasy
 
-* ```yarn dev or npm run dev```
-* ```yarn build```
+# Requiremnets & Installations
 
-  Running yarn dev will start up the project in dev mode which includes an express server, webpack via the vue-cli, and a graphql server.
+## With Docker 
+### Requirements 
+ 1. Install [Yarn](https://yarnpkg.com/en/docs/install)
+ 2. Install [docker](https://www.docker.com/get-started)
 
-## Tech Stack
+### Running the Project
+## Without Docker on MacOS or Linux 
 
-* VueJS
-* Apollo: Client & Server
-* Vuex
-* BEM for SCSS naming convention
-* Graphql
-* Nodejs
-* Good Ol' Postgres (FTTB) / Cockroachdb (TBD)
-* JSON Data files
+### Requirements 
+ 1. Install [Node]
+  via - [nvm](https://github.com/creationix/nvm)
+ 2. Install [Yarn](https://yarnpkg.com/en/docs/install)
 
-> ```This project prototypes different features & technologies. Examples provided are for those demo purposes only.```
+Ensure you have homebrew installed 
+
+`brew install postrges`
+
+`brew install redis-cli`
+
+### Running the Project
+
+```docker-compose up --build```
+
+
+# Contributing to Meta-Fantasy
+How can I contribute to Meta-Fantasy?
+
+# LICENSE
+[MIT](https://github.com/tdmckinn/nfx-fantasy/license)
