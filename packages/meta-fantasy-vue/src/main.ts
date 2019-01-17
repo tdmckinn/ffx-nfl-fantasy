@@ -20,7 +20,7 @@ Vue.config.ignoredElements = ['nfx-counter']
 new Vue({
   el: '#nfx-app',
   router,
-  provide: apolloProvider.provide(),
+  apolloProvider,
   store,
   render: h => h(App)
 })

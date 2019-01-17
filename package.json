@@ -5,7 +5,7 @@
     "audit": "yarn audit",
     "format": "prettier --write 'packages/*/*.ts'",
     "gql-server": "cd packages/gql-server && yarn dev",
-    "meta-fantasy": "cd packages/meta-fantasy && yarn dev:serve",
+    "meta-fantasy": "cd packages/meta-fantasy-vue && yarn dev:serve",
     "start": "concurrently --kill-others \"yarn gql-server\" \"yarn meta-fantasy\"",
     "test": "jest",
     "test:watch": "tsc -w",
